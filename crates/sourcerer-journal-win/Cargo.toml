@@ -1,0 +1,16 @@
+[package]
+name = "sourcerer-journal-win"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish.workspace = true
+description = "Windows NTFS USN journal subscriber for Sourcerer (Phase 1)."
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+thiserror = { workspace = true }
