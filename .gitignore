@@ -1,0 +1,78 @@
+# Rust
+/target/
+**/target/
+**/*.rs.bk
+Cargo.lock.bak
+
+# Tauri
+apps/sourcerer-ui/src-tauri/target/
+apps/sourcerer-ui/src-tauri/gen/schemas/
+
+# Node
+node_modules/
+.pnpm-store/
+.pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+apps/sourcerer-ui/dist/
+apps/sourcerer-ui/.svelte-kit/
+
+# IDEs
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json.example
+*.iml
+.fleet/
+.zed/
+
+# Claude Code per-user state (settings.local.json holds permission allowlists, not for sharing)
+.claude/settings.local.json
+.claude/cache/
+.claude/state/
+
+# OS junk
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+Desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# Logs / temp
+*.log
+*.tmp
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Coverage
+coverage/
+*.lcov
+
+# Generated docs / artifacts
+/dist/
+/release/
+
+# ─────────────────────────────────────────────────────────────────────────────
+# PRIVATE PLANNING DOCS — NEVER PUSH TO GITHUB.
+# These contain proprietary strategy: copy-paste-ready build prompts, the full
+# product spec, the go-to-market plan, and the phased roadmap. Public exposure
+# would let competitors clone the entire build path. Keep local only.
+# Use `git add -f <path>` only if you really mean to publish a specific file.
+# ─────────────────────────────────────────────────────────────────────────────
+/Sourcerer-Build-Prompts-Guide.md
+/docs/ROADMAP.md
+/docs/PRD.md
+/docs/PRODUCT-VISION.md
+/docs/GTM.md
+
