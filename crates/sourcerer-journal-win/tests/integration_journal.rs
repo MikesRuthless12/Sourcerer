@@ -25,12 +25,45 @@ fn drive_root_for(p: &Path) -> PathBuf {
     PathBuf::from("C:\\")
 }
 
+/// Canonicalize + strip the `\\?\` extended-path prefix to match the
+/// form the subscriber emits (which itself strips the prefix returned
+/// by `GetFinalPathNameByHandleW`). Without this, an unstripped
+/// `\\?\C:\...` scratch path never matches an event whose path is
+/// `C:\...`, and the test's prefix-filter excludes every event.
+fn canonicalize_stripped(p: &Path) -> PathBuf {
+    let canonical = match p.canonicalize() {
+        Ok(c) => c,
+        Err(_) => return p.to_path_buf(),
+    };
+    let lossy = canonical.to_string_lossy();
+    if let Some(stripped) = lossy.strip_prefix("\\\\?\\") {
+        if let Some(unc) = stripped.strip_prefix("UNC\\") {
+            return PathBuf::from(format!("\\\\{unc}"));
+        }
+        return PathBuf::from(stripped.to_string());
+    }
+    canonical
+}
+
 #[test]
 fn realtime_create_modify_rename_delete_round_trip() {
     // Run the test against the temp dir's host volume so CI on either
-    // C: or D: works.
+    // C: or D: works. Two distinct tempdirs:
+    //   `scratch`        — workload files live here.
+    //   `cursor_holder`  — cursor JSON lives here, OUTSIDE the workload
+    //                      tree so per-batch `cursor.save()` writes
+    //                      don't generate USN noise that would either
+    //                      pollute the scratch-prefix filter or amplify
+    //                      via the subscriber's own persist loop.
+    // Canonicalize scratch_path so the prefix string we compare against
+    // matches the form that `GetFinalPathNameByHandleW` returns (it
+    // resolves through reparse points + 8.3 short names + drive-letter
+    // mappings, all of which can otherwise mismatch a `tempdir().path()`
+    // output verbatim).
     let scratch = tempfile::tempdir().expect("create scratch tempdir");
-    let scratch_path = scratch.path().to_path_buf();
+    let cursor_holder = tempfile::tempdir().expect("create cursor tempdir");
+    let scratch_path = canonicalize_stripped(scratch.path());
+    let cursor_root = cursor_holder.path().to_path_buf();
     let volume = drive_root_for(&scratch_path);
 
     if !volume_is_ntfs(&volume) {
@@ -42,7 +75,6 @@ fn realtime_create_modify_rename_delete_round_trip() {
         return;
     }
 
-    let cursor_root = scratch.path().join("cursors");
     let subscriber = match open_with_cursor_root(&volume, &cursor_root) {
         Ok(s) => s,
         Err(e) => {
