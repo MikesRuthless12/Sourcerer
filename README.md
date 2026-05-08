@@ -165,10 +165,10 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the full crate boundary m
 Sourcerer is in active phased development. The first public release will be tagged **v0.19.84**.
 
 - [x] Phase 0 — Cross-platform scaffold
-- [ ] Phase 1 — NTFS USN journal subscriber (Windows)
-- [ ] Phase 2 — FSEvents journal subscriber (macOS)
-- [ ] Phase 3 — inotify + fanotify journal subscriber (Linux)
-- [ ] Phase 4 — Index core (Tantivy + custom name index)
+- [x] Phase 1 — NTFS USN journal subscriber (Windows)
+- [x] Phase 2 — FSEvents journal subscriber (macOS)
+- [x] Phase 3 — inotify + fanotify journal subscriber (Linux)
+- [x] Phase 4 — Index core (Tantivy + custom name index + SQLite WAL)
 - [ ] Phase 5 — Filename lens
 - [ ] Phase 6 — Filename similarity lens
 - [ ] Phase 7 — Format extractor framework
