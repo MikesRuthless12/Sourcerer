@@ -12,7 +12,7 @@ use std::path::{Component, Path, PathBuf};
 use std::time::{Duration, Instant};
 
 use futures::StreamExt;
-use sourcerer_journal_win::{open_with_cursor_root, JournalEvent};
+use sourcerer_journal_win::{JournalEvent, open_with_cursor_root};
 
 fn drive_root_for(p: &Path) -> PathBuf {
     let mut comps = p.components();
@@ -159,14 +159,12 @@ fn realtime_create_modify_rename_delete_round_trip() {
 }
 
 fn volume_is_ntfs(volume: &Path) -> bool {
-    use std::os::windows::ffi::OsStrExt;
     use std::ffi::OsStr;
+    use std::os::windows::ffi::OsStrExt;
 
     let path = format!(
         "{}\\",
-        volume
-            .to_string_lossy()
-            .trim_end_matches(['\\', '/'])
+        volume.to_string_lossy().trim_end_matches(['\\', '/'])
     );
     let wide: Vec<u16> = OsStr::new(&path)
         .encode_wide()

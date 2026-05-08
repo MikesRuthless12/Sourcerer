@@ -14,16 +14,16 @@ use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 use std::sync::{Arc, Mutex};
 
-use futures::channel::mpsc;
 use futures::Stream;
+use futures::channel::mpsc;
 
 use crate::cursor::VolumeCursor;
 use crate::event::{JournalError, JournalEvent};
 use crate::ffi::{
-    enum_usn_data, query_usn_journal, read_usn_journal, resolve_path_by_frn, volume_info,
-    JournalState, ParsedUsnRecord, UsnRecordIter, VolumeHandle,
+    JournalState, ParsedUsnRecord, UsnRecordIter, VolumeHandle, enum_usn_data, query_usn_journal,
+    read_usn_journal, resolve_path_by_frn, volume_info,
 };
-use crate::reasons::{classify, ReasonKind};
+use crate::reasons::{ReasonKind, classify};
 
 /// Per-volume subscriber. Cheap to hold; expensive operations only happen
 /// when the caller asks for a stream.
@@ -66,12 +66,10 @@ pub fn open_with_cursor_root(
     volume: &Path,
     cursor_root: &Path,
 ) -> Result<JournalSubscriber, JournalError> {
-    let info = volume_info(volume).map_err(|e| {
-        JournalError::OpenVolume(volume.to_path_buf(), e)
-    })?;
-    let handle = VolumeHandle::open(volume).map_err(|e| {
-        JournalError::OpenVolume(volume.to_path_buf(), e)
-    })?;
+    let info =
+        volume_info(volume).map_err(|e| JournalError::OpenVolume(volume.to_path_buf(), e))?;
+    let handle = VolumeHandle::open(volume)
+        .map_err(|e| JournalError::OpenVolume(volume.to_path_buf(), e))?;
     let journal = query_usn_journal(&handle).map_err(JournalError::QueryJournal)?;
 
     let persisted = VolumeCursor::load(cursor_root, info.serial)?;
@@ -201,8 +199,8 @@ fn bootstrap_thread(
     let mut next_frn: u64 = 0;
 
     loop {
-        let res = enum_usn_data(&handle, next_frn, journal, &mut buf)
-            .map_err(JournalError::EnumMft)?;
+        let res =
+            enum_usn_data(&handle, next_frn, journal, &mut buf).map_err(JournalError::EnumMft)?;
         let (advance_frn, byte_count) = match res {
             Some(v) => v,
             None => break,
@@ -304,7 +302,8 @@ fn subscribe_thread(
         };
         if live.journal_id != local.journal_id || local.next_usn < live.first_usn {
             tracing::info!(
-                old = local.journal_id, new = live.journal_id,
+                old = local.journal_id,
+                new = live.journal_id,
                 "USN journal recreated or wrapped; reseating cursor to FirstUsn"
             );
             local.journal_id = live.journal_id;
@@ -320,16 +319,20 @@ fn subscribe_thread(
                 return Ok(());
             }
 
-            let (next_usn, bytes) =
-                match read_usn_journal(&handle, local.journal_id, local.next_usn,
-                                       &mut buf, READ_TIMEOUT_100NS) {
-                    Ok(v) => v,
-                    Err(e) => {
-                        tracing::warn!(error = %e,
+            let (next_usn, bytes) = match read_usn_journal(
+                &handle,
+                local.journal_id,
+                local.next_usn,
+                &mut buf,
+                READ_TIMEOUT_100NS,
+            ) {
+                Ok(v) => v,
+                Err(e) => {
+                    tracing::warn!(error = %e,
                             "FSCTL_READ_USN_JOURNAL failed; reopening volume");
-                        break;
-                    }
-                };
+                    break;
+                }
+            };
 
             if bytes <= std::mem::size_of::<i64>() {
                 local.next_usn = next_usn;
@@ -364,12 +367,11 @@ fn persist(local: &VolumeCursor, shared: &Arc<Mutex<VolumeCursor>>, root: &Path)
 
 /// Sleeps with a doubling backoff (capped at ~5s) and returns false if the
 /// receiver was dropped while we slept (caller should exit).
-fn sleep_with_drop_check(
-    attempts: &mut u32,
-    tx: &mpsc::UnboundedSender<JournalEvent>,
-) -> bool {
+fn sleep_with_drop_check(attempts: &mut u32, tx: &mpsc::UnboundedSender<JournalEvent>) -> bool {
     *attempts = (*attempts + 1).min(8);
-    let backoff_ms = 50_u64.saturating_mul(1 << (*attempts - 1).min(7)).min(5_000);
+    let backoff_ms = 50_u64
+        .saturating_mul(1 << (*attempts - 1).min(7))
+        .min(5_000);
     let step = std::time::Duration::from_millis(50);
     let total = std::time::Duration::from_millis(backoff_ms);
     let mut elapsed = std::time::Duration::ZERO;
@@ -494,11 +496,7 @@ fn build_path(handle: &VolumeHandle, rec: &ParsedUsnRecord, cache: &PathCache) -
         .cloned()
 }
 
-fn resolve_dir_path(
-    handle: &VolumeHandle,
-    frn: u64,
-    cache: &PathCache,
-) -> Option<PathBuf> {
+fn resolve_dir_path(handle: &VolumeHandle, frn: u64, cache: &PathCache) -> Option<PathBuf> {
     if let Some(p) = cache
         .lock()
         .expect("path cache mutex poisoned")
