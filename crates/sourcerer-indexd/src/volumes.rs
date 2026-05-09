@@ -218,6 +218,11 @@ pub fn detect() -> Vec<VolumeInfo> {
 }
 
 #[cfg(unix)]
+// `statvfs` block-count / fragment-size widths are `c_ulong` on Linux and
+// `u64` on macOS — the explicit `as u64` cast is a no-op on macOS (which
+// fires clippy's `unnecessary_cast` lint) but is load-bearing on Linux's
+// `c_ulong`. Allow the lint here so the same source compiles on both.
+#[allow(clippy::unnecessary_cast)]
 fn read_statvfs(path: &std::path::Path) -> (u64, u64) {
     use std::ffi::CString;
     use std::os::unix::ffi::OsStrExt;
