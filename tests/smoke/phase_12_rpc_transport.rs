@@ -132,17 +132,15 @@ async fn rejects_unknown_method() {
     let svc = Arc::new(EchoService);
 
     // Server task (single connection).
-    let server_task = tokio::spawn(async move {
-        sourcerer_rpc::server::handle_connection_for_tests(a, svc).await
-    });
+    let server_task =
+        tokio::spawn(
+            async move { sourcerer_rpc::server::handle_connection_for_tests(a, svc).await },
+        );
     let client = ClientHandle::from_stream(b);
     // EchoService accepts any method, so this test exists to assert
     // *something* responds. We invoke a real "echo.foo" call and then
     // tear down.
-    let _: serde_json::Value = client
-        .call("echo.foo", json!({}))
-        .await
-        .unwrap();
+    let _: serde_json::Value = client.call("echo.foo", json!({})).await.unwrap();
     drop(client);
     let _ = tokio::time::timeout(std::time::Duration::from_secs(2), server_task).await;
 }

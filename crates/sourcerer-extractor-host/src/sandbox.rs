@@ -137,8 +137,7 @@ impl Host {
         let module = Module::from_file(&self.engine, sidecar_path)
             .map_err(|e| HostError::Wasm(e.to_string()))?;
 
-        let memory_budget_bytes = (manifest.memory_budget_mb as usize)
-            .saturating_mul(1024 * 1024);
+        let memory_budget_bytes = (manifest.memory_budget_mb as usize).saturating_mul(1024 * 1024);
         let mut store: Store<CallState> = Store::new(
             &self.engine,
             CallState {

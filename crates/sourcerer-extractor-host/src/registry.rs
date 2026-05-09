@@ -180,7 +180,9 @@ impl Registry {
             let bytes = std::fs::read(&e.sidecar_path)?;
             let h = blake3::hash(&bytes);
             e.state.last_blake3_hash = Some(h.to_hex().to_string());
-            self.file.state.insert(e.manifest.id.clone(), e.state.clone());
+            self.file
+                .state
+                .insert(e.manifest.id.clone(), e.state.clone());
         }
         self.persist()
     }

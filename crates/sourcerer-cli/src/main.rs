@@ -61,9 +61,7 @@ enum Command {
         sub: BookmarkCommand,
     },
     /// Switch the running app's theme.
-    Theme {
-        choice: ThemeChoice,
-    },
+    Theme { choice: ThemeChoice },
 }
 
 #[derive(Subcommand, Debug)]
@@ -150,7 +148,10 @@ async fn cmd_search(
     let report = parse_to_report(source, opts);
     if !report.errors.is_empty() {
         for e in &report.errors {
-            eprintln!("parse error: {} ({}-{})", e.message, e.span.start, e.span.end);
+            eprintln!(
+                "parse error: {} ({}-{})",
+                e.message, e.span.start, e.span.end
+            );
         }
         if !parse_only {
             anyhow::bail!("query has parse errors");
@@ -226,16 +227,13 @@ async fn cmd_index(socket: &SocketPath, sub: IndexCommand) -> Result<()> {
         .with_context(|| "connecting to sourcerer-indexd; is the daemon running?")?;
     match sub {
         IndexCommand::Status => {
-            let st: sourcerer_rpc::IndexState = client
-                .call("index.state", serde_json::Value::Null)
-                .await?;
+            let st: sourcerer_rpc::IndexState =
+                client.call("index.state", serde_json::Value::Null).await?;
             let json = serde_json::to_string_pretty(&st)?;
             println!("{json}");
         }
         IndexCommand::Verify => {
-            let _: serde_json::Value = client
-                .call("index.verify", serde_json::Value::Null)
-                .await?;
+            let _: serde_json::Value = client.call("index.verify", serde_json::Value::Null).await?;
             println!("verify: ok");
         }
         IndexCommand::Compact => {
@@ -286,12 +284,13 @@ async fn cmd_index(socket: &SocketPath, sub: IndexCommand) -> Result<()> {
         IndexCommand::RmRoot { path } => {
             // The id is the path-derived id used by `folders.add`. Without
             // a list-then-find round-trip, prefer matching by path.
-            let folders: Vec<serde_json::Value> = client
-                .call("folders.list", serde_json::Value::Null)
-                .await?;
+            let folders: Vec<serde_json::Value> =
+                client.call("folders.list", serde_json::Value::Null).await?;
             let target = folders
                 .iter()
-                .find(|f| f.get("path").and_then(|p| p.as_str()) == Some(&path.display().to_string()))
+                .find(|f| {
+                    f.get("path").and_then(|p| p.as_str()) == Some(&path.display().to_string())
+                })
                 .and_then(|f| f.get("id").and_then(|i| i.as_str().map(|s| s.to_string())));
             if let Some(id) = target {
                 let _: serde_json::Value = client

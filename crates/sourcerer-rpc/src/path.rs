@@ -65,9 +65,7 @@ pub fn default_pipe_name() -> String {
 fn current_user_sid_string() -> Option<String> {
     use windows::Win32::Foundation::HANDLE;
     use windows::Win32::Security::Authorization::ConvertSidToStringSidW;
-    use windows::Win32::Security::{
-        GetTokenInformation, PSID, TOKEN_QUERY, TOKEN_USER, TokenUser,
-    };
+    use windows::Win32::Security::{GetTokenInformation, PSID, TOKEN_QUERY, TOKEN_USER, TokenUser};
     use windows::Win32::System::Threading::{GetCurrentProcess, OpenProcessToken};
     use windows::core::PWSTR;
 
@@ -132,7 +130,7 @@ mod tests {
     fn default_path_is_well_formed() {
         let p = default_socket_path();
         match p {
-            SocketPath::Path(pb) => assert!(pb.is_absolute() || pb.as_os_str().len() > 0),
+            SocketPath::Path(pb) => assert!(pb.is_absolute() || !pb.as_os_str().is_empty()),
             SocketPath::Pipe(name) => assert!(name.starts_with(r"\\.\pipe\")),
         }
     }

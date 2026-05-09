@@ -26,9 +26,10 @@ async fn query_run_streams_batches_and_done() {
     let svc = Arc::new(IndexdService::new(state));
 
     let (a, b) = tokio::io::duplex(64 * 1024);
-    let _server = tokio::spawn(async move {
-        sourcerer_rpc::server::handle_connection_for_tests(a, svc).await
-    });
+    let _server =
+        tokio::spawn(
+            async move { sourcerer_rpc::server::handle_connection_for_tests(a, svc).await },
+        );
     let client = ClientHandle::from_stream(b);
     let mut notif = client.notifications();
 
@@ -52,7 +53,10 @@ async fn query_run_streams_batches_and_done() {
             }
         }
     }
-    assert!(batches >= 4, "expected at least one batch per lens, got {batches}");
+    assert!(
+        batches >= 4,
+        "expected at least one batch per lens, got {batches}"
+    );
 }
 
 #[tokio::test]
@@ -66,12 +70,15 @@ async fn index_state_returns_typed_view() {
     let svc = Arc::new(IndexdService::new(state));
 
     let (a, b) = tokio::io::duplex(64 * 1024);
-    let _s = tokio::spawn(async move {
-        sourcerer_rpc::server::handle_connection_for_tests(a, svc).await
-    });
+    let _s =
+        tokio::spawn(
+            async move { sourcerer_rpc::server::handle_connection_for_tests(a, svc).await },
+        );
     let client = ClientHandle::from_stream(b);
-    let st: sourcerer_rpc::IndexState =
-        client.call("index.state", serde_json::Value::Null).await.unwrap();
+    let st: sourcerer_rpc::IndexState = client
+        .call("index.state", serde_json::Value::Null)
+        .await
+        .unwrap();
     // A fresh tempdir Index has zero files but the call shape must
     // survive byte-stable JSON serialization.
     assert!(st.message.contains("Indexed"));
@@ -88,13 +95,16 @@ async fn extractors_list_and_set_mode_round_trip() {
     let svc = Arc::new(IndexdService::new(state));
 
     let (a, b) = tokio::io::duplex(64 * 1024);
-    let _s = tokio::spawn(async move {
-        sourcerer_rpc::server::handle_connection_for_tests(a, svc).await
-    });
+    let _s =
+        tokio::spawn(
+            async move { sourcerer_rpc::server::handle_connection_for_tests(a, svc).await },
+        );
     let client = ClientHandle::from_stream(b);
 
-    let list: Vec<sourcerer_rpc::ExtractorInfo> =
-        client.call("extractors.list", serde_json::Value::Null).await.unwrap();
+    let list: Vec<sourcerer_rpc::ExtractorInfo> = client
+        .call("extractors.list", serde_json::Value::Null)
+        .await
+        .unwrap();
     assert!(list.iter().any(|e| e.id == "pdf"));
 
     let _: serde_json::Value = client
@@ -117,13 +127,16 @@ async fn excludes_round_trip() {
     let svc = Arc::new(IndexdService::new(state));
 
     let (a, b) = tokio::io::duplex(64 * 1024);
-    let _s = tokio::spawn(async move {
-        sourcerer_rpc::server::handle_connection_for_tests(a, svc).await
-    });
+    let _s =
+        tokio::spawn(
+            async move { sourcerer_rpc::server::handle_connection_for_tests(a, svc).await },
+        );
     let client = ClientHandle::from_stream(b);
 
-    let cur: sourcerer_rpc::ExcludeRules =
-        client.call("excludes.get", serde_json::Value::Null).await.unwrap();
+    let cur: sourcerer_rpc::ExcludeRules = client
+        .call("excludes.get", serde_json::Value::Null)
+        .await
+        .unwrap();
     assert!(cur.list_enabled);
 
     let new = sourcerer_rpc::ExcludeRules {
@@ -134,8 +147,10 @@ async fn excludes_round_trip() {
         .call("excludes.set", serde_json::to_value(new).unwrap())
         .await
         .unwrap();
-    let after: sourcerer_rpc::ExcludeRules =
-        client.call("excludes.get", serde_json::Value::Null).await.unwrap();
+    let after: sourcerer_rpc::ExcludeRules = client
+        .call("excludes.get", serde_json::Value::Null)
+        .await
+        .unwrap();
     assert!(after.exclude_hidden);
 }
 
@@ -150,8 +165,7 @@ async fn no_canned_rs_in_tree() {
         .ancestors()
         .find(|p| p.join("Cargo.lock").exists())
         .expect("could not find workspace root from CARGO_MANIFEST_DIR");
-    let canned = workspace
-        .join("apps/sourcerer-ui/src-tauri/src/commands/canned.rs");
+    let canned = workspace.join("apps/sourcerer-ui/src-tauri/src/commands/canned.rs");
     assert!(
         !canned.exists(),
         "Phase 11 mock layer must be removed; found: {}",

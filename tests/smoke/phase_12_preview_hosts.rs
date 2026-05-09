@@ -12,11 +12,14 @@
 fn text_head_fallback_returns_none_on_binary() {
     // Binary preview not yet wired — text-head fallback should reject
     // a file with NUL bytes.
-    let bytes = vec![0u8, b'P', b'D', b'F', 0x90, 0x00, 0x01, 0x02];
+    let bytes = [0u8, b'P', b'D', b'F', 0x90, 0x00, 0x01, 0x02];
     let head_len = bytes.len().min(4096);
     let head = &bytes[..head_len];
     let has_nul = head.contains(&0u8);
-    assert!(has_nul, "binary preview detection must trigger on NUL bytes");
+    assert!(
+        has_nul,
+        "binary preview detection must trigger on NUL bytes"
+    );
 }
 
 #[test]
