@@ -31,17 +31,24 @@ pub mod ast;
 pub mod cache;
 pub mod error;
 pub mod exec;
+pub mod optimizer;
 pub mod opts;
 pub mod parser;
 pub mod quick_filters;
+pub mod report;
 
 pub use ast::{
-    AttribFlag, AudioPredicate, DateBound, ModifierKind, ModifierPredicate, Query, QueryNode,
-    RelativeDate, SizeOp, SizeUnit, TextPattern,
+    AttribFlag, AudioPredicate, DateBound, LensKind, ModifierKind, ModifierPredicate, Query,
+    QueryNode, RelativeDate, SizeOp, SizeUnit, TextPattern,
 };
 pub use cache::PlanCache;
 pub use error::{ParseError, QueryError};
 pub use exec::{ExecPlan, ExecStats, Hit, ResultSet, execute, execute_with, execute_with_audio};
+pub use optimizer::{is_audio_only_route, is_similarity_route, optimize, selectivity_rank};
 pub use opts::{ExecOpts, MatchMode, SortField, SortOrder, SortSpec};
-pub use parser::parse;
+pub use parser::{ParseOpts, parse, parse_with};
 pub use quick_filters::QuickFilter;
+pub use report::{
+    AstNode, ErrorCode, ErrorInfo, ModifierDetail, ParseReport, TokenInfo, TokenKind, TokenSpan,
+    parse_to_report,
+};

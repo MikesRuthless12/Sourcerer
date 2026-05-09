@@ -81,6 +81,10 @@ impl PlanCache {
         }
         let q = parse(s)?;
         validate_supported(&q)?;
+        // Phase 10: cache the optimized form so repeat hits skip the
+        // selectivity reorder. The optimizer is a stable transform —
+        // running it twice on the same input is a no-op.
+        let q = crate::optimizer::optimize(&q);
         let p = plan(&q, opts);
         let mut inner = self.inner.lock();
         evict_to_cap(&mut inner);

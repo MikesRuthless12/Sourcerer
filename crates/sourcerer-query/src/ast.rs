@@ -77,6 +77,47 @@ pub enum QueryNode {
     Not(Box<QueryNode>),
     /// Always-true atom — only produced by an empty group `()`.
     True,
+    /// Phase 10 lens-prefix scope. Parsed from `name:(...)` /
+    /// `audio:(...)` / `content:(...)` / `similar:(...)` syntax. The
+    /// inner sub-query dispatches normally; Phase-10's executor treats
+    /// `Name` / `Audio` / `Similar` lens kinds as transparent wrappers
+    /// (the modifiers inside still drive routing) and surfaces
+    /// `QueryError::UnsupportedModifier("content")` for `Content`
+    /// because no executor wires the content lens yet (Phase 11+).
+    /// Phase 11's UI uses [`LensKind`] for grouped result sections.
+    Lens {
+        kind: LensKind,
+        inner: Box<QueryNode>,
+    },
+}
+
+/// Lens-prefix kind. Maps to Phase 11's grouped result list; today
+/// the executor uses it to gate the unimplemented content lens.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum LensKind {
+    /// `name:(...)` — filename lens. Transparent wrapper today.
+    Name,
+    /// `audio:(...)` — audio lens. Transparent wrapper today; the
+    /// inner audio modifiers still drive `execute_with_audio`.
+    Audio,
+    /// `content:(...)` — content lens. Surfaces
+    /// `QueryError::UnsupportedModifier("content")` until Phase 11
+    /// wires the Phase-8 content extractors into the executor.
+    Content,
+    /// `similar:(...)` — similarity lens. Transparent wrapper today.
+    Similar,
+}
+
+impl LensKind {
+    /// The lens key as it appears in source (`"name"`, `"audio"`, …).
+    pub fn as_str(self) -> &'static str {
+        match self {
+            LensKind::Name => "name",
+            LensKind::Audio => "audio",
+            LensKind::Content => "content",
+            LensKind::Similar => "similar",
+        }
+    }
 }
 
 #[derive(Debug, Clone)]

@@ -24,6 +24,16 @@ pub enum ParseError {
         value: String,
         reason: String,
     },
+    /// Phase 10: surfaced when `ParseOpts::strict_everything` is on
+    /// and the parser encounters a Sourcerer-only modifier or lens
+    /// prefix. The `token` carries the offending source slice so the
+    /// IPC layer can highlight it.
+    #[error("`{token}` rejected by --strict-everything at byte {pos}: {reason}")]
+    StrictEverythingViolation {
+        pos: usize,
+        token: String,
+        reason: String,
+    },
     #[error("empty query")]
     Empty,
 }
