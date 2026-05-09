@@ -1,0 +1,18 @@
+/* PRD §9 — 100ms cross-fade between themes; respects prefers-reduced-motion. */
+
+html,
+body,
+[data-theme] {
+  transition:
+    background-color 100ms ease,
+    color 100ms ease,
+    border-color 100ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body,
+  [data-theme] {
+    transition: none !important;
+  }
+}
