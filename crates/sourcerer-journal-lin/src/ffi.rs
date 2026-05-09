@@ -6,9 +6,9 @@
 
 #![cfg(target_os = "linux")]
 
-use std::ffi::{CStr, CString, OsStr, OsString};
+use std::ffi::{CString, OsStr, OsString};
 use std::io;
-use std::os::fd::{AsRawFd, FromRawFd, IntoRawFd, OwnedFd, RawFd};
+use std::os::fd::{AsRawFd, FromRawFd, OwnedFd, RawFd};
 use std::os::unix::ffi::{OsStrExt, OsStringExt};
 use std::path::{Path, PathBuf};
 
@@ -86,10 +86,9 @@ impl InotifyFd {
         };
         if n < 0 {
             let err = io::Error::last_os_error();
-            if matches!(
-                err.raw_os_error(),
-                Some(libc::EAGAIN) | Some(libc::EWOULDBLOCK)
-            ) {
+            // Linux: EAGAIN == EWOULDBLOCK (one constant under two names);
+            // we keep the read-blocked-but-not-an-error semantics.
+            if matches!(err.raw_os_error(), Some(libc::EAGAIN)) {
                 return Ok(None);
             }
             return Err(err);
@@ -273,10 +272,9 @@ impl FanotifyFd {
         };
         if n < 0 {
             let err = io::Error::last_os_error();
-            if matches!(
-                err.raw_os_error(),
-                Some(libc::EAGAIN) | Some(libc::EWOULDBLOCK)
-            ) {
+            // Linux: EAGAIN == EWOULDBLOCK (one constant under two names);
+            // we keep the read-blocked-but-not-an-error semantics.
+            if matches!(err.raw_os_error(), Some(libc::EAGAIN)) {
                 return Ok(None);
             }
             return Err(err);
@@ -723,7 +721,7 @@ pub fn statfs_name(path: &Path) -> io::Result<String> {
     if r != 0 {
         return Err(io::Error::last_os_error());
     }
-    Ok(fs_magic_name(buf.f_type as i64))
+    Ok(fs_magic_name(buf.f_type))
 }
 
 /// Maps a `statfs.f_type` magic number to a human-readable filesystem
