@@ -21,12 +21,12 @@ use clap::{Parser, Subcommand};
 use sourcerer_indexd::{DaemonOptions, DaemonState};
 use std::sync::Arc;
 
-#[cfg(windows)]
-mod windows_service;
 #[cfg(target_os = "macos")]
 mod launchd;
 #[cfg(target_os = "linux")]
 mod systemd;
+#[cfg(windows)]
+mod windows_service;
 
 #[derive(Debug, Parser)]
 #[command(name = "sourcerer-indexd", about = "Sourcerer indexer daemon", version)]

@@ -23,7 +23,7 @@
 // so the same JSON shape that the daemon round-trips also stays
 // stable in the UI's TypeScript SettingsState.
 
-use serde_json::{json, Value};
+use serde_json::{Value, json};
 
 #[test]
 fn settings_state_includes_phase_12_keys() {
@@ -93,5 +93,8 @@ fn extras_round_trip_preserves_unknown_keys() {
     });
     let s = serde_json::to_string(&raw).unwrap();
     let back: Value = serde_json::from_str(&s).unwrap();
-    assert_eq!(back["future_phase_13_field"]["pinned_searches"][0], "recent");
+    assert_eq!(
+        back["future_phase_13_field"]["pinned_searches"][0],
+        "recent"
+    );
 }

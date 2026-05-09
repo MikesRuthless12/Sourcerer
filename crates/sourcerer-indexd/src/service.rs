@@ -40,9 +40,9 @@ use serde::Deserialize;
 use serde_json::{Value, json};
 use sourcerer_rpc::error::codes;
 use sourcerer_rpc::{
-    CustomExtractorEntry, ExcludeRules, ExtractorInfo, IndexPhase, IndexState, LensId,
-    LensTimings, NotificationSink, QueryBatch, QueryDone, QueryRunHandle, RpcError, SandboxView,
-    Service, VolumeInfo, VolumeStatus, VolumeUpdate, WatchedFolder,
+    CustomExtractorEntry, ExcludeRules, ExtractorInfo, IndexPhase, IndexState, LensId, LensTimings,
+    NotificationSink, QueryBatch, QueryDone, QueryRunHandle, RpcError, SandboxView, Service,
+    VolumeInfo, VolumeStatus, VolumeUpdate, WatchedFolder,
 };
 use tokio::sync::Mutex;
 
@@ -82,9 +82,7 @@ impl IndexdService {
     }
 
     fn fresh_handle(&self) -> String {
-        let n = self
-            .handle_counter
-            .fetch_add(1, Ordering::Relaxed);
+        let n = self.handle_counter.fetch_add(1, Ordering::Relaxed);
         format!("h{n}")
     }
 }
@@ -129,7 +127,9 @@ impl Service for IndexdService {
                 "network.start_api" => network_start_api(&self, params).await,
                 "network.stop_api" => network_stop_api(&self).await,
                 "custom_extractors.list" => custom_extractors_list(&self).await,
-                "custom_extractors.set_trusted" => custom_extractors_set_trusted(&self, params).await,
+                "custom_extractors.set_trusted" => {
+                    custom_extractors_set_trusted(&self, params).await
+                }
                 "custom_extractors.refresh_hashes" => custom_extractors_refresh_hashes(&self).await,
                 "history.get" => history_get(&self).await,
                 "history.set" => history_set(&self, params).await,
@@ -260,13 +260,15 @@ async fn run_query_streaming(
         }
         let lens_started = std::time::Instant::now();
         let hits = match (lens, &parsed) {
-            (LensId::Filename, Ok(query)) => filename_lens_hits(
-                handle,
-                &svc.state,
-                query,
-                per_lens_limits.as_ref().map(|l| l.filename).unwrap_or(200),
-            )
-            .await,
+            (LensId::Filename, Ok(query)) => {
+                filename_lens_hits(
+                    handle,
+                    &svc.state,
+                    query,
+                    per_lens_limits.as_ref().map(|l| l.filename).unwrap_or(200),
+                )
+                .await
+            }
             // Other lenses (content / audio / similarity) wait on their
             // executor wiring; for Phase 12 we surface an empty batch
             // that the UI's lens-grouped renderer treats as "no hits"
@@ -350,15 +352,11 @@ async fn filename_lens_hits(
 // ---------- index ----------
 
 async fn index_state(svc: &IndexdService) -> Result<Value, RpcError> {
-    let stats = svc
-        .state
-        .index
-        .stats()
-        .map_err(|e| RpcError::Remote {
-            code: codes::INTERNAL_ERROR,
-            message: format!("index stats failed: {e}"),
-            data: None,
-        })?;
+    let stats = svc.state.index.stats().map_err(|e| RpcError::Remote {
+        code: codes::INTERNAL_ERROR,
+        message: format!("index stats failed: {e}"),
+        data: None,
+    })?;
     let st = IndexState {
         phase: IndexPhase::Indexed,
         files_indexed: stats.files,
@@ -397,7 +395,11 @@ const BUILTIN_EXTRACTORS: &[(&str, &str, &[&str])] = &[
     ("xlsx", "Excel (.xlsx)", &["xlsx"]),
     ("docx", "Word (.docx)", &["docx"]),
     ("pptx", "PowerPoint (.pptx)", &["pptx"]),
-    ("code", "Code (tree-sitter)", &["rs", "py", "js", "ts", "go"]),
+    (
+        "code",
+        "Code (tree-sitter)",
+        &["rs", "py", "js", "ts", "go"],
+    ),
     ("archive_peek", "Archive peek", &["zip", "7z", "tar"]),
     ("structured", "Structured data", &["json", "csv", "yaml"]),
 ];
@@ -410,7 +412,9 @@ async fn extractors_list(svc: &IndexdService) -> Result<Value, RpcError> {
         .map(|(id, dn, fmts)| ExtractorInfo {
             id: (*id).to_string(),
             display_name: (*dn).to_string(),
-            mode: into_dto_mode(snapshot.effective_mode(sourcerer_extractors::ExtractorId::new(id))),
+            mode: into_dto_mode(
+                snapshot.effective_mode(sourcerer_extractors::ExtractorId::new(id)),
+            ),
             formats: fmts.iter().map(|s| s.to_string()).collect(),
         })
         .collect();
@@ -492,7 +496,9 @@ async fn volumes_list(svc: &IndexdService) -> Result<Value, RpcError> {
                 if let Some(b) = o.monitor_changes {
                     v.monitor_changes = b;
                 }
-            } else if cfg.auto_include_fixed && matches!(v.status, VolumeStatus::Indexed | VolumeStatus::Indexing) {
+            } else if cfg.auto_include_fixed
+                && matches!(v.status, VolumeStatus::Indexed | VolumeStatus::Indexing)
+            {
                 v.indexed = true;
             }
             v

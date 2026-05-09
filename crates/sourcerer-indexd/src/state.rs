@@ -147,11 +147,18 @@ impl DaemonState {
         pipeline.replace_settings(PipelineSettings::default());
         let config_dir = index.root().join("config");
         std::fs::create_dir_all(&config_dir)?;
-        let volumes = load_or_default::<VolumesConfig>(&config_dir.join("volumes.toml"));
-        let folders = load_or_default::<Vec<WatchedFolder>>(&config_dir.join("folders.toml"));
-        let excludes = load_or_default::<ExcludeRules>(&config_dir.join("excludes.toml"));
-        let network = load_or_default::<NetworkState>(&config_dir.join("network.toml"));
-        let history = load_or_default::<HistoryConfig>(&config_dir.join("history.toml"));
+        // Daemon config files round-trip as JSON — TOML's serializer
+        // refuses `Option::None` (`unsupported rust type`), and the
+        // VolumeOverride / ExcludeRules / NetworkState DTOs all carry
+        // sparse Option fields where None has meaning. JSON serializes
+        // them cleanly and is the same on-disk shape every other
+        // store in the project uses (audio cache, settings.json,
+        // bookmarks.json).
+        let volumes = load_or_default::<VolumesConfig>(&config_dir.join("volumes.json"));
+        let folders = load_or_default::<Vec<WatchedFolder>>(&config_dir.join("folders.json"));
+        let excludes = load_or_default::<ExcludeRules>(&config_dir.join("excludes.json"));
+        let network = load_or_default::<NetworkState>(&config_dir.join("network.json"));
+        let history = load_or_default::<HistoryConfig>(&config_dir.join("history.json"));
         Ok(Arc::new(Self {
             index,
             audio_cache,
@@ -167,24 +174,24 @@ impl DaemonState {
     }
 
     pub async fn persist(&self) -> anyhow::Result<()> {
-        write_toml(
-            &self.config_dir.join("volumes.toml"),
+        write_json(
+            &self.config_dir.join("volumes.json"),
             &*self.volumes.read().await,
         )?;
-        write_toml(
-            &self.config_dir.join("folders.toml"),
+        write_json(
+            &self.config_dir.join("folders.json"),
             &*self.folders.read().await,
         )?;
-        write_toml(
-            &self.config_dir.join("excludes.toml"),
+        write_json(
+            &self.config_dir.join("excludes.json"),
             &*self.excludes.read().await,
         )?;
-        write_toml(
-            &self.config_dir.join("network.toml"),
+        write_json(
+            &self.config_dir.join("network.json"),
             &*self.network.read().await,
         )?;
-        write_toml(
-            &self.config_dir.join("history.toml"),
+        write_json(
+            &self.config_dir.join("history.json"),
             &*self.history.read().await,
         )?;
         Ok(())
@@ -193,7 +200,7 @@ impl DaemonState {
 
 fn load_or_default<T: Default + for<'de> Deserialize<'de>>(p: &std::path::Path) -> T {
     match std::fs::read_to_string(p) {
-        Ok(s) => match toml::from_str::<T>(&s) {
+        Ok(s) => match serde_json::from_str::<T>(&s) {
             Ok(v) => v,
             Err(e) => {
                 tracing::warn!(error = %e, path = %p.display(), "config parse failed; using default");
@@ -204,12 +211,15 @@ fn load_or_default<T: Default + for<'de> Deserialize<'de>>(p: &std::path::Path) 
     }
 }
 
-fn write_toml<T: Serialize>(p: &std::path::Path, v: &T) -> anyhow::Result<()> {
+fn write_json<T: Serialize>(p: &std::path::Path, v: &T) -> anyhow::Result<()> {
     if let Some(parent) = p.parent() {
         std::fs::create_dir_all(parent)?;
     }
-    let s = toml::to_string_pretty(v)?;
-    std::fs::write(p, s)?;
+    let s = serde_json::to_string_pretty(v)?;
+    // Tmp-rename so a crash mid-write can't truncate the file.
+    let tmp = p.with_extension("json.tmp");
+    std::fs::write(&tmp, s)?;
+    std::fs::rename(&tmp, p)?;
     Ok(())
 }
 

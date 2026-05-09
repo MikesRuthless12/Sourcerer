@@ -18,9 +18,9 @@
 
 pub mod bookmarks;
 pub mod history;
+pub mod service;
 pub mod settings;
 pub mod state;
-pub mod service;
 pub mod volumes;
 
 pub use service::IndexdService;

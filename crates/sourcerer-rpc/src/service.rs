@@ -32,16 +32,11 @@ impl NotificationSink {
     /// Try to push a notification. Drops the notification if the
     /// connection's outbound queue is full or closed.
     pub async fn send(&self, n: Notification) -> Result<(), RpcError> {
-        self.tx
-            .send(n)
-            .await
-            .map_err(|_| RpcError::TransportClosed)
+        self.tx.send(n).await.map_err(|_| RpcError::TransportClosed)
     }
 
     pub fn try_send(&self, n: Notification) -> Result<(), RpcError> {
-        self.tx
-            .try_send(n)
-            .map_err(|_| RpcError::TransportClosed)
+        self.tx.try_send(n).map_err(|_| RpcError::TransportClosed)
     }
 }
 

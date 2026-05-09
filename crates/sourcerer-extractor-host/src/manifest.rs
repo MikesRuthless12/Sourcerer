@@ -82,9 +82,12 @@ impl Manifest {
         if m.sidecar.contains("..")
             || m.sidecar.starts_with('/')
             || m.sidecar.starts_with('\\')
-            || std::path::Path::new(&m.sidecar)
-                .components()
-                .any(|c| matches!(c, std::path::Component::ParentDir | std::path::Component::RootDir))
+            || std::path::Path::new(&m.sidecar).components().any(|c| {
+                matches!(
+                    c,
+                    std::path::Component::ParentDir | std::path::Component::RootDir
+                )
+            })
         {
             return Err(ManifestError::SidecarTraversal(m.sidecar.clone()));
         }

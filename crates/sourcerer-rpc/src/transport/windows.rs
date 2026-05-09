@@ -61,10 +61,7 @@ pub async fn connect(pipe_name: &str) -> RpcResult<NamedPipeClient> {
     }
 }
 
-unsafe fn create_first_instance(
-    pipe_name: &str,
-    sddl: &str,
-) -> RpcResult<NamedPipeServer> {
+unsafe fn create_first_instance(pipe_name: &str, sddl: &str) -> RpcResult<NamedPipeServer> {
     let (mut sa, _sd_drop) = unsafe { build_security_attrs(sddl)? };
     let server = unsafe {
         ServerOptions::new()
@@ -72,17 +69,14 @@ unsafe fn create_first_instance(
             .access_inbound(true)
             .access_outbound(true)
             .reject_remote_clients(true)
-            .max_instances(255)
+            .max_instances(254)
             .pipe_mode(tokio::net::windows::named_pipe::PipeMode::Byte)
             .create_with_security_attributes_raw(pipe_name, &mut sa as *mut _ as *mut _)?
     };
     Ok(server)
 }
 
-unsafe fn create_subsequent_instance(
-    pipe_name: &str,
-    sddl: &str,
-) -> RpcResult<NamedPipeServer> {
+unsafe fn create_subsequent_instance(pipe_name: &str, sddl: &str) -> RpcResult<NamedPipeServer> {
     let (mut sa, _sd_drop) = unsafe { build_security_attrs(sddl)? };
     let server = unsafe {
         ServerOptions::new()
@@ -90,7 +84,7 @@ unsafe fn create_subsequent_instance(
             .access_inbound(true)
             .access_outbound(true)
             .reject_remote_clients(true)
-            .max_instances(255)
+            .max_instances(254)
             .pipe_mode(tokio::net::windows::named_pipe::PipeMode::Byte)
             .create_with_security_attributes_raw(pipe_name, &mut sa as *mut _ as *mut _)?
     };

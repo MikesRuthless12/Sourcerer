@@ -165,9 +165,24 @@ pub fn detect() -> Vec<VolumeInfo> {
         };
         if matches!(
             fs_type,
-            "proc" | "sysfs" | "devpts" | "tmpfs" | "cgroup" | "cgroup2" | "mqueue" | "pstore"
-                | "bpf" | "configfs" | "ramfs" | "rpc_pipefs" | "binfmt_misc"
-                | "tracefs" | "debugfs" | "fusectl" | "securityfs" | "hugetlbfs"
+            "proc"
+                | "sysfs"
+                | "devpts"
+                | "tmpfs"
+                | "cgroup"
+                | "cgroup2"
+                | "mqueue"
+                | "pstore"
+                | "bpf"
+                | "configfs"
+                | "ramfs"
+                | "rpc_pipefs"
+                | "binfmt_misc"
+                | "tracefs"
+                | "debugfs"
+                | "fusectl"
+                | "securityfs"
+                | "hugetlbfs"
                 | "autofs"
         ) {
             continue;

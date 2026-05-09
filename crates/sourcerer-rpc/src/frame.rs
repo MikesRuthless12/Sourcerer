@@ -68,16 +68,13 @@ impl<R: AsyncRead + Unpin> FrameReader<R> {
         }
         self.buf.clear();
         self.buf.resize(len, 0);
-        self.inner
-            .read_exact(&mut self.buf)
-            .await
-            .map_err(|e| {
-                if e.kind() == io::ErrorKind::UnexpectedEof {
-                    FrameError::UnexpectedEof
-                } else {
-                    FrameError::Io(e)
-                }
-            })?;
+        self.inner.read_exact(&mut self.buf).await.map_err(|e| {
+            if e.kind() == io::ErrorKind::UnexpectedEof {
+                FrameError::UnexpectedEof
+            } else {
+                FrameError::Io(e)
+            }
+        })?;
         let s = std::str::from_utf8(&self.buf).map_err(|_| FrameError::InvalidUtf8)?;
         Ok(Some(s.to_string()))
     }
@@ -148,12 +145,13 @@ mod tests {
 
     #[tokio::test]
     async fn clean_eof_returns_none() {
+        // Drop ALL of `a` (both halves) so b's read side reliably sees
+        // EOF — tokio's DuplexStream signals EOF only when both halves
+        // of the other side are gone.
         let (a, b) = duplex(8);
-        let (_ra, _wa) = split(a);
         let (rb, _wb) = split(b);
         let mut reader = FrameReader::new(rb);
-        // Drop _wa to close the write end.
-        drop(_wa);
+        drop(a);
         let got = reader.read_frame().await.unwrap();
         assert!(got.is_none());
     }
