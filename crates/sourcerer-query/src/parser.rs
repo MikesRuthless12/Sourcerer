@@ -21,23 +21,60 @@ use std::time::{SystemTime, UNIX_EPOCH};
 use regex::Regex;
 
 use crate::ast::{
-    AttribFlag, AudioPredicate, DateBound, ModifierKind, ModifierPredicate, Query, QueryNode,
-    RelativeDate, SizeOp, SizeUnit, TextPattern,
+    AttribFlag, AudioPredicate, DateBound, LensKind, ModifierKind, ModifierPredicate, Query,
+    QueryNode, RelativeDate, SizeOp, SizeUnit, TextPattern,
 };
 use crate::error::ParseError;
 use crate::quick_filters::QuickFilter;
 
 const SECS_PER_DAY: i64 = 86_400;
 
+/// Caller-supplied parse-time toggles. Defaults match Phase 5's
+/// behavior so existing callers stay source-compatible.
+#[derive(Debug, Clone, Copy, Default, PartialEq, Eq)]
+pub struct ParseOpts {
+    /// `--strict-everything` mode. When true, the parser rejects every
+    /// modifier and lens prefix that voidtools' Everything does not
+    /// document — `similar:`, every audio modifier (`lufs:`, `codec:`,
+    /// `length:`, `rate:`, `samplerate:`, `silence:`, `dr:`,
+    /// `duration:`), and the `audio:(...)` / `content:(...)` /
+    /// `similar:(...)` lens prefixes. The voidtools-shaped surface
+    /// (`size:`, `date:`, `ext:`, `attrib:`, `path:` / `parent:` /
+    /// `child:` / `name:` / `folder:`, quick filters, regex,
+    /// wildcards, boolean glue, parens, the muscle-memory toggles in
+    /// `Reserved`) keeps parsing.
+    ///
+    /// Sourcerer-only modifiers in this mode surface as
+    /// [`ParseError::StrictEverythingViolation`]. Phase 11's UI
+    /// surfaces this so a user can paste a Sourcerer query into a
+    /// voidtools-pure session and see *which* modifiers wouldn't ship.
+    pub strict_everything: bool,
+}
+
+impl ParseOpts {
+    /// `--strict-everything` shorthand.
+    pub fn strict() -> Self {
+        Self {
+            strict_everything: true,
+        }
+    }
+}
+
 /// Parse an Everything-syntax query string. The result holds the
-/// original `s` so the plan cache can key on it.
+/// original `s` so the plan cache can key on it. Equivalent to
+/// `parse_with(s, ParseOpts::default())`.
 pub fn parse(s: &str) -> Result<Query, ParseError> {
+    parse_with(s, ParseOpts::default())
+}
+
+/// Parse with caller-supplied [`ParseOpts`]. The Phase-10 entry point.
+pub fn parse_with(s: &str, opts: ParseOpts) -> Result<Query, ParseError> {
     let trimmed = s.trim();
     if trimmed.is_empty() {
         return Err(ParseError::Empty);
     }
     let tokens = tokenize(trimmed)?;
-    let mut p = Parser::new(&tokens);
+    let mut p = Parser::new(&tokens, opts);
     let root = p.parse_or()?;
     if p.pos < p.tokens.len() {
         let bad = &p.tokens[p.pos];
@@ -50,7 +87,7 @@ pub fn parse(s: &str) -> Result<Query, ParseError> {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-enum TokKind {
+pub(crate) enum TokKind {
     /// Bare word, modifier-key, or modifier-key:value chunk. The
     /// parser later inspects whether `:` appears.
     Word,
@@ -71,13 +108,18 @@ enum TokKind {
 }
 
 #[derive(Debug, Clone)]
-struct Token {
-    kind: TokKind,
-    lexeme: String,
-    byte_pos: usize,
+pub(crate) struct Token {
+    pub(crate) kind: TokKind,
+    pub(crate) lexeme: String,
+    pub(crate) byte_pos: usize,
+    /// Byte length of the original source span this token covers,
+    /// including any sigils (outer quotes for `Quoted`, the leading
+    /// `(` for a lens-prefix grouping). The closed half-open range is
+    /// `byte_pos..byte_pos + byte_len`.
+    pub(crate) byte_len: usize,
 }
 
-fn tokenize(s: &str) -> Result<Vec<Token>, ParseError> {
+pub(crate) fn tokenize(s: &str) -> Result<Vec<Token>, ParseError> {
     let bytes = s.as_bytes();
     let mut out = Vec::new();
     let mut i = 0;
@@ -92,6 +134,7 @@ fn tokenize(s: &str) -> Result<Vec<Token>, ParseError> {
                 kind: TokKind::LParen,
                 lexeme: "(".into(),
                 byte_pos: i,
+                byte_len: 1,
             });
             i += 1;
             continue;
@@ -101,6 +144,7 @@ fn tokenize(s: &str) -> Result<Vec<Token>, ParseError> {
                 kind: TokKind::RParen,
                 lexeme: ")".into(),
                 byte_pos: i,
+                byte_len: 1,
             });
             i += 1;
             continue;
@@ -133,6 +177,7 @@ fn tokenize(s: &str) -> Result<Vec<Token>, ParseError> {
                     kind: TokKind::Bang,
                     lexeme: "!".into(),
                     byte_pos: i,
+                    byte_len: 1,
                 });
                 i += 1;
                 continue;
@@ -156,10 +201,13 @@ fn tokenize(s: &str) -> Result<Vec<Token>, ParseError> {
                     token: "<invalid utf-8>".into(),
                 })?
                 .to_string();
+            // Span includes both quotes so the IPC layer can highlight
+            // the delimiters; lexeme is the inner string (no quotes).
             out.push(Token {
                 kind: TokKind::Quoted,
                 lexeme: lex,
                 byte_pos: i,
+                byte_len: j + 1 - i,
             });
             i = j + 1;
             continue;
@@ -185,10 +233,12 @@ fn tokenize(s: &str) -> Result<Vec<Token>, ParseError> {
             "NOT" => TokKind::Not,
             _ => TokKind::Word,
         };
+        let len = i - start;
         out.push(Token {
             kind,
             lexeme: lex,
             byte_pos: start,
+            byte_len: len,
         });
     }
     Ok(out)
@@ -197,11 +247,16 @@ fn tokenize(s: &str) -> Result<Vec<Token>, ParseError> {
 struct Parser<'a> {
     tokens: &'a [Token],
     pos: usize,
+    opts: ParseOpts,
 }
 
 impl<'a> Parser<'a> {
-    fn new(tokens: &'a [Token]) -> Self {
-        Self { tokens, pos: 0 }
+    fn new(tokens: &'a [Token], opts: ParseOpts) -> Self {
+        Self {
+            tokens,
+            pos: 0,
+            opts,
+        }
     }
 
     fn peek(&self) -> Option<&Token> {
@@ -300,14 +355,88 @@ impl<'a> Parser<'a> {
             TokKind::Word => {
                 let lex = tok.lexeme.clone();
                 let pos = tok.byte_pos;
+                // Lens prefix: `<key>:` followed immediately by `(` —
+                // the value half of the `Word` is empty AND the next
+                // token is `LParen`. Bare `audio:` / `similar:foo` /
+                // `name:foo` keep their existing meanings (quick
+                // filter / `Similar` modifier / `child:` alias). Only
+                // the `<key>:(...)` form invokes the lens-prefix
+                // path. Note that `(` cannot be glued to the word
+                // because the tokenizer breaks the run on `(`, so the
+                // emitted lex is exactly `"<key>:"`.
+                if let Some(lens_kind) = lens_kind_for_prefix_word(&lex)
+                    && matches!(
+                        self.tokens.get(self.pos + 1).map(|t| &t.kind),
+                        Some(TokKind::LParen)
+                    )
+                {
+                    // Strict-everything: voidtools' Everything has no
+                    // lens-prefix concept; reject every kind except
+                    // `name:(...)` (which acts like a no-op alias of
+                    // `child:` for users who type the lens-prefix
+                    // form). `audio:(...)`, `content:(...)`,
+                    // `similar:(...)` are Sourcerer-only.
+                    if self.opts.strict_everything && !matches!(lens_kind, LensKind::Name) {
+                        return Err(ParseError::StrictEverythingViolation {
+                            pos,
+                            token: format!("{}:(", lens_kind.as_str()),
+                            reason: format!(
+                                "lens prefix `{}:` not in voidtools' Everything",
+                                lens_kind.as_str()
+                            ),
+                        });
+                    }
+                    self.bump(); // consume the `<key>:` Word
+                    let lparen_pos = self.peek().map(|t| t.byte_pos).unwrap_or(pos);
+                    self.bump(); // consume `(`
+                    if matches!(self.peek().map(|t| &t.kind), Some(TokKind::RParen)) {
+                        // Empty lens-scope `key:()` collapses to True.
+                        // No predicates; the lens is purely
+                        // informational. Phase 11 may surface it as
+                        // a no-op section header.
+                        self.bump();
+                        return Ok(QueryNode::Lens {
+                            kind: lens_kind,
+                            inner: Box::new(QueryNode::True),
+                        });
+                    }
+                    let inner = self.parse_or()?;
+                    match self.peek().map(|t| &t.kind) {
+                        Some(TokKind::RParen) => {
+                            self.bump();
+                            return Ok(QueryNode::Lens {
+                                kind: lens_kind,
+                                inner: Box::new(inner),
+                            });
+                        }
+                        _ => return Err(ParseError::UnbalancedParens { pos: lparen_pos }),
+                    }
+                }
                 self.bump();
-                classify_word(&lex, pos)
+                classify_word(&lex, pos, self.opts)
             }
         }
     }
 }
 
-fn classify_word(lex: &str, pos: usize) -> Result<QueryNode, ParseError> {
+/// Recognise a lens-prefix Word token of the shape `<key>:` (value
+/// empty). Returns `Some(LensKind)` for `name:` / `audio:` /
+/// `content:` / `similar:`; `None` otherwise.
+fn lens_kind_for_prefix_word(lex: &str) -> Option<LensKind> {
+    let colon = lex.find(':')?;
+    if colon + 1 != lex.len() {
+        return None;
+    }
+    match lex[..colon].to_ascii_lowercase().as_str() {
+        "name" => Some(LensKind::Name),
+        "audio" => Some(LensKind::Audio),
+        "content" => Some(LensKind::Content),
+        "similar" => Some(LensKind::Similar),
+        _ => None,
+    }
+}
+
+fn classify_word(lex: &str, pos: usize, opts: ParseOpts) -> Result<QueryNode, ParseError> {
     if let Some(colon_idx) = lex.find(':') {
         let key = &lex[..colon_idx];
         let val = &lex[colon_idx + 1..];
@@ -332,7 +461,7 @@ fn classify_word(lex: &str, pos: usize) -> Result<QueryNode, ParseError> {
                 let extra = classify_simple_term(val)?;
                 return Ok(QueryNode::And(vec![QueryNode::QuickFilter(qf), extra]));
             }
-            return parse_modifier(key, val, pos).map(QueryNode::Modifier);
+            return parse_modifier(key, val, pos, opts).map(QueryNode::Modifier);
         }
     }
     classify_simple_term(lex)
@@ -373,8 +502,37 @@ fn wildcard_to_regex(pat: &str) -> Result<Regex, ParseError> {
     })
 }
 
-fn parse_modifier(key: &str, value: &str, pos: usize) -> Result<ModifierPredicate, ParseError> {
+fn parse_modifier(
+    key: &str,
+    value: &str,
+    pos: usize,
+    opts: ParseOpts,
+) -> Result<ModifierPredicate, ParseError> {
     let key_lower = key.to_ascii_lowercase();
+    // Strict-everything: reject Sourcerer-only modifiers up-front so
+    // we don't even allocate the audio/similarity AST nodes for the
+    // ones that wouldn't ship to a voidtools-pure user.
+    if opts.strict_everything {
+        let sourcerer_only = matches!(
+            key_lower.as_str(),
+            "similar"
+                | "lufs"
+                | "codec"
+                | "length"
+                | "duration"
+                | "rate"
+                | "samplerate"
+                | "silence"
+                | "dr"
+        );
+        if sourcerer_only {
+            return Err(ParseError::StrictEverythingViolation {
+                pos,
+                token: format!("{key}:"),
+                reason: format!("modifier `{key_lower}:` not in voidtools' Everything"),
+            });
+        }
+    }
     let kind = match key_lower.as_str() {
         "size" => parse_size(value, key)?,
         "date" | "dm" | "dc" | "da" => parse_date(value, key)?,

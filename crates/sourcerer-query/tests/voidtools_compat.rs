@@ -257,6 +257,297 @@ fn cases() -> Vec<Case> {
             q: "(report OR draft) ext:pdf size:>1mb",
             shape: AndOf(3),
         },
+        // 51-60: extra wildcard / regex shapes
+        Case {
+            q: "draft*",
+            shape: Wildcard("draft*"),
+        },
+        Case {
+            q: "*draft",
+            shape: Wildcard("*draft"),
+        },
+        Case {
+            q: "*draft*",
+            shape: Wildcard("*draft*"),
+        },
+        Case {
+            q: "report?",
+            shape: Wildcard("report?"),
+        },
+        Case {
+            q: "?eport",
+            shape: Wildcard("?eport"),
+        },
+        Case {
+            q: "*.{txt,md}",
+            shape: Wildcard("*.{txt,md}"),
+        },
+        Case {
+            q: "regex:^[A-Z]\\w+$",
+            shape: Regex,
+        },
+        Case {
+            q: "regex:\\d{4}-\\d{2}-\\d{2}",
+            shape: Regex,
+        },
+        Case {
+            q: "regex:.*\\.tar\\.gz$",
+            shape: Regex,
+        },
+        Case {
+            q: "regex:^report-final",
+            shape: Regex,
+        },
+        // 61-70: extra size shapes (units + comparators)
+        Case {
+            q: "size:50kb",
+            shape: SizeEq(50 * 1024),
+        },
+        Case {
+            q: "size:>5gb",
+            shape: SizeGt(5u64 * 1024 * 1024 * 1024),
+        },
+        Case {
+            q: "size:<10b",
+            shape: SizeLt(10),
+        },
+        Case {
+            q: "size:1tb",
+            shape: SizeEq(1024u64 * 1024 * 1024 * 1024),
+        },
+        Case {
+            q: "size:0.5gb",
+            shape: SizeEq((0.5 * 1024.0 * 1024.0 * 1024.0) as u64),
+        },
+        Case {
+            q: "size:>0",
+            shape: SizeGt(0),
+        },
+        Case {
+            q: "size:=42b",
+            shape: SizeEq(42),
+        },
+        Case {
+            q: "size:>1024",
+            shape: SizeGt(1024),
+        },
+        Case {
+            q: "size:<2048",
+            shape: SizeLt(2048),
+        },
+        // 71-80: extra date shapes
+        Case {
+            q: "date:yesterday",
+            shape: DateRel(RelativeDate::Yesterday),
+        },
+        Case {
+            q: "date:lastmonth",
+            shape: DateRel(RelativeDate::LastMonth),
+        },
+        Case {
+            q: "date:thisyear",
+            shape: DateRel(RelativeDate::ThisYear),
+        },
+        Case {
+            q: "date:lastyear",
+            shape: DateRel(RelativeDate::LastYear),
+        },
+        Case {
+            q: "date:>=2024-06-01",
+            shape: DateDay,
+        },
+        Case {
+            q: "date:<2025-01-01",
+            shape: DateDay,
+        },
+        Case {
+            q: "date:=2024-03-04",
+            shape: DateDay,
+        },
+        Case {
+            q: "dm:lastweek",
+            shape: DateRel(RelativeDate::LastWeek),
+        },
+        Case {
+            q: "dc:today",
+            shape: DateRel(RelativeDate::Today),
+        },
+        Case {
+            q: "da:>2024-12-25",
+            shape: DateDay,
+        },
+        // 81-90: ext + attrib variants
+        Case {
+            q: "ext:rs",
+            shape: Ext(vec!["rs"]),
+        },
+        Case {
+            q: "ext:.json",
+            shape: Ext(vec!["json"]),
+        },
+        Case {
+            q: "ext:c;cpp;h;hpp",
+            shape: Ext(vec!["c", "cpp", "h", "hpp"]),
+        },
+        Case {
+            q: "ext:JPG;PNG;GIF",
+            shape: Ext(vec!["jpg", "png", "gif"]),
+        },
+        Case {
+            q: "attr:H",
+            shape: Attrib(vec![AttribFlag::Hidden]),
+        },
+        Case {
+            q: "attributes:R",
+            shape: Attrib(vec![AttribFlag::ReadOnly]),
+        },
+        Case {
+            q: "attrib:HSC",
+            shape: Attrib(vec![
+                AttribFlag::Hidden,
+                AttribFlag::System,
+                AttribFlag::Compressed,
+            ]),
+        },
+        Case {
+            q: "attrib:DLE",
+            shape: Attrib(vec![
+                AttribFlag::Directory,
+                AttribFlag::Reparse,
+                AttribFlag::Encrypted,
+            ]),
+        },
+        Case {
+            q: "attrib:T",
+            shape: Attrib(vec![AttribFlag::Temporary]),
+        },
+        Case {
+            q: "attrib:O",
+            shape: Attrib(vec![AttribFlag::Offline]),
+        },
+        // 91-100: path / parent / child + aliases
+        Case {
+            q: "path:Documents",
+            shape: Path("Documents"),
+        },
+        Case {
+            q: "path:src/lib",
+            shape: Path("src/lib"),
+        },
+        Case {
+            q: "parent:tests",
+            shape: Parent("tests"),
+        },
+        Case {
+            q: "folder:apps",
+            shape: Parent("apps"),
+        },
+        Case {
+            q: "child:main",
+            shape: Child("main"),
+        },
+        Case {
+            q: "name:report",
+            shape: Child("report"),
+        },
+        Case {
+            q: "path:\"Program Files\"",
+            shape: AndOf(2),
+        },
+        Case {
+            q: "parent:Music child:song",
+            shape: AndOf(2),
+        },
+        Case {
+            q: "path:Photos ext:jpg",
+            shape: AndOf(2),
+        },
+        Case {
+            q: "name:report ext:pdf size:>1mb",
+            shape: AndOf(3),
+        },
+        // 101-110: quick-filter aliases + compositions
+        Case {
+            q: "doc:",
+            shape: QuickFilter(Qf::Document),
+        },
+        Case {
+            q: "docs:",
+            shape: QuickFilter(Qf::Document),
+        },
+        Case {
+            q: "pic:",
+            shape: QuickFilter(Qf::Image),
+        },
+        Case {
+            q: "picture:",
+            shape: QuickFilter(Qf::Image),
+        },
+        Case {
+            q: "pics:",
+            shape: QuickFilter(Qf::Image),
+        },
+        Case {
+            q: "exec:",
+            shape: QuickFilter(Qf::Executable),
+        },
+        Case {
+            q: "compressed:",
+            shape: QuickFilter(Qf::Archive),
+        },
+        Case {
+            q: "video: size:>500mb",
+            shape: AndOf(2),
+        },
+        Case {
+            q: "image: ext:png",
+            shape: AndOf(2),
+        },
+        Case {
+            q: "exe: size:<1mb",
+            shape: AndOf(2),
+        },
+        // 111-120: complex boolean compositions
+        Case {
+            q: "(alpha AND beta) OR (gamma AND delta)",
+            shape: OrOf(2),
+        },
+        Case {
+            q: "report AND NOT draft",
+            shape: AndOf(2),
+        },
+        Case {
+            q: "(report OR draft) NOT old",
+            shape: AndOf(2),
+        },
+        Case {
+            q: "alpha !beta gamma",
+            shape: AndOf(3),
+        },
+        Case {
+            q: "!(a OR b)",
+            shape: Not,
+        },
+        Case {
+            q: "((alpha))",
+            shape: Literal("alpha"),
+        },
+        Case {
+            q: "alpha (beta OR gamma) delta",
+            shape: AndOf(3),
+        },
+        Case {
+            q: "size:>1mb size:<10mb",
+            shape: AndOf(2),
+        },
+        Case {
+            q: "(size:>1mb) AND (date:lastweek)",
+            shape: AndOf(2),
+        },
+        Case {
+            q: "regex:^[a-z]+$ ext:txt",
+            shape: AndOf(2),
+        },
     ]
 }
 
@@ -353,6 +644,102 @@ fn fifty_voidtools_queries_parse() {
         let q = parse(case.q).unwrap_or_else(|e| panic!("failed `{}`: {e}", case.q));
         assert_shape(q.root(), &case.shape);
     }
+}
+
+/// Phase 10 lifted the voidtools-syntax fixture from 50 to 300+
+/// queries. Hand-curated cases cover the documented voidtools
+/// surface; the generator below permutes building blocks
+/// combinatorially to stress every parser path the hand-curated
+/// list might miss. Standing Rule #8 regression gate.
+#[test]
+fn three_hundred_voidtools_queries_parse() {
+    let mut all: Vec<String> = cases().into_iter().map(|c| c.q.to_string()).collect();
+    all.extend(generated_voidtools_queries());
+    assert!(
+        all.len() >= 300,
+        "Phase 10 gates 300+ queries; got {}",
+        all.len()
+    );
+    for q in &all {
+        parse(q).unwrap_or_else(|e| panic!("failed to parse `{q}`: {e}"));
+    }
+}
+
+/// Generator: emits a deterministic sequence of voidtools-shaped
+/// queries by walking small arrays of building blocks. The output
+/// is intentionally over-the-300-target so an additional case can
+/// be added to the hand-curated list without dropping below the
+/// gate. Each generated query is parse-only — the assertion is
+/// "no parse error" since the combinatorial space is too large to
+/// hand-verify shapes for every output.
+fn generated_voidtools_queries() -> Vec<String> {
+    let terms = ["report", "draft", "alpha", "beta", "song", "photo"];
+    let wildcards = ["*.txt", "report*", "*draft*", "*.{md,rst}", "?eport"];
+    let modifiers = [
+        "size:>1mb",
+        "size:<100kb",
+        "size:42",
+        "date:today",
+        "date:lastweek",
+        "date:>2024-01-01",
+        "ext:txt",
+        "ext:rs;py",
+        "attrib:H",
+        "attrib:R",
+        "path:Documents",
+        "parent:Music",
+        "child:report",
+    ];
+    let glue = ["AND", "OR", "NOT"];
+    let qfilters = ["audio:", "video:", "image:", "document:"];
+
+    let mut out: Vec<String> = Vec::with_capacity(300);
+
+    // 1. Term × glue × term — 6×3×6 = 108 cases.
+    for a in &terms {
+        for g in &glue {
+            for b in &terms {
+                if a == b {
+                    continue;
+                }
+                out.push(format!("{a} {g} {b}"));
+            }
+        }
+    }
+    // 2. Term + modifier — 6×13 = 78 cases.
+    for a in &terms {
+        for m in &modifiers {
+            out.push(format!("{a} {m}"));
+        }
+    }
+    // 3. Quick filter + modifier — 4×13 = 52 cases.
+    for q in &qfilters {
+        for m in &modifiers {
+            out.push(format!("{q} {m}"));
+        }
+    }
+    // 4. Wildcard + modifier — 5×4 = 20 cases.
+    for w in &wildcards {
+        for m in modifiers.iter().take(4) {
+            out.push(format!("{w} {m}"));
+        }
+    }
+    // 5. Parenthesised compositions — small handful for shape
+    //    coverage that the term×glue×term path doesn't exercise.
+    out.extend([
+        "(alpha OR beta) gamma".to_string(),
+        "(report AND draft) OR final".to_string(),
+        "(a OR b) (c OR d)".to_string(),
+        "alpha (beta OR gamma)".to_string(),
+        "!(alpha AND beta)".to_string(),
+        "report !(draft AND old)".to_string(),
+        "size:>1mb (alpha OR beta)".to_string(),
+        "(size:>1mb OR size:<10kb)".to_string(),
+        "((alpha))".to_string(),
+        "(((alpha)))".to_string(),
+    ]);
+
+    out
 }
 
 #[test]

@@ -27,7 +27,9 @@ use sourcerer_index::{FileRow, Index};
 use sourcerer_similarity::{SimilarityIndex, SimilarityOpts};
 use unicode_normalization::UnicodeNormalization;
 
-use crate::ast::{AudioPredicate, DateBound, ModifierKind, Query, QueryNode, SizeOp, TextPattern};
+use crate::ast::{
+    AudioPredicate, DateBound, LensKind, ModifierKind, Query, QueryNode, SizeOp, TextPattern,
+};
 use crate::error::QueryError;
 use crate::opts::{ExecOpts, MatchMode, SortField, SortOrder, SortSpec};
 use crate::parser;
@@ -149,6 +151,10 @@ fn needs_hydration(node: &QueryNode) -> bool {
         QueryNode::True => false,
         QueryNode::Not(inner) => needs_hydration(inner),
         QueryNode::And(parts) | QueryNode::Or(parts) => parts.iter().any(needs_hydration),
+        // Lens scopes are transparent for hydration — recurse into
+        // the inner sub-query. `Content` is rejected at
+        // `validate_supported`, so we never reach this for it.
+        QueryNode::Lens { inner, .. } => needs_hydration(inner),
     }
 }
 
@@ -173,6 +179,9 @@ fn pick_seed(node: &QueryNode) -> String {
                 }
             }
             QueryNode::QuickFilter(_) | QueryNode::True | QueryNode::Not(_) => {}
+            // Lens scopes are transparent for seed picking — the
+            // inner literal (if any) still drives trigram routing.
+            QueryNode::Lens { inner, .. } => collect(inner, out),
         }
     }
     let mut cands = Vec::new();
@@ -226,6 +235,12 @@ pub fn execute_with_audio(
     opts: ExecOpts,
 ) -> Result<ResultSet, QueryError> {
     validate_supported(q)?;
+    // Phase 10: optimize the AST before planning so the executor's
+    // AND iter().all() short-circuit picks up the cheap predicates
+    // first. The original `q` is not mutated; the executor uses the
+    // optimized clone for the rest of the pipeline.
+    let optimized = crate::optimizer::optimize(q);
+    let q = &optimized;
     let needs_audio = has_audio_anywhere(q.root());
     if needs_audio && audio.is_none() {
         return Err(QueryError::AudioProviderUnavailable);
@@ -266,7 +281,13 @@ pub fn execute_with_audio(
 
     let evaluator = NameEvaluator::new(q.root(), &opts);
 
-    let skip_name_filter = opts.match_mode.match_path;
+    // Phase 10 lens routing: an audio-only / similarity-only query
+    // has no name-side predicate to filter by, so the per-row name
+    // evaluation is a no-op. We skip it entirely — the per-row test
+    // would still return `true`, but the call cost is non-zero. The
+    // optimizer's `is_audio_only_route` hands us this hint.
+    let skip_name_filter =
+        opts.match_mode.match_path || crate::optimizer::is_audio_only_route(q.root());
 
     if use_seed {
         idx.name_index()
@@ -421,6 +442,7 @@ fn eval_name(node: &QueryNode, name_lower: &[u8], mm: &MatchMode) -> bool {
             _ => true,
         },
         QueryNode::QuickFilter(qf) => name_has_any_ext(name_lower, qf.extensions()),
+        QueryNode::Lens { inner, .. } => eval_name(inner, name_lower, mm),
     }
 }
 
@@ -453,6 +475,7 @@ fn eval_full(
             .as_deref()
             .map(|e| qf.extensions().iter().any(|x| x.eq_ignore_ascii_case(e)))
             .unwrap_or(false),
+        QueryNode::Lens { inner, .. } => eval_full(inner, row, mm, path_lower, audio),
     }
 }
 
@@ -733,6 +756,22 @@ pub fn validate_supported(q: &Query) -> Result<(), QueryError> {
                 Ok(())
             }
             QueryNode::Text(_) | QueryNode::QuickFilter(_) | QueryNode::True => Ok(()),
+            // Phase 10 ships parse-time support for `name:(...)` /
+            // `audio:(...)` / `content:(...)` / `similar:(...)`. The
+            // executor today treats `Name` / `Audio` / `Similar` as
+            // transparent wrappers (the inner predicates still
+            // dispatch through Phase 5 / 6 / 9 paths). `Content` has
+            // no executor — Phase 8 ships the content extractors, but
+            // Phase 11+ wires the lens routing into the daemon. Until
+            // then we surface a typed `UnsupportedModifier("content")`
+            // so the UI can render a clear "content lens not yet
+            // available" hint instead of returning empty results.
+            QueryNode::Lens { kind, inner } => {
+                if matches!(kind, LensKind::Content) {
+                    return Err(QueryError::UnsupportedModifier("content".into()));
+                }
+                walk(inner)
+            }
         }
     }
     walk(q.root())
@@ -758,6 +797,17 @@ fn top_level_similar(node: &QueryNode) -> Option<&str> {
             }
             None
         }
+        // A top-level `similar:(...)` lens with a Text inner is
+        // treated like the `similar:<needle>` modifier so the lens-
+        // prefix syntax stays useful at execute time. `similar:("foo
+        // bar")` (quoted) routes the same way.
+        QueryNode::Lens {
+            kind: LensKind::Similar,
+            inner,
+        } => match inner.as_ref() {
+            QueryNode::Text(TextPattern::Literal(s)) => Some(s.as_str()),
+            _ => None,
+        },
         _ => None,
     }
 }
@@ -768,6 +818,11 @@ fn has_similar_anywhere(node: &QueryNode) -> bool {
         QueryNode::Not(inner) => has_similar_anywhere(inner),
         QueryNode::And(parts) | QueryNode::Or(parts) => parts.iter().any(has_similar_anywhere),
         QueryNode::Text(_) | QueryNode::QuickFilter(_) | QueryNode::True => false,
+        QueryNode::Lens { kind, inner } => {
+            // A `similar:(...)` lens itself counts as "anywhere"; for
+            // other lens kinds, recurse into the inner.
+            matches!(kind, LensKind::Similar) || has_similar_anywhere(inner)
+        }
     }
 }
 
@@ -779,6 +834,10 @@ fn has_audio_anywhere(node: &QueryNode) -> bool {
         QueryNode::Not(inner) => has_audio_anywhere(inner),
         QueryNode::And(parts) | QueryNode::Or(parts) => parts.iter().any(has_audio_anywhere),
         QueryNode::Text(_) | QueryNode::QuickFilter(_) | QueryNode::True => false,
+        // `audio:(...)` lens scopes contribute their inner audio
+        // modifiers; non-audio lenses still recurse so a buried
+        // audio modifier under `name:(...)` etc. is detected.
+        QueryNode::Lens { inner, .. } => has_audio_anywhere(inner),
     }
 }
 
@@ -932,5 +991,15 @@ fn similarity_row_matches(
             .as_deref()
             .map(|e| qf.extensions().iter().any(|x| x.eq_ignore_ascii_case(e)))
             .unwrap_or(false),
+        // A `similar:(...)` lens whose inner was already handled by
+        // the LSH path (the only way we reach `similarity_row_matches`
+        // is via `execute_similar`) is short-circuited to `true` —
+        // matches the `Similar` modifier short-circuit above. Other
+        // lens kinds recurse so their inner predicates filter.
+        QueryNode::Lens {
+            kind: LensKind::Similar,
+            ..
+        } => true,
+        QueryNode::Lens { inner, .. } => similarity_row_matches(inner, row, mm, path_lower, audio),
     }
 }

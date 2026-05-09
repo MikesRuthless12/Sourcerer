@@ -2373,6 +2373,8 @@ version = "0.19.84"
 dependencies = [
  "parking_lot",
  "regex",
+ "serde",
+ "serde_json",
  "sourcerer-audio",
  "sourcerer-index",
  "sourcerer-journal",
