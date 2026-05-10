@@ -1,0 +1,15 @@
+/* PRD §9 — theme-agnostic tokens shared across light + dark. */
+
+:root {
+  --lens-filename: var(--accent-orange);
+  --lens-content: var(--accent-cyan);
+  --lens-audio: var(--accent-violet);
+  --lens-similarity: #c77dff;
+  --row-height-compact: 32px;
+  --row-height-comfortable: 44px;
+  --lens-section-gap: 16px;
+  --result-row-radius: 6px;
+  --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace;
+}

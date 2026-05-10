@@ -1,37 +1,51 @@
 <script lang="ts">
-  const tagline = "One search. Every source. Every OS.";
+  import { onMount } from "svelte";
+  import MenuBar from "./components/menu/MenuBar.svelte";
+  import SearchBar from "./components/search-bar/SearchBar.svelte";
+  import QuickFiltersPalette from "./components/filters/QuickFiltersPalette.svelte";
+  import ResultList from "./components/results/ResultList.svelte";
+  import StatusBar from "./components/statusbar/StatusBar.svelte";
+  import FirstRunWizard from "./components/wizard/FirstRunWizard.svelte";
+  import OrganizeBookmarksDialog from "./components/bookmarks/OrganizeBookmarksDialog.svelte";
+  import AboutDialog from "./components/dialogs/AboutDialog.svelte";
+  import SettingsDialog from "./components/settings/SettingsDialog.svelte";
+  import { bootstrap } from "./lib/bootstrap";
+  import { dialogsStore } from "./lib/stores/dialogs.svelte";
+
+  onMount(() => {
+    void bootstrap();
+  });
 </script>
 
-<main>
-  <h1>Sourcerer</h1>
-  <p class="tagline">{tagline}</p>
-  <p class="phase">Phase 0 scaffold</p>
-</main>
+<div class="app">
+  <MenuBar />
+  <SearchBar />
+  <QuickFiltersPalette />
+  <ResultList />
+  <StatusBar />
+</div>
+
+<FirstRunWizard />
+<OrganizeBookmarksDialog
+  open={dialogsStore.active === "organize_bookmarks"}
+  onClose={() => dialogsStore.close()}
+/>
+<AboutDialog
+  open={dialogsStore.active === "about"}
+  onClose={() => dialogsStore.close()}
+/>
+<SettingsDialog
+  open={dialogsStore.active === "settings"}
+  onClose={() => dialogsStore.close()}
+/>
 
 <style>
-  main {
-    text-align: center;
-    padding: 2rem;
-  }
-
-  h1 {
-    font-size: 3.5rem;
-    margin: 0 0 0.5rem;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-  }
-
-  .tagline {
-    margin: 0;
-    color: var(--fg);
-    font-size: 1.1rem;
-  }
-
-  .phase {
-    margin-top: 1.5rem;
-    color: var(--muted);
-    font-size: 0.85rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+  .app {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-canvas);
+    color: var(--text-primary);
   }
 </style>
