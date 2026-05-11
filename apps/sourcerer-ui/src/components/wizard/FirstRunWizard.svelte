@@ -2,17 +2,21 @@
   import { settingsStore } from "../../lib/stores/settings.svelte";
   import { themeStore } from "../../lib/stores/theme.svelte";
   import { foldersStore } from "../../lib/stores/folders.svelte";
-  import { SUPPORTED_LOCALES } from "../../lib/i18n/bundle";
+  import { LOCALES } from "../../lib/i18n/bundle";
+  import { t } from "../../lib/i18n/t";
+
+  // Wizard steps: 0=folders, 1=language, 2=theme. Hotkey configuration
+  // intentionally lives only in the Settings → Keyboard panel, not here.
+  const TOTAL_STEPS = 3;
 
   let step = $state(0);
   let roots = $state<string[]>([]);
   let newRoot = $state("");
-  let hotkey = $state(settingsStore.state.hotkey);
   let locale = $state(settingsStore.state.locale);
   let themeChoice = $state<"system" | "light" | "dark">(settingsStore.state.theme);
 
   function next() {
-    step = Math.min(3, step + 1);
+    step = Math.min(TOTAL_STEPS - 1, step + 1);
   }
   function back() {
     step = Math.max(0, step - 1);
@@ -44,7 +48,6 @@
     await settingsStore.patch({
       theme: themeChoice,
       locale,
-      hotkey,
       first_run_complete: true
     });
     for (const path of roots) {
@@ -66,57 +69,48 @@
 
 {#if !settingsStore.state.first_run_complete && settingsStore.loaded}
   <div class="backdrop" role="presentation">
-    <div class="modal" role="dialog" aria-modal="true" aria-label="First-run wizard">
+    <div class="modal" role="dialog" aria-modal="true" aria-label={t("wizard-aria-label")}>
       <header>
-        <h2>Welcome to Sourcerer</h2>
-        <span class="step">Step {step + 1} of 4</span>
+        <h2>{t("wizard-title")}</h2>
+        <span class="step">{t("wizard-step-of-total", { step: step + 1, total: TOTAL_STEPS })}</span>
       </header>
 
       <div class="body">
         {#if step === 0}
-          <h3>Choose what to index</h3>
-          <p class="hint">Add the folders or volumes you want Sourcerer to watch. You can change this later from Indexes settings.</p>
+          <h3>{t("wizard-step-roots")}</h3>
+          <p class="hint">{t("wizard-roots-hint")}</p>
           <div class="root-add">
-            <button type="button" class="primary" onclick={browseRoot}>Browse…</button>
+            <button type="button" class="primary" onclick={browseRoot}>{t("wizard-browse")}</button>
             <input
               type="text"
-              placeholder="…or paste a path"
+              placeholder={t("wizard-roots-placeholder")}
               bind:value={newRoot}
               onkeydown={(e) => e.key === "Enter" && addRoot()}
             />
-            <button type="button" onclick={addRoot}>Add</button>
+            <button type="button" onclick={addRoot}>{t("wizard-roots-add")}</button>
           </div>
           <ul class="roots">
             {#each roots as r (r)}
               <li>
                 <span class="path">{r}</span>
-                <button type="button" class="remove" onclick={() => removeRoot(r)}>Remove</button>
+                <button type="button" class="remove" onclick={() => removeRoot(r)}>{t("wizard-roots-remove")}</button>
               </li>
             {/each}
             {#if roots.length === 0}
-              <li class="empty">No roots configured yet.</li>
+              <li class="empty">{t("wizard-roots-empty")}</li>
             {/if}
           </ul>
         {:else if step === 1}
-          <h3>Pick a global hotkey</h3>
-          <p class="hint">Pressing this combo from anywhere brings Sourcerer to the front.</p>
-          <input
-            type="text"
-            class="hotkey-input"
-            bind:value={hotkey}
-            placeholder="Win+Space"
-          />
-        {:else if step === 2}
-          <h3>Pick your language</h3>
-          <p class="hint">Sourcerer ships in 18 languages. You can switch later.</p>
+          <h3>{t("wizard-step-locale")}</h3>
+          <p class="hint">{t("wizard-locale-hint")}</p>
           <select bind:value={locale}>
-            {#each SUPPORTED_LOCALES as code (code)}
-              <option value={code}>{code}</option>
+            {#each LOCALES as l (l.value)}
+              <option value={l.value}>{l.label}</option>
             {/each}
           </select>
-        {:else if step === 3}
-          <h3>Pick a theme</h3>
-          <p class="hint">System follows your OS appearance setting.</p>
+        {:else if step === 2}
+          <h3>{t("wizard-step-theme")}</h3>
+          <p class="hint">{t("wizard-theme-hint")}</p>
           <div class="themes">
             {#each ["system", "light", "dark"] as id (id)}
               <button
@@ -125,7 +119,7 @@
                 class:active={themeChoice === id}
                 onclick={() => (themeChoice = id as "system" | "light" | "dark")}
               >
-                {id}
+                {t(`theme-${id}`)}
               </button>
             {/each}
           </div>
@@ -133,12 +127,12 @@
       </div>
 
       <footer>
-        <button type="button" onclick={back} disabled={step === 0}>Back</button>
+        <button type="button" onclick={back} disabled={step === 0}>{t("wizard-back")}</button>
         <span class="grow"></span>
-        {#if step < 3}
-          <button type="button" class="primary" onclick={next}>Next</button>
+        {#if step < TOTAL_STEPS - 1}
+          <button type="button" class="primary" onclick={next}>{t("wizard-next")}</button>
         {:else}
-          <button type="button" class="primary" onclick={finish}>Finish</button>
+          <button type="button" class="primary" onclick={finish}>{t("wizard-finish")}</button>
         {/if}
       </footer>
     </div>
@@ -255,16 +249,6 @@
     padding: 2px 8px;
     cursor: pointer;
     font-size: 11px;
-  }
-  .hotkey-input {
-    width: 100%;
-    background: var(--bg-canvas);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--text-primary);
-    padding: 6px 10px;
-    font-family: var(--font-mono);
-    font-size: 13px;
   }
   select {
     width: 100%;

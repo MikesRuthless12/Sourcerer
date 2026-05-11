@@ -380,3 +380,408 @@ settings-about-version = Sourcerer { $version }
 settings-about-license = Licentie
 settings-about-credits = Met dank aan
 settings-about-notices = Open-sourcevermeldingen
+
+# --- TASK-098 toevoegingen: hints, placeholders, subsecties, meldingen ---
+
+# Wizard-verfijning.
+wizard-aria-label = Wizard voor eerste start
+wizard-step-of-total = Stap { $step } van { $total }
+wizard-roots-hint = Voeg de mappen of volumes toe die u door Sourcerer wilt laten volgen. U kunt dit later wijzigen via Index-instellingen.
+wizard-browse = Bladeren…
+wizard-roots-placeholder = …of plak een pad
+wizard-roots-add = Toevoegen
+wizard-roots-remove = Verwijderen
+wizard-roots-empty = Nog geen bronnen geconfigureerd.
+wizard-locale-hint = Sourcerer wordt geleverd in 18 talen. U kunt later wisselen.
+wizard-theme-hint = Systeem volgt de weergave-instelling van uw OS.
+wizard-back = Terug
+wizard-next = Volgende
+
+# Verfijning van de statusbalk.
+statusbar-hotkey-hint = Sneltoets: { $hotkey }
+statusbar-cycle-theme = Thema wisselen
+statusbar-indexed-suffix = geïndexeerd
+
+# Resultaten / lenzen.
+lens-expand = Lens uitvouwen
+lens-collapse = Lens samenvouwen
+lens-no-matches = Geen overeenkomsten in deze lens.
+
+# Voorbeeldvenster.
+preview-header = Voorbeeld
+preview-loading = Laden…
+preview-select-file = Selecteer een bestand om een voorbeeld te bekijken.
+preview-unavailable = Geen voorbeeld beschikbaar
+
+# Bladwijzers.
+bookmarks-label = ★ Bladwijzers
+bookmarks-empty-hint = Nog geen bladwijzers. Druk op Ctrl+D om de huidige zoekopdracht op te slaan.
+bookmarks-organize-title = Bladwijzers beheren
+bookmarks-organize-empty = Nog geen bladwijzers.
+bookmarks-rename = Hernoemen
+bookmarks-close = Sluiten
+
+# Extra's voor de instellingenboom.
+settings-group-history = Geschiedenis
+settings-group-privacy = Privacy en updates
+settings-group-logs = Logs en debug
+settings-group-backup = Back-up, export, reset
+settings-tree-custom-lens = Aangepast
+settings-unsaved-changes = niet-opgeslagen wijzigingen
+
+# Over-dialoogvenster.
+about-dialog-title = Sourcerer
+about-copyright = Copyright © 2026 Mike Weaver. Alle rechten voorbehouden.
+about-close = Sluiten
+
+# Dialoogvenster voor eindpuntverbinding.
+connect-ftp-title = Verbinding maken met FTP-server
+connect-ftp-host = Host:
+connect-ftp-port = Poort:
+connect-ftp-username = Gebruikersnaam:
+connect-ftp-password = Wachtwoord:
+connect-ftp-link-type = Verbindingstype:
+
+# UI-paneel.
+ui-hint = Thema, integratie met systeemvak / menubalk, zoeken tijdens typen, rijdichtheid. Directe pariteit met voidtools Everything plus Sourcerer-toevoegingen gemarkeerd met (+).
+ui-section-theme = Thema
+ui-theme-system-default = Systeem (standaard)
+ui-section-tray = Systeemvak / menubalk
+ui-section-search-behavior = Zoekgedrag
+ui-section-result-rows = Resultaatrijen
+ui-single-click-system-default = Systeeminstellingen (standaard)
+ui-single-click-always = Altijd enkele klik
+ui-single-click-always-double = Altijd dubbele klik
+ui-underline-always = Altijd
+ui-underline-on-hover = Bij hover
+ui-underline-never = Nooit
+
+# Startpaneel.
+home-hint = Standaardwaarden geladen bij het opstarten van de app — elke vervolgkeuzelijst kan op "Laatste waarde gebruiken" blijven staan of een vaste waarde vastpinnen. Zichtbaarheid van lenzen / resultaatlimieten zijn Sourcerer-toevoegingen (+).
+home-section-match = Standaardwaarden voor matchen
+home-section-search-sort = Standaardwaarden voor zoeken en sorteren
+home-search-placeholder = Standaard leeg
+home-section-index = Indexbron
+home-file-list-path = Pad naar bestandslijst
+home-https-endpoint = URL van HTTPS-API-eindpunt
+home-endpoint-token = Token (vingerafdruk getoond)
+
+# Back-uppaneel.
+backup-section-settings = Instellingen (+)
+backup-section-bookmarks = Bladwijzers + aangepaste extractors (+)
+backup-section-reset = Resetten
+backup-toast-exported = Instellingen geëxporteerd naar { $path }
+backup-toast-export-failed = Exporteren mislukt: { $error }
+backup-toast-imported = Instellingen geïmporteerd
+backup-toast-import-failed = Importeren mislukt: { $error }
+backup-toast-bookmarks-exported = Bladwijzers geëxporteerd
+backup-toast-bookmarks-export-failed = Exporteren van bladwijzers mislukt: { $error }
+backup-toast-bookmarks-imported = Bladwijzers geïmporteerd
+backup-toast-bookmarks-import-failed = Importeren van bladwijzers mislukt: { $error }
+backup-confirm-reset = Alle instellingen terugzetten naar standaardwaarden? Dit kan niet ongedaan worden gemaakt (het dialoogvenster blijft open).
+backup-toast-reset = Alle instellingen zijn teruggezet
+
+# Toetsenbordpaneel.
+keyboard-section-global = Globale sneltoetsen
+keyboard-placeholder-example = Super+Space
+keyboard-section-commands = Opdrachten
+keyboard-placeholder-command = opdracht-id (bv. file.export_results)
+keyboard-placeholder-binding = Ctrl+K, B
+
+# Geschiedenispaneel.
+history-section-search = Zoekgeschiedenis
+history-section-run = Uitvoergeschiedenis
+history-section-privacy = Privacy (+)
+history-record-filename = Geschiedenis van bestandsnaamlens bijhouden
+history-record-content = Geschiedenis van inhoudslens bijhouden
+history-record-audio = Geschiedenis van audiolens bijhouden
+history-record-similarity = Geschiedenis van gelijkenislens bijhouden
+
+# Taalpaneel.
+locale-section-language = Taal (+)
+locale-section-time-date = Tijd / datum (+)
+locale-date-os = OS-standaard
+locale-date-iso8601 = ISO 8601
+locale-date-rfc3339 = RFC 3339
+locale-date-custom-label = Aangepast
+locale-date-custom-format = Aangepaste notatie
+locale-date-placeholder = YYYY-MM-DD
+locale-section-numbers = Getallen (+)
+locale-number-os = OS-standaard
+locale-number-custom = Aangepast
+locale-thousands-sep = Scheidingsteken voor duizendtallen
+locale-decimal-sep = Decimaalscheidingsteken
+
+# Mappenpaneel.
+folders-hint = Extra gevolgde mappen naast de standaardvolumes.
+folders-list-title = Gevolgde mappen
+folders-empty = Nog geen mappen toegevoegd.
+folders-remove = Verwijderen
+folders-section-title-dynamic = Instellingen voor { $path }
+folders-section-schedule = Herscan-schema
+folders-schedule-daily = Elke dag om HH:MM
+folders-schedule-hours = Elke N uur
+folders-schedule-never = Nooit
+folders-hour = Uur
+folders-minute = Minuut
+folders-hours = Uren
+folders-id-label = Map-ID (alleen-lezen)
+folders-select-prompt = Selecteer een map om deze te configureren.
+folders-section-extras = Sourcerer-extra's (+)
+folders-extras-note = Opnieuw scannen bij hervatten uit slaapstand is standaard ingeschakeld in deze build; de schakelaar voegt zich bij de besturingselementen op mapniveau in de verfijningsronde van Fase 13.
+
+# Volumespaneel.
+volumes-hint = Cross-platform tegenhanger van de NTFS- / ReFS-panelen van voidtools Everything. Detecteert automatisch NTFS / ReFS / exFAT / FAT32 (Win), APFS / HFS+ (macOS), ext4 / Btrfs / ZFS / XFS / F2FS (Linux).
+volumes-section-auto-include = Automatisch opnemen
+volumes-list-title = Gedetecteerde volumes
+volumes-detecting = Detecteren…
+volumes-empty = Geen volumes gedetecteerd.
+volumes-select-prompt = Selecteer een volume om dit te configureren.
+
+# Verfijning van Over-paneel.
+about-section-version = Versie (+)
+about-section-license = Licentie (+)
+about-license-text = Mike Weaver — alle rechten voorbehouden. Dit is propriëtaire software.
+about-license-spdx = SPDX: { $spdx }
+about-section-credits = Met dank aan (+)
+about-credits-inspired = Geïnspireerd door Everything van voidtools.
+about-credits-voidtools = voidtools.com
+about-credits-repo = Projectrepository
+
+# --- Menubalk (PRD §8.28) — elk label + submenu + hover-hint in statusbalk ---
+
+# Bestand-menu.
+menu-file-hint = Bevat opdrachten om met Sourcerer te werken.
+menu-file-new-window = Nieuw zoekvenster
+menu-file-open-list = Bestandslijst openen…
+menu-file-close-list = Bestandslijst sluiten
+menu-file-close = Sluiten
+menu-file-export-results = Resultaten exporteren…
+menu-file-export-bundle = Indexbundel exporteren…
+menu-file-exit = Afsluiten
+
+# Bewerken-menu.
+menu-edit-hint = Bevat opdrachten om zoekresultaten te bewerken.
+menu-edit-cut = Knippen
+menu-edit-copy = Kopiëren
+menu-edit-paste = Plakken
+menu-edit-copy-to-folder = Naar map kopiëren…
+menu-edit-move-to-folder = Naar map verplaatsen…
+menu-edit-select-all = Alles selecteren
+menu-edit-invert-selection = Selectie omkeren
+menu-edit-advanced = Geavanceerd
+menu-edit-copy-full-name = Volledige naam kopiëren
+menu-edit-copy-path = Pad kopiëren
+menu-edit-copy-filename = Bestandsnaam kopiëren
+menu-edit-copy-as-json = Als JSON kopiëren
+menu-edit-copy-with-metadata = Kopiëren met metadata
+menu-edit-copy-as-bundle-ref = Kopiëren als Sourcerer-bundelverwijzing
+
+# Beeld-menu.
+menu-view-hint = Bevat opdrachten om de weergave aan te passen.
+menu-view-filters = Filters
+menu-view-preview = Voorbeeld
+menu-view-status-bar = Statusbalk
+menu-view-thumbs-xl = Extra grote miniaturen
+menu-view-thumbs-l = Grote miniaturen
+menu-view-thumbs-m = Middelgrote miniaturen
+menu-view-details = Details
+menu-view-window-size = Venstergrootte
+menu-view-window-size-hint = Bevat opdrachten om de grootte van het venster aan te passen.
+menu-view-window-small = Klein
+menu-view-window-medium = Middel
+menu-view-window-large = Groot
+menu-view-window-auto = Automatisch passen
+menu-view-zoom = Zoomen
+menu-view-zoom-hint = Bevat opdrachten om de letter- en pictogramgrootte aan te passen.
+menu-view-zoom-in = Inzoomen
+menu-view-zoom-out = Uitzoomen
+menu-view-zoom-reset = Resetten
+menu-view-sort-by = Sorteren op
+menu-view-sort-by-hint = Bevat opdrachten om de resultaatlijst te sorteren.
+menu-view-sort-name = Naam
+menu-view-sort-path = Pad
+menu-view-sort-size = Grootte
+menu-view-sort-ext = Extensie
+menu-view-sort-type = Type
+menu-view-sort-modified = Wijzigingsdatum
+menu-view-sort-created = Aanmaakdatum
+menu-view-sort-accessed = Toegangsdatum
+menu-view-sort-attributes = Attributen
+menu-view-sort-recently-changed = Recent gewijzigd op
+menu-view-sort-run-count = Aantal uitvoeringen
+menu-view-sort-run-date = Datum uitgevoerd
+menu-view-sort-file-list-filename = Bestandsnaam van bestandslijst
+menu-view-sort-lufs = LUFS
+menu-view-sort-length = Lengte
+menu-view-sort-similarity = Gelijkenisscore
+menu-view-sort-asc = Oplopend
+menu-view-sort-desc = Aflopend
+menu-view-go-to = Ga naar
+menu-view-refresh = Vernieuwen
+menu-view-theme = Thema
+menu-view-theme-hint = Schakel tussen systeem-, lichte of donkere thema's.
+menu-view-lenses = Lenzen
+menu-view-lenses-hint = Schakel de zichtbaarheid van elke lens in de resultaatlijst.
+menu-view-on-top = Bovenop
+menu-view-on-top-hint = Bevat opdrachten om dit venster boven andere vensters te houden.
+menu-view-on-top-never = Nooit
+menu-view-on-top-always = Altijd
+menu-view-on-top-while-searching = Tijdens het zoeken
+
+# Zoeken-menu.
+menu-search-hint = Bevat schakelaars voor zoeken.
+menu-search-match-case = Hoofdlettergevoelig
+menu-search-match-whole-word = Heel woord zoeken
+menu-search-match-path = Pad doorzoeken
+menu-search-match-diacritics = Diakritische tekens meetellen
+menu-search-enable-regex = Regex inschakelen
+menu-search-advanced = Geavanceerd zoeken…
+menu-search-add-to-filters = Aan filters toevoegen…
+menu-search-organize-filters = Filters beheren…
+menu-search-filter-everything = Everything
+menu-search-filter-archive = Gecomprimeerd (archief)
+menu-search-filter-folder = Map
+menu-search-filter-custom = Aangepast filter…
+
+# Bladwijzers-menu.
+menu-bookmarks-hint = Bevat opdrachten om met bladwijzers te werken.
+menu-bookmarks-add = Aan bladwijzers toevoegen
+menu-bookmarks-organize = Bladwijzers beheren…
+
+# Extra-menu.
+menu-tools-hint = Bevat opdrachten voor extra hulpmiddelen.
+menu-tools-connect = Verbinding maken met FTP-server…
+menu-tools-disconnect = Verbinding met FTP-server verbreken
+menu-tools-file-list-editor = Bestandslijst-editor…
+menu-tools-index-maintenance = Indexonderhoud
+menu-tools-index-maintenance-hint = Hulpmiddelen voor indexonderhoud.
+menu-tools-verify-index = Index verifiëren…
+menu-tools-compact-index = Index compacteren…
+menu-tools-rebuild-index = Index geforceerd herbouwen…
+menu-tools-custom-extractor = Beheer van aangepaste extractors…
+menu-tools-custom-extractor-hint = Beheer Wasm-sandboxed aangepaste extractors.
+menu-tools-options = Opties…
+
+# Help-menu.
+menu-help-hint = Bevat hulpopdrachten.
+menu-help-help = Sourcerer-help
+menu-help-search-syntax = Zoeksyntaxis
+menu-help-regex-syntax = Regex-syntaxis
+menu-help-audio-ref = Referentie voor audiomodificatoren
+menu-help-similarity-ref = Referentie voor gelijkenismodificatoren
+menu-help-cli-options = Opdrachtregelopties
+menu-help-website = Sourcerer-website
+menu-help-check-updates = Controleren op updates…
+menu-help-sponsor = Sponsoren / doneren
+menu-help-about = Over Sourcerer…
+
+# Resultaatkolomkoppen (korte vormen gebruikt in de tabelkoprij).
+column-name = Naam
+column-path = Pad
+column-size = Grootte
+column-modified = Gewijzigd
+column-type = Type
+column-ext = Ext
+column-sort-by = Sorteren op { $name }
+column-resize = Kolom { $name } vergroten/verkleinen
+
+# Sectie-subtitelbalken die in meerdere instellingenpanelen worden gebruikt.
+section-behavior = Gedrag
+section-rendering = Weergave
+section-status-bar = Statusbalk
+section-display-format = Weergaveformaat
+section-loading-priority = Laadprioriteit
+section-compatibility = Compatibiliteit
+section-storage = Opslag
+section-index-fields = Indexvelden
+section-maintenance = Onderhoud
+section-logging = Logboekregistratie
+section-tools = Hulpmiddelen
+section-privacy = Privacy
+section-auto-update = Automatisch bijwerken (+)
+section-bind = Binden
+section-lens = Lens
+section-budgets = Budgetten
+section-other = Overig
+section-per-format-mode = Modus per formaat
+section-loudness = Luidheid
+section-tuning = Afstemming (+)
+section-minhash-lsh = MinHash + LSH-parameters (+)
+section-top-level = Hoofdniveau
+section-file-globs = Bestandspatronen
+section-file-list-settings = Instellingen voor geselecteerde bestandslijst
+section-editor-format = Editor + Formaat (E + +)
+section-api-server = API-server (E adapted)
+section-sourcerer-extras = Sourcerer-extra's (+)
+section-sourcerer-additions = Sourcerer-toevoegingen (+)
+section-sourcerer-extensions = Sourcerer-uitbreidingen (+)
+
+# Algemene optielabels gebruikt in verschillende dropdowns.
+opt-use-last-value = Laatste waarde gebruiken
+opt-use-last-value-default = Laatste waarde gebruiken (standaard)
+opt-low = Laag
+opt-normal-default = Normaal (standaard)
+opt-high = Hoog
+opt-disabled = Uitgeschakeld
+opt-off = Uit
+opt-on-battery = Op accustroom
+opt-always = Altijd
+opt-clamp-default = Vastzetten (standaard)
+opt-wrap = Omslaan
+opt-none = Geen
+opt-strict-refuse = Strikt (zoekopdrachten weigeren bij corruptie)
+opt-lenient-warn = Soepel (waarschuwen maar zoeken)
+opt-system-default = Systeemstandaard
+opt-drag-select = Slepen-selecteren
+opt-auto-binary = Automatisch (binair)
+opt-auto-decimal = Automatisch (decimaal)
+
+# Eenheidssuffixen weergegeven naast getalinvoervelden.
+unit-days = dagen
+unit-kb = KB
+unit-mb = MB
+
+# Aanvullende labels voor dropdownopties (extractormodus / sortering / weergave / index / paneel / volgorde / LUFS / piek / logniveau / updatekanaal).
+opt-eager = Gretig
+opt-lazy-default = Lui (standaard)
+opt-on = Aan
+opt-on-default = Aan (standaard)
+opt-all = Alle
+opt-weekly = Wekelijks
+opt-monthly = Maandelijks
+opt-name-asc = Naam oplopend
+opt-name-desc = Naam aflopend
+opt-size-asc = Grootte oplopend
+opt-size-desc = Grootte aflopend
+opt-modified-asc = Wijzigingsdatum oplopend
+opt-modified-desc = Wijzigingsdatum aflopend
+opt-compact = Compact
+opt-comfortable = Comfortabel
+opt-details = Details
+opt-thumbnails = Miniaturen
+opt-local-db-default = Lokale database (standaard)
+opt-file-list = Bestandslijst
+opt-https-endpoint = HTTPS API-eindpunt
+opt-right-default = Rechts (standaard)
+opt-bottom = Onder
+opt-or-and-default = OR > AND (standaard)
+opt-and-or = AND > OR
+opt-ebu-r128-default = EBU R128 (standaard)
+opt-atsc-a85 = ATSC A/85
+opt-spotify = Spotify (-14)
+opt-apple-music = Apple Music (-16)
+opt-broadcast-film = Uitzendfilm (-23)
+opt-true-peak = Echte piek (4× oversampling, standaard)
+opt-sample-peak = Samplepiek
+opt-auto-per-doc = Automatisch (per document)
+opt-log-error = Fout
+opt-log-warn = Waarschuwing
+opt-log-info-default = Info (standaard)
+opt-log-debug = Foutopsporing
+opt-log-trace = Tracering
+
+# unit-b / unit-gb / unit-tb (size units; conventional Latin acronyms — kept as-is, polish per-locale as needed).
+unit-b = B
+unit-gb = GB
+unit-tb = TB

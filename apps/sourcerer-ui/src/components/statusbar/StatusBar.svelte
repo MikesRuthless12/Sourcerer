@@ -11,51 +11,53 @@
   const phaseLabel = $derived.by(() => {
     const s = indexStateStore.state;
     switch (s.phase) {
-      case "indexed": return `Indexed (${formatCount(s.files_total)} files)`;
-      case "indexing": return `Indexing… ${formatCount(s.files_indexed)}/${formatCount(s.files_total)}`;
-      case "paused": return "Paused";
-      case "error": return "Error";
+      case "indexed": return t("status-indexed", { count: formatCount(s.files_total) });
+      case "indexing": return t("status-indexing", { done: formatCount(s.files_indexed), total: formatCount(s.files_total) });
+      case "paused": return t("status-paused");
+      case "error": return t("status-error");
     }
   });
 
-  const idleHint = $derived(`${t("status-ready")} · ${formatCount(indexStateStore.state.files_total)} indexed`);
+  const idleHint = $derived(`${t("status-ready")} · ${formatCount(indexStateStore.state.files_total)} ${t("statusbar-indexed-suffix")}`);
 </script>
 
 {#if settingsStore.state.show_status_bar}
   <footer class="statusbar" role="status" aria-live="polite">
-    <span class="seg pip {indexStateStore.state.phase}" title="Hotkey: {settingsStore.state.hotkey}">
+    <span class="seg pip {indexStateStore.state.phase}" title={t("statusbar-hotkey-hint", { hotkey: settingsStore.state.hotkey })}>
       <span class="dot"></span>
       <span>{phaseLabel}</span>
     </span>
 
     <span class="seg count">
-      {formatCount(resultsStore.total)} results
+      {resultsStore.total === 1
+        ? t("status-result-count-one", { count: formatCount(resultsStore.total) })
+        : t("status-result-count-many", { count: formatCount(resultsStore.total) })}
       {#if selectionStore.count > 0}
-        · {formatCount(selectionStore.count)} selected
+        {t("status-selection", { count: formatCount(selectionStore.count) })}
       {/if}
     </span>
 
     {#if settingsStore.state.show_size_in_status_bar && selectionStore.count > 0}
-      <span class="seg size">Selected: {formatBytes(selectionStore.bytes)}</span>
+      <span class="seg size">{t("status-selection-size", { size: formatBytes(selectionStore.bytes) })}</span>
     {/if}
 
     {#if resultsStore.lastQueryMs > 0}
-      <span class="seg timing">Query: {resultsStore.lastQueryMs} ms</span>
+      <span class="seg timing">{t("status-query-timing", { ms: resultsStore.lastQueryMs })}</span>
     {/if}
 
     {#if settingsStore.state.show_timing_badges && resultsStore.timings}
       <span class="seg lens-timings">
-        Filename {Math.round(resultsStore.timings.filename_ms)} ms
-        · Content {Math.round(resultsStore.timings.content_ms)} ms
-        · Audio {Math.round(resultsStore.timings.audio_ms)} ms
-        · Similarity {Math.round(resultsStore.timings.similarity_ms)} ms
+        {t("lens-filename")} {Math.round(resultsStore.timings.filename_ms)} ms
+        · {t("lens-content")} {Math.round(resultsStore.timings.content_ms)} ms
+        · {t("lens-audio")} {Math.round(resultsStore.timings.audio_ms)} ms
+        · {t("lens-similarity")} {Math.round(resultsStore.timings.similarity_ms)} ms
       </span>
     {/if}
 
     <span class="seg endpoint">
       {settingsStore.state.endpoint.kind === "remote"
-        ? `API: ${settingsStore.state.endpoint.name}`
-        : "Local DB"}
+        ? t("status-endpoint-remote", { name: settingsStore.state.endpoint.name })
+        : t("status-endpoint-local")}
     </span>
 
     <span class="seg hover-hint grow">{menuHoverStore.hint ?? idleHint}</span>
@@ -63,8 +65,8 @@
     <button
       type="button"
       class="theme-pip"
-      aria-label="Cycle theme"
-      title={`Theme: ${themeStore.choice}`}
+      aria-label={t("statusbar-cycle-theme")}
+      title={`${t("settings-ui-theme")}: ${t(`theme-${themeStore.choice}`)}`}
       onclick={() => {
         themeStore.cycle();
         void settingsStore.patch({ theme: themeStore.choice });

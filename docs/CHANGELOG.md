@@ -6,6 +6,86 @@ All notable changes documented here. Format: [Keep a Changelog](https://keepacha
 
 ## [Unreleased]
 
+### TASK-098 — full Fluent i18n end-to-end across all 18 locales (2026-05-11)
+
+The 18-locale Fluent loader is now wired. Switching the language in
+Settings → Locale (or in the first-run wizard) re-renders every
+translated string in the UI — menus, status bar, settings panels,
+dialogs, and the wizard — without a restart.
+
+**Loader.**
+
+- `apps/sourcerer-ui/src/lib/i18n/bundle.ts` replaces the Phase-11
+  `EN_FTL` inline string with `import.meta.glob("../../../../../locales/*/sourcerer.ftl", { query: "?raw", eager: true })`.
+  All 18 `.ftl` files are inlined at build time; each `FluentBundle`
+  layers `en` underneath as a fallback resource so a stray missing key
+  surfaces in English rather than as a raw key string.
+- `vite.config.ts` extends `server.fs.allow` to the workspace root so
+  dev mode can read the locale tree that lives outside the package
+  root.
+- `bundle.ts` exports `loadedLocales()` for the test suite to assert
+  the glob actually picked up all 18 files.
+
+**Translation data — Standing Rule #4 lockstep.**
+
+- `en/sourcerer.ftl` grew from 314 to 557 keys. The 243 additions cover
+  wizard polish (hints, placeholders, "Step N of N"), status bar
+  segments, lens / preview / bookmarks strings, the About / Connect
+  dialogs, every UI/Home/Backup/Keyboard/History/Locale/Folders/Volumes
+  panel hint + section title + toast, and the full PRD §8.28 menu bar
+  (every File/Edit/View/Search/Bookmarks/Tools/Help label + every
+  submenu title + every hover-hint).
+- The same 243 keys were mirrored into all 17 other locales in parallel
+  (es, de, fr, it, nl, pl, pt-BR, tr, vi, id, ru, uk, ar, hi, ja, ko,
+  zh-CN). Every `.ftl` now resolves the same 557 keys; the new
+  `tests/unit/i18n.test.ts` lockstep test asserts this on every CI run.
+
+**Component conversion.**
+
+- `menu_spec.ts` gains an `l10n` key on every `MenuItemSpec` and
+  `MenuSubmenu`, plus a `hintL10n` for status-bar hover hints.
+  `MenuBar.svelte` resolves them via `labelOf(spec)` / `hintOf(spec)`
+  helpers that fall back to the literal `label`/`hint` when a
+  translation key isn't present.
+- The FirstRunWizard renders its title, step count, every step's
+  heading + hint, the theme cards, and the Back/Next/Finish buttons
+  through `t()`. The hotkey step was already removed in the earlier
+  wizard pass; hotkey config remains in Settings → Keyboard.
+- StatusBar uses `t()` for the index-phase segment ("Indexed (N
+  files)" / "Indexing… N/M" / "Paused" / "Error"), result-count
+  pluralization (`status-result-count-one` vs `…-many`), the selection
+  size badge, query timing, lens timing badges, and the local-DB /
+  remote-endpoint segment. The theme-cycle button's `aria-label` and
+  the hotkey hover hint are now translatable.
+- Settings dialog — `SettingsDialog.svelte`, `SettingsTreeNav.svelte`,
+  `SettingsButtonBar.svelte`, `LocalePanel.svelte`, plus the panels in
+  the Indexes, Lenses, Network, and Misc groups (UI / Home / Search /
+  Results / View / Context Menu / Fonts & Colors / Keyboard /
+  Indexes-top / Volumes / Folders / FileLists / Exclude / Filename /
+  Content / Audio / Similarity / Custom / HTTPS / ETP / History /
+  Privacy / Logs / Backup / About).
+- Bookmarks, preview pane, and `LensSection` empty-state / collapse
+  controls.
+
+**RTL is now automatic, not a checkbox.**
+
+- The "RTL preview" checkbox in Settings → Locale is gone. RTL applies
+  automatically for locales whose native script is RTL — currently
+  `ar` is the only ship-locale in that bucket. `applyRtlForLocale`
+  consults its internal `RTL_LOCALES` allowlist; `bootstrap.ts`'s
+  `locale_settings.rtl_preview` field remains in the persisted state
+  for backward-compat but the UI no longer surfaces it.
+
+**Tests.**
+
+- New `tests/unit/i18n.test.ts` covers: (a) the glob actually loaded
+  all 18 locales, (b) `bundleFor(code)` returns a bundle that resolves
+  a canary key for every locale, (c) the 18 locales are in perfect
+  lockstep on key set, (d) switching `settingsStore.state.locale`
+  changes what `t()` returns, (e) an unknown locale falls back through
+  `en` rather than the raw key string, (f) an unknown key returns the
+  key.
+
 ### Phase-12 polish pass — UX, reliability, and live-apply (2026-05-11)
 
 Major behavioral pass during a long debugging session. Most fixes are direct

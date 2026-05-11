@@ -211,7 +211,6 @@ const FALLBACK: SettingsState = {
   // §8.26
   locale_settings: {
     locale: "en",
-    rtl_preview: false,
     date_format: "os",
     date_format_custom: "",
     number_format: "os",

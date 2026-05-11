@@ -1,5 +1,6 @@
 <script lang="ts">
   import { customExtractorsStore } from "../../../lib/stores/custom_extractors.svelte";
+  import { t } from "../../../lib/i18n/t";
   import Section from "../controls/Section.svelte";
   import Checkbox from "../controls/Checkbox.svelte";
 
@@ -19,12 +20,12 @@
   }
 </script>
 
-<h1>Custom Extractors</h1>
+<h1>{t("settings-tree-custom-lens")}</h1>
 <p class="hint">Wasm-sandboxed community extractors. Untrusted by default — flip the trust
 toggle on each row before the host loads the sidecar.</p>
 
-<Section title="Registry (+)">
-  <button type="button" onclick={refreshHashes}>Refresh hashes</button>
+<Section title={t("settings-custom-registry")}>
+  <button type="button" onclick={refreshHashes}>{t("settings-custom-refresh-hashes")}</button>
   {#if customExtractorsStore.list.length === 0}
     <p class="muted">No custom extractors installed. Drop a TOML manifest + .wasm sidecar into
       the index root's <code>extractors/</code> directory and re-open this panel.</p>
@@ -45,7 +46,7 @@ toggle on each row before the host loads the sidecar.</p>
             fs-write={e.sandbox_view.filesystem_write ? "yes" : "no"},
             clock={e.sandbox_view.clock ? "yes" : "no"}
           </div>
-          <Checkbox id={`ce-trust-${e.id}`} label="Trust"
+          <Checkbox id={`ce-trust-${e.id}`} label={t("settings-custom-trust")}
             checked={e.trusted} disabled={busyId === e.id}
             onChange={(v) => setTrust(e.id, v)} />
         </li>

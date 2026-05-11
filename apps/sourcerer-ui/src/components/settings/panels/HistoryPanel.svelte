@@ -5,6 +5,7 @@
   import Checkbox from "../controls/Checkbox.svelte";
   import NumberInput from "../controls/NumberInput.svelte";
   import type { HistoryConfig } from "../../../lib/ipc/types";
+  import { t } from "../../../lib/i18n/t";
 
   function patch(p: Partial<HistoryConfig>) {
     historyStore.patch(p);
@@ -23,43 +24,43 @@
   }
 </script>
 
-<h1>History</h1>
+<h1>{t("settings-group-history")}</h1>
 
-<Section title="Search History">
-  <Checkbox id="hi-search-en" label="Enable search history"
+<Section title={t("history-section-search")}>
+  <Checkbox id="hi-search-en" label={t("settings-history-search-enable")}
     checked={historyStore.cfg.search_history_enabled}
     onChange={(v) => patch({ search_history_enabled: v })} />
-  <NumberInput id="hi-search-days" label="Keep search history for"
-    min={1} max={3650} suffix="days"
+  <NumberInput id="hi-search-days" label={t("settings-history-search-keep", { days: historyStore.cfg.search_history_keep_days })}
+    min={1} max={3650} suffix={t("unit-days")}
     value={historyStore.cfg.search_history_keep_days}
     onChange={(n) => patch({ search_history_keep_days: n })} />
-  <button type="button" onclick={clearNow} disabled={busy}>Clear Now</button>
+  <button type="button" onclick={clearNow} disabled={busy}>{t("settings-history-clear-now")}</button>
 </Section>
 
-<Section title="Run History">
-  <Checkbox id="hi-run-en" label="Enable run history"
+<Section title={t("history-section-run")}>
+  <Checkbox id="hi-run-en" label={t("settings-history-run-enable")}
     checked={historyStore.cfg.run_history_enabled}
     onChange={(v) => patch({ run_history_enabled: v })} />
-  <NumberInput id="hi-run-days" label="Keep run history for"
-    min={1} max={3650} suffix="days"
+  <NumberInput id="hi-run-days" label={t("settings-history-run-keep", { days: historyStore.cfg.run_history_keep_days })}
+    min={1} max={3650} suffix={t("unit-days")}
     value={historyStore.cfg.run_history_keep_days}
     onChange={(n) => patch({ run_history_keep_days: n })} />
 </Section>
 
-<Section title="Privacy (+)">
-  <Checkbox id="hi-privacy" label="Privacy mode (disables all history features at once)"
+<Section title={t("history-section-privacy")}>
+  <Checkbox id="hi-privacy" label={t("settings-history-privacy-mode")}
     checked={historyStore.cfg.privacy_mode}
     onChange={(v) => patch({ privacy_mode: v })} />
-  <Checkbox id="hi-per-lens-fn" label="Record filename-lens history"
+  <Checkbox id="hi-per-lens-fn" label={t("history-record-filename")}
     checked={historyStore.cfg.per_lens.filename}
     onChange={(v) => patch({ per_lens: { ...historyStore.cfg.per_lens, filename: v } })} />
-  <Checkbox id="hi-per-lens-ct" label="Record content-lens history"
+  <Checkbox id="hi-per-lens-ct" label={t("history-record-content")}
     checked={historyStore.cfg.per_lens.content}
     onChange={(v) => patch({ per_lens: { ...historyStore.cfg.per_lens, content: v } })} />
-  <Checkbox id="hi-per-lens-au" label="Record audio-lens history"
+  <Checkbox id="hi-per-lens-au" label={t("history-record-audio")}
     checked={historyStore.cfg.per_lens.audio}
     onChange={(v) => patch({ per_lens: { ...historyStore.cfg.per_lens, audio: v } })} />
-  <Checkbox id="hi-per-lens-sm" label="Record similarity-lens history"
+  <Checkbox id="hi-per-lens-sm" label={t("history-record-similarity")}
     checked={historyStore.cfg.per_lens.similarity}
     onChange={(v) => patch({ per_lens: { ...historyStore.cfg.per_lens, similarity: v } })} />
 </Section>

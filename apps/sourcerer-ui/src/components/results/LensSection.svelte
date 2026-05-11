@@ -5,6 +5,7 @@
   import ColumnHeaderRow from "./ColumnHeaderRow.svelte";
   import { settingsStore } from "../../lib/stores/settings.svelte";
   import { sortStore } from "../../lib/stores/sort.svelte";
+  import { t } from "../../lib/i18n/t";
 
   interface Props {
     lens: LensId;
@@ -27,7 +28,7 @@
         type="button"
         class="caret"
         aria-expanded={!collapsed}
-        aria-label={collapsed ? "Expand lens" : "Collapse lens"}
+        aria-label={collapsed ? t("lens-expand") : t("lens-collapse")}
         onclick={() => (collapsed = !collapsed)}
       >
         <span class="chevron" class:collapsed>▾</span>
@@ -47,7 +48,7 @@
           <ResultRow {hit} />
         {/each}
         {#if hits.length === 0}
-          <div class="empty">No matches in this lens.</div>
+          <div class="empty">{t("lens-no-matches")}</div>
         {/if}
       </div>
     {/if}

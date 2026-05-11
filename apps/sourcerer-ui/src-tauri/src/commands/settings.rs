@@ -404,7 +404,6 @@ fn phase_12_default_extras() -> HashMap<String, serde_json::Value> {
             "locale_settings",
             serde_json::json!({
                 "locale": "en",
-                "rtl_preview": false,
                 "date_format": "os",
                 "date_format_custom": "",
                 "number_format": "os",

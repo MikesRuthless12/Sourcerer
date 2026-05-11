@@ -1,66 +1,69 @@
 <script lang="ts">
   import { settingsDialog, type PanelId } from "../../lib/stores/settings_dialog.svelte";
+  import { t } from "../../lib/i18n/t";
 
   interface TreeNode {
     id?: PanelId;
-    label: string;
+    /** Translation key. */
+    labelKey: string;
     children?: TreeNode[];
     keywords?: string[];
   }
 
   const TREE: TreeNode[] = [
     {
-      label: "General",
+      labelKey: "settings-group-general",
       children: [
-        { id: "general.ui", label: "UI", keywords: ["theme", "tray", "row density", "thumbnails"] },
-        { id: "general.home", label: "Home", keywords: ["defaults"] },
-        { id: "general.search", label: "Search", keywords: ["dsl", "regex", "wildcard"] },
-        { id: "general.results", label: "Results", keywords: ["columns", "sort", "icons"] },
-        { id: "general.view", label: "View", keywords: ["preview", "size", "tooltips"] },
-        { id: "general.context_menu", label: "Context Menu", keywords: ["shell", "explorer", "finder"] },
-        { id: "general.fonts_colors", label: "Fonts & Colors", keywords: ["font", "color", "accent"] },
-        { id: "general.keyboard", label: "Keyboard", keywords: ["hotkey", "shortcut", "chord"] }
+        { id: "general.ui", labelKey: "settings-node-ui", keywords: ["theme", "tray", "row density", "thumbnails"] },
+        { id: "general.home", labelKey: "settings-node-home", keywords: ["defaults"] },
+        { id: "general.search", labelKey: "settings-node-search", keywords: ["dsl", "regex", "wildcard"] },
+        { id: "general.results", labelKey: "settings-node-results", keywords: ["columns", "sort", "icons"] },
+        { id: "general.view", labelKey: "settings-node-view", keywords: ["preview", "size", "tooltips"] },
+        { id: "general.context_menu", labelKey: "settings-node-context-menu", keywords: ["shell", "explorer", "finder"] },
+        { id: "general.fonts_colors", labelKey: "settings-node-fonts-colors", keywords: ["font", "color", "accent"] },
+        { id: "general.keyboard", labelKey: "settings-node-keyboard", keywords: ["hotkey", "shortcut", "chord"] }
       ]
     },
-    { id: "history", label: "History", keywords: ["recent queries", "privacy"] },
+    { id: "history", labelKey: "settings-group-history", keywords: ["recent queries", "privacy"] },
     {
-      label: "Indexes",
+      labelKey: "settings-group-indexes",
       children: [
-        { id: "indexes.top", label: "(top-level)", keywords: ["force rebuild", "compact", "verify"] },
-        { id: "indexes.volumes", label: "Volumes", keywords: ["ntfs", "apfs", "ext4", "journal"] },
-        { id: "indexes.folders", label: "Folders", keywords: ["watched", "rescan"] },
-        { id: "indexes.file_lists", label: "File Lists", keywords: ["import", "export"] },
-        { id: "indexes.exclude", label: "Exclude", keywords: ["hidden", "system", "cache"] }
-      ]
-    },
-    {
-      label: "Lenses",
-      children: [
-        { id: "lenses.filename", label: "Filename", keywords: ["trigram", "wildcard", "regex"] },
-        { id: "lenses.content", label: "Content", keywords: ["pdf", "office", "code"] },
-        { id: "lenses.audio", label: "Audio", keywords: ["lufs", "codec", "silence"] },
-        { id: "lenses.similarity", label: "Similarity", keywords: ["minhash", "lsh", "jaccard"] },
-        { id: "lenses.custom", label: "Custom", keywords: ["wasm", "sandbox", "community"] }
+        { id: "indexes.top", labelKey: "settings-node-indexes-top", keywords: ["force rebuild", "compact", "verify"] },
+        { id: "indexes.volumes", labelKey: "settings-node-volumes", keywords: ["ntfs", "apfs", "ext4", "journal"] },
+        { id: "indexes.folders", labelKey: "settings-node-folders", keywords: ["watched", "rescan"] },
+        { id: "indexes.file_lists", labelKey: "settings-node-file-lists", keywords: ["import", "export"] },
+        { id: "indexes.exclude", labelKey: "settings-node-exclude", keywords: ["hidden", "system", "cache"] }
       ]
     },
     {
-      label: "Network",
+      labelKey: "settings-group-lenses",
       children: [
-        { id: "network.https", label: "HTTP / HTTPS Server", keywords: ["axum", "rustls", "token"] },
-        { id: "network.api", label: "ETP / FTP API", keywords: ["legacy", "ftp"] }
+        { id: "lenses.filename", labelKey: "lens-filename", keywords: ["trigram", "wildcard", "regex"] },
+        { id: "lenses.content", labelKey: "lens-content", keywords: ["pdf", "office", "code"] },
+        { id: "lenses.audio", labelKey: "lens-audio", keywords: ["lufs", "codec", "silence"] },
+        { id: "lenses.similarity", labelKey: "lens-similarity", keywords: ["minhash", "lsh", "jaccard"] },
+        { id: "lenses.custom", labelKey: "settings-tree-custom-lens", keywords: ["wasm", "sandbox", "community"] }
       ]
     },
-    { id: "privacy", label: "Privacy & Updates", keywords: ["auto-update", "telemetry"] },
-    { id: "logs", label: "Logs & Debug", keywords: ["tracing", "diagnostics"] },
-    { id: "backup", label: "Backup, Export, Reset", keywords: ["import", "export", "reset"] },
-    { id: "locale", label: "Locale", keywords: ["language", "rtl", "date"] },
-    { id: "about", label: "About", keywords: ["version", "credits"] }
+    {
+      labelKey: "settings-group-network",
+      children: [
+        { id: "network.https", labelKey: "settings-node-https-server", keywords: ["axum", "rustls", "token"] },
+        { id: "network.api", labelKey: "settings-node-etp-api", keywords: ["legacy", "ftp"] }
+      ]
+    },
+    { id: "privacy", labelKey: "settings-group-privacy", keywords: ["auto-update", "telemetry"] },
+    { id: "logs", labelKey: "settings-group-logs", keywords: ["tracing", "diagnostics"] },
+    { id: "backup", labelKey: "settings-group-backup", keywords: ["import", "export", "reset"] },
+    { id: "locale", labelKey: "settings-node-locale", keywords: ["language", "rtl", "date"] },
+    { id: "about", labelKey: "settings-node-about", keywords: ["version", "credits"] }
   ];
 
   function matches(node: TreeNode, query: string): boolean {
     const q = query.trim().toLowerCase();
     if (!q) return true;
-    if (node.label.toLowerCase().includes(q)) return true;
+    if (t(node.labelKey).toLowerCase().includes(q)) return true;
+    if (node.labelKey.toLowerCase().includes(q)) return true;
     if ((node.keywords ?? []).some((k) => k.toLowerCase().includes(q))) return true;
     return (node.children ?? []).some((c) => matches(c, query));
   }
@@ -70,21 +73,21 @@
   }
 </script>
 
-<aside class="tree" role="tree" aria-label="Settings categories">
+<aside class="tree" role="tree" aria-label={t("settings-title")}>
   <input
     type="search"
-    aria-label="Search settings"
-    placeholder="Search options…"
+    aria-label={t("settings-title")}
+    placeholder={t("settings-search-placeholder")}
     value={settingsDialog.search}
     oninput={(e) => settingsDialog.setSearch((e.currentTarget as HTMLInputElement).value)}
   />
   <ul>
-    {#each TREE as group (group.label + (group.id ?? ""))}
+    {#each TREE as group (group.labelKey + (group.id ?? ""))}
       {@const showThis = matches(group, settingsDialog.search)}
       {#if showThis}
         {#if group.children}
           <li role="treeitem" aria-expanded="true">
-            <span class="group">{group.label}</span>
+            <span class="group">{t(group.labelKey)}</span>
             <ul>
               {#each visibleChildren(group, settingsDialog.search) as child (child.id)}
                 <li role="treeitem">
@@ -95,9 +98,9 @@
                     aria-current={settingsDialog.selected === child.id ? "page" : undefined}
                     onclick={() => child.id && settingsDialog.setSelected(child.id)}
                   >
-                    {child.label}
+                    {t(child.labelKey)}
                     {#if child.id && settingsDialog.dirtyPanels.has(child.id)}
-                      <span class="dirty-dot" aria-label="unsaved changes">•</span>
+                      <span class="dirty-dot" aria-label={t("settings-unsaved-changes")}>•</span>
                     {/if}
                   </button>
                 </li>
@@ -113,9 +116,9 @@
               aria-current={settingsDialog.selected === group.id ? "page" : undefined}
               onclick={() => group.id && settingsDialog.setSelected(group.id)}
             >
-              {group.label}
+              {t(group.labelKey)}
               {#if group.id && settingsDialog.dirtyPanels.has(group.id)}
-                <span class="dirty-dot" aria-label="unsaved changes">•</span>
+                <span class="dirty-dot" aria-label={t("settings-unsaved-changes")}>•</span>
               {/if}
             </button>
           </li>

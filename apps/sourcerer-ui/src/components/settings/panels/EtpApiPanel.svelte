@@ -3,6 +3,7 @@
   import Section from "../controls/Section.svelte";
   import Checkbox from "../controls/Checkbox.svelte";
   import NumberInput from "../controls/NumberInput.svelte";
+  import { t } from "../../../lib/i18n/t";
 
   let busy = $state(false);
   let toast = $state("");
@@ -28,17 +29,17 @@
   }
 </script>
 
-<h1>ETP / FTP API</h1>
+<h1>{t("settings-node-etp-api")}</h1>
 <p class="hint">Modern HTTPS+token JSON API replacing voidtools-Everything's FTP/ETP server.</p>
 
-<Section title="API Server (E adapted)">
-  <Checkbox id="api-running" label="Enable API server"
+<Section title={t("section-api-server")}>
+  <Checkbox id="api-running" label={t("settings-net-api-enable")}
     checked={networkStore.status.api_running} disabled={busy}
     onChange={() => startStop()} />
-  <NumberInput id="api-port" label="Listen on port" min={1} max={65535}
+  <NumberInput id="api-port" label={t("settings-net-port")} min={1} max={65535}
     value={networkStore.desiredApiPort}
     onChange={(n) => (networkStore.desiredApiPort = n)} />
-  <Checkbox id="api-legacy-ftp" label="Legacy plain FTP/ETP support (+)"
+  <Checkbox id="api-legacy-ftp" label={t("settings-net-legacy-ftp")}
     checked={networkStore.legacyFtp}
     onChange={(v) => (networkStore.legacyFtp = v)} />
   {#if toast}<p class="toast">{toast}</p>{/if}

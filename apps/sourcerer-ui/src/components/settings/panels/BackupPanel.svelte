@@ -3,6 +3,7 @@
   import Section from "../controls/Section.svelte";
   import { open as openDialog, save as saveDialog } from "@tauri-apps/plugin-dialog";
   import { writeTextFile, readTextFile } from "@tauri-apps/plugin-fs";
+  import { t } from "../../../lib/i18n/t";
 
   let toast = $state("");
 
@@ -15,9 +16,9 @@
     try {
       const json = JSON.stringify(settingsStore.state, null, 2);
       await writeTextFile(path, json);
-      toast = "Exported settings to " + path;
+      toast = t("backup-toast-exported", { path });
     } catch (e) {
-      toast = "Export failed: " + e;
+      toast = t("backup-toast-export-failed", { error: String(e) });
     }
     setTimeout(() => (toast = ""), 4000);
   }
@@ -30,9 +31,9 @@
       const parsed = JSON.parse(raw);
       await settingsStore.patch(parsed);
       await settingsStore.flush();
-      toast = "Imported settings";
+      toast = t("backup-toast-imported");
     } catch (e) {
-      toast = "Import failed: " + e;
+      toast = t("backup-toast-import-failed", { error: String(e) });
     }
     setTimeout(() => (toast = ""), 4000);
   }
@@ -46,9 +47,9 @@
     try {
       const bookmarks = await (await import("@tauri-apps/api/core")).invoke<unknown[]>("bookmarks_list");
       await writeTextFile(path, JSON.stringify({ kind: "srcb", bookmarks }, null, 2));
-      toast = "Exported bookmarks";
+      toast = t("backup-toast-bookmarks-exported");
     } catch (e) {
-      toast = "Bookmark export failed: " + e;
+      toast = t("backup-toast-bookmarks-export-failed", { error: String(e) });
     }
     setTimeout(() => (toast = ""), 4000);
   }
@@ -65,35 +66,35 @@
           await invoke("bookmarks_save", b as Record<string, unknown>);
         }
       }
-      toast = "Imported bookmarks";
+      toast = t("backup-toast-bookmarks-imported");
     } catch (e) {
-      toast = "Bookmark import failed: " + e;
+      toast = t("backup-toast-bookmarks-import-failed", { error: String(e) });
     }
     setTimeout(() => (toast = ""), 4000);
   }
 
   async function resetAll() {
-    if (!confirm("Reset all settings to defaults? This cannot be undone (the dialog stays open).")) return;
+    if (!confirm(t("backup-confirm-reset"))) return;
     await settingsStore.reset();
-    toast = "All settings reset";
+    toast = t("backup-toast-reset");
     setTimeout(() => (toast = ""), 4000);
   }
 </script>
 
-<h1>Backup, Export, Reset</h1>
+<h1>{t("settings-group-backup")}</h1>
 
-<Section title="Settings (+)">
-  <button type="button" onclick={exportSettings}>Export settings</button>
-  <button type="button" onclick={importSettings}>Import settings</button>
+<Section title={t("backup-section-settings")}>
+  <button type="button" onclick={exportSettings}>{t("settings-backup-export")}</button>
+  <button type="button" onclick={importSettings}>{t("settings-backup-import")}</button>
 </Section>
 
-<Section title="Bookmarks + Custom Extractors (+)">
-  <button type="button" onclick={exportBookmarks}>Export bookmarks bundle</button>
-  <button type="button" onclick={importBookmarks}>Import bookmarks bundle</button>
+<Section title={t("backup-section-bookmarks")}>
+  <button type="button" onclick={exportBookmarks}>{t("settings-backup-export-bookmarks")}</button>
+  <button type="button" onclick={importBookmarks}>{t("settings-backup-import-bookmarks")}</button>
 </Section>
 
-<Section title="Reset">
-  <button type="button" class="danger" onclick={resetAll}>Reset all settings to defaults</button>
+<Section title={t("backup-section-reset")}>
+  <button type="button" class="danger" onclick={resetAll}>{t("settings-backup-reset-all")}</button>
 </Section>
 
 {#if toast}<p class="toast">{toast}</p>{/if}

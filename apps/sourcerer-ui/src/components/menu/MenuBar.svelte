@@ -8,6 +8,18 @@
   import { sortStore } from "../../lib/stores/sort.svelte";
   import { typeFilterStore, type TypeFilterId } from "../../lib/stores/type_filter.svelte";
   import BookmarksDropdown from "../bookmarks/BookmarksDropdown.svelte";
+  import { t } from "../../lib/i18n/t";
+
+  function labelOf(spec: { label: string; l10n?: string }): string {
+    if (!spec.l10n) return spec.label;
+    const translated = t(spec.l10n);
+    return translated === spec.l10n ? spec.label : translated;
+  }
+  function hintOf(spec: { hint?: string; hintL10n?: string }): string | undefined {
+    if (!spec.hintL10n) return spec.hint;
+    const translated = t(spec.hintL10n);
+    return translated === spec.hintL10n ? spec.hint : translated;
+  }
 
   const SORT_FIELD_BY_ID: Record<string, string> = {
     "view.sort.name": "name",
@@ -89,15 +101,13 @@
     // Only update the hover hint when a menu is actually open — H9 fix.
     if (openIdx !== null) {
       openIdx = i;
-      menuHoverStore.set(root.hint);
+      menuHoverStore.set(hintOf(root) ?? root.hint);
     }
   }
 
   function onItemEnter(node: MenuNode, fallbackHint: string) {
-    if (node.kind === "item") {
-      menuHoverStore.set(node.hint ?? fallbackHint);
-    } else if (node.kind === "submenu") {
-      menuHoverStore.set(node.hint ?? fallbackHint);
+    if (node.kind === "item" || node.kind === "submenu") {
+      menuHoverStore.set(hintOf(node) ?? node.hint ?? fallbackHint);
     }
   }
 
@@ -105,7 +115,7 @@
     if (ev.key === "Enter" || ev.key === " " || ev.key === "ArrowDown") {
       ev.preventDefault();
       openIdx = i;
-      menuHoverStore.set(root.hint);
+      menuHoverStore.set(hintOf(root) ?? root.hint);
     } else if (ev.key === "ArrowRight") {
       ev.preventDefault();
       const next = (i + 1) % MENU_BAR.length;
@@ -152,13 +162,13 @@
         onpointerdown={(e) => {
           e.stopPropagation();
           toggle(i);
-          if (openIdx !== null) menuHoverStore.set(root.hint);
+          if (openIdx !== null) menuHoverStore.set(hintOf(root) ?? root.hint);
         }}
         onclick={(e) => e.stopPropagation()}
         onmouseenter={() => onRootEnter(root, i)}
         onkeydown={(e) => rootKey(e, i, root)}
       >
-        {root.label}
+        {labelOf(root)}
       </button>
       {#if openIdx === i}
         <div class="dropdown" role="menu">
@@ -196,7 +206,7 @@
                   }}
                 >
                   <span class="check" aria-hidden="true"></span>
-                  <span class="label">{child.label}</span>
+                  <span class="label">{labelOf(child)}</span>
                   <span class="caret" aria-hidden="true">▸</span>
                 </button>
                 {#if isSubmenuOpen(subKey)}
@@ -220,7 +230,7 @@
                           }}
                         >
                           <span class="check" aria-hidden="true">{gcChecked ? "✓" : ""}</span>
-                          <span class="label">{gc.label}</span>
+                          <span class="label">{labelOf(gc)}</span>
                           {#if gc.accelerator}
                             <span class="accel">{gc.accelerator}</span>
                           {/if}
@@ -251,7 +261,7 @@
                 }}
               >
                 <span class="check" aria-hidden="true">{childChecked ? "✓" : ""}</span>
-                <span class="label">{child.label}</span>
+                <span class="label">{labelOf(child)}</span>
                 {#if child.accelerator}
                   <span class="accel">{child.accelerator}</span>
                 {/if}

@@ -380,3 +380,408 @@ settings-about-version = Sourcerer { $version }
 settings-about-license = Лицензия
 settings-about-credits = Благодарности
 settings-about-notices = Уведомления об открытом ПО
+
+# --- Добавления TASK-098: подсказки, плейсхолдеры, подразделы, всплывающие сообщения ---
+
+# Доработка мастера.
+wizard-aria-label = Мастер первого запуска
+wizard-step-of-total = Шаг { $step } из { $total }
+wizard-roots-hint = Добавьте папки или тома, за которыми Sourcerer будет следить. Это можно изменить позже в настройках индексов.
+wizard-browse = Обзор…
+wizard-roots-placeholder = …или вставьте путь
+wizard-roots-add = Добавить
+wizard-roots-remove = Удалить
+wizard-roots-empty = Корневые пути ещё не настроены.
+wizard-locale-hint = Sourcerer поставляется на 18 языках. Можно переключить позже.
+wizard-theme-hint = «Системная» использует оформление вашей ОС.
+wizard-back = Назад
+wizard-next = Далее
+
+# Доработка строки состояния.
+statusbar-hotkey-hint = Горячая клавиша: { $hotkey }
+statusbar-cycle-theme = Сменить тему
+statusbar-indexed-suffix = проиндексировано
+
+# Результаты / линзы.
+lens-expand = Развернуть линзу
+lens-collapse = Свернуть линзу
+lens-no-matches = В этой линзе нет совпадений.
+
+# Панель предпросмотра.
+preview-header = Предпросмотр
+preview-loading = Загрузка…
+preview-select-file = Выберите файл для предпросмотра.
+preview-unavailable = Предпросмотр недоступен
+
+# Закладки.
+bookmarks-label = ★ Закладки
+bookmarks-empty-hint = Закладок пока нет. Нажмите Ctrl+D, чтобы сохранить текущий запрос.
+bookmarks-organize-title = Управление закладками
+bookmarks-organize-empty = Закладок пока нет.
+bookmarks-rename = Переименовать
+bookmarks-close = Закрыть
+
+# Дополнения дерева настроек.
+settings-group-history = История
+settings-group-privacy = Конфиденциальность и обновления
+settings-group-logs = Журналы и отладка
+settings-group-backup = Резервное копирование, экспорт, сброс
+settings-tree-custom-lens = Свои
+settings-unsaved-changes = несохранённые изменения
+
+# Диалог «О программе».
+about-dialog-title = Sourcerer
+about-copyright = Copyright © 2026 Mike Weaver. Все права защищены.
+about-close = Закрыть
+
+# Диалог подключения к конечной точке.
+connect-ftp-title = Подключение к серверу FTP
+connect-ftp-host = Хост:
+connect-ftp-port = Порт:
+connect-ftp-username = Имя пользователя:
+connect-ftp-password = Пароль:
+connect-ftp-link-type = Тип подключения:
+
+# Панель «Интерфейс».
+ui-hint = Тема, интеграция с треем / строкой меню, поиск по мере ввода, плотность строк. Прямой паритет с voidtools-Everything плюс дополнения Sourcerer, помеченные (+).
+ui-section-theme = Тема
+ui-theme-system-default = Системная (по умолчанию)
+ui-section-tray = Трей / строка меню
+ui-section-search-behavior = Поведение поиска
+ui-section-result-rows = Строки результатов
+ui-single-click-system-default = Настройки системы (по умолчанию)
+ui-single-click-always = Всегда одинарный щелчок
+ui-single-click-always-double = Всегда двойной щелчок
+ui-underline-always = Всегда
+ui-underline-on-hover = При наведении
+ui-underline-never = Никогда
+
+# Панель «Стартовая».
+home-hint = Значения по умолчанию, загружаемые при запуске приложения — каждый список можно оставить на «Использовать последнее значение» или закрепить фиксированное. Видимость линз / лимиты результатов — дополнения Sourcerer (+).
+home-section-match = Параметры совпадения по умолчанию
+home-section-search-sort = Параметры поиска и сортировки по умолчанию
+home-search-placeholder = По умолчанию пусто
+home-section-index = Источник индекса
+home-file-list-path = Путь к списку файлов
+home-https-endpoint = URL конечной точки HTTPS API
+home-endpoint-token = Токен (показан отпечаток)
+
+# Панель «Резервное копирование».
+backup-section-settings = Настройки (+)
+backup-section-bookmarks = Закладки + свои извлекатели (+)
+backup-section-reset = Сброс
+backup-toast-exported = Настройки экспортированы в { $path }
+backup-toast-export-failed = Сбой экспорта: { $error }
+backup-toast-imported = Настройки импортированы
+backup-toast-import-failed = Сбой импорта: { $error }
+backup-toast-bookmarks-exported = Закладки экспортированы
+backup-toast-bookmarks-export-failed = Сбой экспорта закладок: { $error }
+backup-toast-bookmarks-imported = Закладки импортированы
+backup-toast-bookmarks-import-failed = Сбой импорта закладок: { $error }
+backup-confirm-reset = Сбросить все настройки к значениям по умолчанию? Это действие нельзя отменить (диалог остаётся открытым).
+backup-toast-reset = Все настройки сброшены
+
+# Панель «Клавиатура».
+keyboard-section-global = Глобальные горячие клавиши
+keyboard-placeholder-example = Super+Space
+keyboard-section-commands = Команды
+keyboard-placeholder-command = id команды (например, file.export_results)
+keyboard-placeholder-binding = Ctrl+K, B
+
+# Панель «История».
+history-section-search = История поиска
+history-section-run = История запусков
+history-section-privacy = Конфиденциальность (+)
+history-record-filename = Сохранять историю линзы имени файла
+history-record-content = Сохранять историю линзы содержимого
+history-record-audio = Сохранять историю аудио-линзы
+history-record-similarity = Сохранять историю линзы сходства
+
+# Панель «Язык и регион».
+locale-section-language = Язык (+)
+locale-section-time-date = Время и дата (+)
+locale-date-os = По умолчанию ОС
+locale-date-iso8601 = ISO 8601
+locale-date-rfc3339 = RFC 3339
+locale-date-custom-label = Свой
+locale-date-custom-format = Свой формат
+locale-date-placeholder = YYYY-MM-DD
+locale-section-numbers = Числа (+)
+locale-number-os = По умолчанию ОС
+locale-number-custom = Свой
+locale-thousands-sep = Разделитель тысяч
+locale-decimal-sep = Десятичный разделитель
+
+# Панель «Папки».
+folders-hint = Дополнительные отслеживаемые папки помимо томов по умолчанию.
+folders-list-title = Отслеживаемые папки
+folders-empty = Папки ещё не добавлены.
+folders-remove = Удалить
+folders-section-title-dynamic = Настройки для { $path }
+folders-section-schedule = Расписание пересканирования
+folders-schedule-daily = Каждый день в ЧЧ:ММ
+folders-schedule-hours = Каждые N часов
+folders-schedule-never = Никогда
+folders-hour = Час
+folders-minute = Минута
+folders-hours = Часы
+folders-id-label = ID папки (только чтение)
+folders-select-prompt = Выберите папку для настройки.
+folders-section-extras = Дополнения Sourcerer (+)
+folders-extras-note = Пересканирование при выходе из спящего режима включено по умолчанию в этой сборке; переключатель присоединится к настройкам уровня папки в полировочной фазе 13.
+
+# Панель «Тома».
+volumes-hint = Кроссплатформенный аналог панелей NTFS / ReFS из voidtools-Everything. Автоопределение NTFS / ReFS / exFAT / FAT32 (Win), APFS / HFS+ (macOS), ext4 / Btrfs / ZFS / XFS / F2FS (Linux).
+volumes-section-auto-include = Автовключение
+volumes-list-title = Обнаруженные тома
+volumes-detecting = Обнаружение…
+volumes-empty = Тома не обнаружены.
+volumes-select-prompt = Выберите том для настройки.
+
+# Доработка панели «О программе».
+about-section-version = Версия (+)
+about-section-license = Лицензия (+)
+about-license-text = Mike Weaver — Все права защищены. Это проприетарное ПО.
+about-license-spdx = SPDX: { $spdx }
+about-section-credits = Благодарности (+)
+about-credits-inspired = Вдохновлено программой Everything от voidtools.
+about-credits-voidtools = voidtools.com
+about-credits-repo = Репозиторий проекта
+
+# --- Строка меню (PRD §8.28) — каждая подпись + подменю + подсказка при наведении в строке состояния ---
+
+# Меню «Файл».
+menu-file-hint = Содержит команды для работы с Sourcerer.
+menu-file-new-window = Новое окно поиска
+menu-file-open-list = Открыть список файлов…
+menu-file-close-list = Закрыть список файлов
+menu-file-close = Закрыть
+menu-file-export-results = Экспортировать результаты…
+menu-file-export-bundle = Экспортировать пакет индекса…
+menu-file-exit = Выход
+
+# Меню «Правка».
+menu-edit-hint = Содержит команды для правки результатов поиска.
+menu-edit-cut = Вырезать
+menu-edit-copy = Копировать
+menu-edit-paste = Вставить
+menu-edit-copy-to-folder = Копировать в папку…
+menu-edit-move-to-folder = Переместить в папку…
+menu-edit-select-all = Выделить всё
+menu-edit-invert-selection = Инвертировать выделение
+menu-edit-advanced = Дополнительно
+menu-edit-copy-full-name = Копировать полное имя
+menu-edit-copy-path = Копировать путь
+menu-edit-copy-filename = Копировать имя файла
+menu-edit-copy-as-json = Копировать как JSON
+menu-edit-copy-with-metadata = Копировать с метаданными
+menu-edit-copy-as-bundle-ref = Копировать как ссылку на пакет Sourcerer
+
+# Меню «Вид».
+menu-view-hint = Содержит команды для управления видом.
+menu-view-filters = Фильтры
+menu-view-preview = Предпросмотр
+menu-view-status-bar = Строка состояния
+menu-view-thumbs-xl = Очень большие миниатюры
+menu-view-thumbs-l = Большие миниатюры
+menu-view-thumbs-m = Средние миниатюры
+menu-view-details = Подробности
+menu-view-window-size = Размер окна
+menu-view-window-size-hint = Содержит команды для изменения размера окна.
+menu-view-window-small = Маленькое
+menu-view-window-medium = Среднее
+menu-view-window-large = Большое
+menu-view-window-auto = Автоподгонка
+menu-view-zoom = Масштаб
+menu-view-zoom-hint = Содержит команды для изменения размера шрифта и значков.
+menu-view-zoom-in = Увеличить
+menu-view-zoom-out = Уменьшить
+menu-view-zoom-reset = Сбросить
+menu-view-sort-by = Сортировать по
+menu-view-sort-by-hint = Содержит команды для сортировки списка результатов.
+menu-view-sort-name = Имя
+menu-view-sort-path = Путь
+menu-view-sort-size = Размер
+menu-view-sort-ext = Расширение
+menu-view-sort-type = Тип
+menu-view-sort-modified = Дата изменения
+menu-view-sort-created = Дата создания
+menu-view-sort-accessed = Дата доступа
+menu-view-sort-attributes = Атрибуты
+menu-view-sort-recently-changed = Дата недавнего изменения
+menu-view-sort-run-count = Число запусков
+menu-view-sort-run-date = Дата запуска
+menu-view-sort-file-list-filename = Имя файла списка файлов
+menu-view-sort-lufs = LUFS
+menu-view-sort-length = Длительность
+menu-view-sort-similarity = Оценка сходства
+menu-view-sort-asc = По возрастанию
+menu-view-sort-desc = По убыванию
+menu-view-go-to = Перейти к
+menu-view-refresh = Обновить
+menu-view-theme = Тема
+menu-view-theme-hint = Переключение между системной, светлой и тёмной темами.
+menu-view-lenses = Линзы
+menu-view-lenses-hint = Переключает видимость каждой линзы в списке результатов.
+menu-view-on-top = Поверх окон
+menu-view-on-top-hint = Содержит команды для удержания этого окна поверх других окон.
+menu-view-on-top-never = Никогда
+menu-view-on-top-always = Всегда
+menu-view-on-top-while-searching = Во время поиска
+
+# Меню «Поиск».
+menu-search-hint = Содержит переключатели поиска.
+menu-search-match-case = Учитывать регистр
+menu-search-match-whole-word = Только целые слова
+menu-search-match-path = Искать по пути
+menu-search-match-diacritics = Учитывать диакритику
+menu-search-enable-regex = Включить Regex
+menu-search-advanced = Расширенный поиск…
+menu-search-add-to-filters = Добавить в фильтры…
+menu-search-organize-filters = Управление фильтрами…
+menu-search-filter-everything = Всё
+menu-search-filter-archive = Сжатые (архив)
+menu-search-filter-folder = Папка
+menu-search-filter-custom = Свой фильтр…
+
+# Меню «Закладки».
+menu-bookmarks-hint = Содержит команды для работы с закладками.
+menu-bookmarks-add = Добавить в закладки
+menu-bookmarks-organize = Управление закладками…
+
+# Меню «Инструменты».
+menu-tools-hint = Содержит команды инструментов.
+menu-tools-connect = Подключиться к серверу FTP…
+menu-tools-disconnect = Отключиться от сервера FTP
+menu-tools-file-list-editor = Редактор списков файлов…
+menu-tools-index-maintenance = Обслуживание индекса
+menu-tools-index-maintenance-hint = Инструменты обслуживания индекса.
+menu-tools-verify-index = Проверить индекс…
+menu-tools-compact-index = Сжать индекс…
+menu-tools-rebuild-index = Принудительно перестроить индекс…
+menu-tools-custom-extractor = Менеджер своих извлекателей…
+menu-tools-custom-extractor-hint = Управление пользовательскими извлекателями в Wasm-песочнице.
+menu-tools-options = Параметры…
+
+# Меню «Справка».
+menu-help-hint = Содержит команды справки.
+menu-help-help = Справка Sourcerer
+menu-help-search-syntax = Синтаксис поиска
+menu-help-regex-syntax = Синтаксис Regex
+menu-help-audio-ref = Справочник модификаторов аудио
+menu-help-similarity-ref = Справочник модификаторов сходства
+menu-help-cli-options = Параметры командной строки
+menu-help-website = Сайт Sourcerer
+menu-help-check-updates = Проверить обновления…
+menu-help-sponsor = Поддержать / пожертвовать
+menu-help-about = О программе Sourcerer…
+
+# Заголовки столбцов результатов (краткие формы, используемые в строке заголовка таблицы).
+column-name = Имя
+column-path = Путь
+column-size = Размер
+column-modified = Изменён
+column-type = Тип
+column-ext = Расш.
+column-sort-by = Сортировать по { $name }
+column-resize = Изменить ширину столбца { $name }
+
+# Подзаголовки разделов, используемые внутри различных панелей настроек.
+section-behavior = Поведение
+section-rendering = Отрисовка
+section-status-bar = Строка состояния
+section-display-format = Формат отображения
+section-loading-priority = Приоритет загрузки
+section-compatibility = Совместимость
+section-storage = Хранилище
+section-index-fields = Поля индекса
+section-maintenance = Обслуживание
+section-logging = Журналирование
+section-tools = Инструменты
+section-privacy = Конфиденциальность
+section-auto-update = Автообновление (+)
+section-bind = Привязка
+section-lens = Линза
+section-budgets = Бюджеты
+section-other = Прочее
+section-per-format-mode = Режим по формату
+section-loudness = Громкость
+section-tuning = Настройка (+)
+section-minhash-lsh = Параметры MinHash + LSH (+)
+section-top-level = Верхний уровень
+section-file-globs = Шаблоны файлов
+section-file-list-settings = Настройки выбранного списка файлов
+section-editor-format = Редактор + Формат (E + +)
+section-api-server = API-сервер (E adapted)
+section-sourcerer-extras = Дополнения Sourcerer (+)
+section-sourcerer-additions = Добавления Sourcerer (+)
+section-sourcerer-extensions = Расширения Sourcerer (+)
+
+# Общие подписи параметров, используемые в нескольких выпадающих списках.
+opt-use-last-value = Использовать последнее значение
+opt-use-last-value-default = Использовать последнее значение (по умолчанию)
+opt-low = Низкий
+opt-normal-default = Обычный (по умолчанию)
+opt-high = Высокий
+opt-disabled = Отключено
+opt-off = Выкл.
+opt-on-battery = При работе от батареи
+opt-always = Всегда
+opt-clamp-default = Ограничение (по умолчанию)
+opt-wrap = Перенос
+opt-none = Нет
+opt-strict-refuse = Строгий (отклонять запросы при повреждении)
+opt-lenient-warn = Снисходительный (предупреждать, но выполнять)
+opt-system-default = Системное по умолчанию
+opt-drag-select = Выделение перетаскиванием
+opt-auto-binary = Авто (двоичный)
+opt-auto-decimal = Авто (десятичный)
+
+# Суффиксы единиц измерения, отображаемые рядом с числовыми полями.
+unit-days = дн.
+unit-kb = KB
+unit-mb = MB
+
+# Дополнительные метки вариантов выпадающих списков (режим извлечения / сортировка / вид / индекс / панель / приоритет / LUFS / пик / уровень журнала / канал обновлений).
+opt-eager = Активный
+opt-lazy-default = Ленивый (по умолчанию)
+opt-on = Включено
+opt-on-default = Включено (по умолчанию)
+opt-all = Все
+opt-weekly = Еженедельно
+opt-monthly = Ежемесячно
+opt-name-asc = Имя по возрастанию
+opt-name-desc = Имя по убыванию
+opt-size-asc = Размер по возрастанию
+opt-size-desc = Размер по убыванию
+opt-modified-asc = Дата изменения по возрастанию
+opt-modified-desc = Дата изменения по убыванию
+opt-compact = Компактный
+opt-comfortable = Удобный
+opt-details = Подробно
+opt-thumbnails = Эскизы
+opt-local-db-default = Локальная база данных (по умолчанию)
+opt-file-list = Список файлов
+opt-https-endpoint = Конечная точка HTTPS API
+opt-right-default = Справа (по умолчанию)
+opt-bottom = Снизу
+opt-or-and-default = OR > AND (по умолчанию)
+opt-and-or = AND > OR
+opt-ebu-r128-default = EBU R128 (по умолчанию)
+opt-atsc-a85 = ATSC A/85
+opt-spotify = Spotify (-14)
+opt-apple-music = Apple Music (-16)
+opt-broadcast-film = Вещательное кино (-23)
+opt-true-peak = Истинный пик (4× передискретизация, по умолчанию)
+opt-sample-peak = Пиковое значение отсчёта
+opt-auto-per-doc = Авто (по документу)
+opt-log-error = Ошибка
+opt-log-warn = Предупреждение
+opt-log-info-default = Информация (по умолчанию)
+opt-log-debug = Отладка
+opt-log-trace = Трассировка
+
+# unit-b / unit-gb / unit-tb (size units; conventional Latin acronyms — kept as-is, polish per-locale as needed).
+unit-b = B
+unit-gb = GB
+unit-tb = TB

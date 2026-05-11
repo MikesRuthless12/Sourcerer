@@ -8,6 +8,7 @@
   import Checkbox from "../controls/Checkbox.svelte";
   import { invoke } from "@tauri-apps/api/core";
   import type { LogsAndDebugSettings } from "../../../lib/ipc/types";
+  import { t } from "../../../lib/i18n/t";
 
   function patch(p: Partial<LogsAndDebugSettings>) {
     settingsStore.patch({ logs_and_debug: { ...settingsStore.state.logs_and_debug, ...p } });
@@ -34,27 +35,27 @@
   }
 </script>
 
-<h1>Logs & Debug</h1>
+<h1>{t("settings-group-logs")}</h1>
 
-<Section title="Logging">
-  <Dropdown id="ld-level" label="Log level"
+<Section title={t("section-logging")}>
+  <Dropdown id="ld-level" label={t("settings-logs-level")}
     value={settingsStore.state.logs_and_debug.log_level}
-    options={[ { value: "error", label: "Error" }, { value: "warn", label: "Warn" }, { value: "info", label: "Info (default)" }, { value: "debug", label: "Debug" }, { value: "trace", label: "Trace" } ]}
+    options={[ { value: "error", label: t("opt-log-error") }, { value: "warn", label: t("opt-log-warn") }, { value: "info", label: t("opt-log-info-default") }, { value: "debug", label: t("opt-log-debug") }, { value: "trace", label: t("opt-log-trace") } ]}
     onChange={(v) => patch({ log_level: v })} />
-  <TextInput id="ld-loc" label="Log file location"
+  <TextInput id="ld-loc" label={t("settings-logs-location")}
     value={settingsStore.state.logs_and_debug.log_file_location}
     onChange={(v) => patch({ log_file_location: v })} />
-  <NumberInput id="ld-ret" label="Log retention" min={1} max={1000} suffix="MB"
+  <NumberInput id="ld-ret" label={t("settings-logs-retention")} min={1} max={1000} suffix={t("unit-mb")}
     value={settingsStore.state.logs_and_debug.log_retention_mb}
     onChange={(n) => patch({ log_retention_mb: n })} />
-  <Checkbox id="ld-overlay" label="Show debug overlay (+)"
+  <Checkbox id="ld-overlay" label={t("settings-logs-debug-overlay")}
     checked={settingsStore.state.logs_and_debug.show_debug_overlay}
     onChange={(v) => patch({ show_debug_overlay: v })} />
 </Section>
 
-<Section title="Tools">
-  <button type="button" onclick={openFolder}>Open log folder</button>
-  <button type="button" onclick={exportBundle}>Export diagnostics bundle</button>
+<Section title={t("section-tools")}>
+  <button type="button" onclick={openFolder}>{t("settings-logs-open-folder")}</button>
+  <button type="button" onclick={exportBundle}>{t("settings-logs-export-bundle")}</button>
 </Section>
 
 <style>

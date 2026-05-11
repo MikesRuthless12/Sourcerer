@@ -1,5 +1,6 @@
 <script lang="ts">
   import { settingsDialog } from "../../lib/stores/settings_dialog.svelte";
+  import { t } from "../../lib/i18n/t";
 
   interface Props {
     onClose: () => void;
@@ -47,16 +48,16 @@
 </script>
 
 <div class="bar">
-  <button type="button" onclick={restoreDefaults} disabled={busy}>Restore Defaults</button>
+  <button type="button" onclick={restoreDefaults} disabled={busy}>{t("settings-restore-defaults")}</button>
   <span class="spacer"></span>
-  <button type="button" onclick={ok} disabled={busy} class="primary">OK</button>
-  <button type="button" onclick={cancel} disabled={busy}>Cancel</button>
+  <button type="button" onclick={ok} disabled={busy} class="primary">{t("settings-ok")}</button>
+  <button type="button" onclick={cancel} disabled={busy}>{t("settings-cancel")}</button>
   <button
     type="button"
     onclick={apply}
     disabled={busy || !settingsDialog.dirty}
     class="primary"
-    class:enabled={settingsDialog.dirty}>Apply</button
+    class:enabled={settingsDialog.dirty}>{t("settings-apply")}</button
   >
 </div>
 

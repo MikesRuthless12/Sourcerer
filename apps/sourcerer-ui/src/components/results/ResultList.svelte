@@ -8,12 +8,13 @@
   import { t } from "../../lib/i18n/t";
   import type { LensId } from "../../lib/ipc/types";
 
-  const lensTitles: Record<LensId, string> = {
+  // `$derived` so locale switches re-render the section headers.
+  const lensTitles = $derived<Record<LensId, string>>({
     filename: t("lens-filename"),
     content: t("lens-content"),
     audio: t("lens-audio"),
     similarity: t("lens-similarity")
-  };
+  });
 
   const order: LensId[] = ["filename", "content", "audio", "similarity"];
 
