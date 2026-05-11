@@ -20,3 +20,9 @@ walkdir = "2"
 
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"
+
+# Note: no Windows-specific dep. Sourcerer's production Windows
+# bootstrap uses the MFT-direct-read in `sourcerer-journal-win`
+# (the same path voidtools-Everything takes). On Windows the
+# `fsbench` binary intentionally falls back to `walkdir` — it's a
+# userland verifier, not a benchmark for the privileged MFT scanner.

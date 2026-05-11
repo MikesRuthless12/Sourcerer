@@ -71,33 +71,65 @@ jobs:
       - name: xtask i18n-lint
         run: cargo run -p xtask -- i18n-lint
 
-      - name: Phase 13 — fsbench smoke (macOS + Linux only)
-        # Exercises the OS-specific fast walker (getattrlistbulk on
-        # macOS, getdents64 + statx on Linux) against a 50k-file
-        # synthetic tree and asserts it agrees with the walkdir
-        # baseline. Skips on Windows — there's no platform-specific
-        # fast path on Windows; the binary just falls back to walkdir
-        # so the comparison would be tautological.
+      - name: Phase 13 — fsbench correctness + benchmark (1.5M files)
+        # Generates a 1.5M-file synthetic tree, walks it once via the
+        # OS-specific fast primitive (getattrlistbulk on macOS,
+        # getdents64+statx on Linux) and once via the walkdir baseline.
+        # The CI gate is correctness — both walkers must report
+        # identical file/dir/byte totals. The full scan-output lines
+        # (with elapsed-time + files/s throughput) are echoed loudly so
+        # the benchmark numbers show up clearly in the job log.
+        #
+        # Skips on Windows: Sourcerer's production Windows bootstrap is
+        # the MFT-direct-read in `sourcerer-journal-win`, not a userland
+        # FindFirstFileExW walk. On Windows the fsbench binary falls
+        # back to walkdir so the comparison would be tautological;
+        # MFT verification lives in the sourcerer-journal-win test
+        # suite instead.
         if: runner.os == 'macOS' || runner.os == 'Linux'
         shell: bash
         run: |
           set -euo pipefail
+          echo "::group::build sourcerer-fsbench --release"
           cargo build -p sourcerer-fsbench --release
+          echo "::endgroup::"
           bin=./target/release/sourcerer-fsbench
           tmpdir=$(mktemp -d)
           trap 'rm -rf "$tmpdir"' EXIT
-          "$bin" gen --root "$tmpdir/tree" --count 50000
-          fast=$("$bin" scan --root "$tmpdir/tree" \
+          count=1500000
+          echo "::group::gen — ${count} synthetic files"
+          "$bin" gen --root "$tmpdir/tree" --count "$count"
+          echo "::endgroup::"
+
+          # Fast path
+          echo "::group::scan — fast path"
+          fast_line=$("$bin" scan --root "$tmpdir/tree")
+          echo "$fast_line"
+          echo "::endgroup::"
+
+          # Baseline path
+          echo "::group::scan — walkdir baseline"
+          base_line=$("$bin" scan --root "$tmpdir/tree" --baseline)
+          echo "$base_line"
+          echo "::endgroup::"
+
+          # Correctness gate — count-trimmed summaries must match.
+          fast=$(printf '%s' "$fast_line" \
             | grep -oE '[0-9]+ file\(s\), [0-9]+ dir\(s\), [0-9]+ bytes')
-          base=$("$bin" scan --root "$tmpdir/tree" --baseline \
+          base=$(printf '%s' "$base_line" \
             | grep -oE '[0-9]+ file\(s\), [0-9]+ dir\(s\), [0-9]+ bytes')
-          echo "fast path : $fast"
-          echo "baseline  : $base"
           if [ "$fast" != "$base" ]; then
             echo "::error::fsbench fast path and walkdir baseline disagree"
+            echo "  fast    : $fast"
+            echo "  baseline: $base"
             exit 1
           fi
-          echo "::notice::fsbench fast path matches baseline ($fast)"
+
+          # Benchmark summary — emitted as a CI notice so it surfaces
+          # in the PR's check-run sidebar, not just buried in the log.
+          echo "::notice title=fsbench ${{ matrix.os }}::FAST: $fast_line"
+          echo "::notice title=fsbench ${{ matrix.os }}::BASE: $base_line"
+          echo "::notice title=fsbench ${{ matrix.os }}::counts agree ✓ ($fast)"
 
       - name: Install cargo-deny
         # `EmbarkStudios/cargo-deny-action@v2` is a Docker container
