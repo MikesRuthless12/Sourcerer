@@ -1,5 +1,6 @@
 <script lang="ts">
   import { bookmarksStore } from "../../lib/stores/bookmarks.svelte";
+  import { t } from "../../lib/i18n/t";
 
   interface Props {
     open: boolean;
@@ -39,17 +40,17 @@
       class="modal"
       role="dialog"
       aria-modal="true"
-      aria-label="Organize bookmarks"
+      aria-label={t("bookmarks-organize-title")}
       onclick={(e) => e.stopPropagation()}
       onkeydown={(e) => e.stopPropagation()}
     >
       <header>
-        <h2>Organize Bookmarks</h2>
-        <button type="button" class="close" aria-label="Close" onclick={onClose}>×</button>
+        <h2>{t("bookmarks-organize-title")}</h2>
+        <button type="button" class="close" aria-label={t("bookmarks-close")} onclick={onClose}>×</button>
       </header>
       <div class="list">
         {#if bookmarksStore.items.length === 0}
-          <div class="empty">No bookmarks yet.</div>
+          <div class="empty">{t("bookmarks-organize-empty")}</div>
         {:else}
           {#each bookmarksStore.items as bm (bm.id)}
             <div class="row">
@@ -76,8 +77,8 @@
                 <span class="query">{bm.query}</span>
               </div>
               <div class="actions">
-                <button type="button" onclick={() => startRename(bm.id, bm.name)}>Rename</button>
-                <button type="button" class="danger" onclick={() => remove(bm.id)}>Delete</button>
+                <button type="button" onclick={() => startRename(bm.id, bm.name)}>{t("bookmarks-rename")}</button>
+                <button type="button" class="danger" onclick={() => remove(bm.id)}>{t("action-delete")}</button>
               </div>
             </div>
           {/each}

@@ -4,6 +4,7 @@
   import Section from "../controls/Section.svelte";
   import Checkbox from "../controls/Checkbox.svelte";
   import Dropdown from "../controls/Dropdown.svelte";
+  import { t } from "../../../lib/i18n/t";
   import type { SettingsState } from "../../../lib/ipc/types";
 
   function patch<K extends keyof SettingsState>(key: K, value: SettingsState[K]) {
@@ -12,39 +13,39 @@
   }
 </script>
 
-<h1>Search</h1>
+<h1>{t("settings-node-search")}</h1>
 <p class="hint">DSL behavior — voidtools-Everything compatibility on top, Sourcerer extensions
 (strict-Everything mode, auto-regex, modifier completions) below.</p>
 
-<Section title="Compatibility">
-  <Checkbox id="se-fast-ascii" label="Fast ASCII search"
+<Section title={t("section-compatibility")}>
+  <Checkbox id="se-fast-ascii" label={t("settings-search-fast-ascii")}
     checked={settingsStore.state.fast_ascii_search} onChange={(v) => patch("fast_ascii_search", v)} />
-  <Checkbox id="se-mp-sep" label="Match path when a search term contains a path separator"
+  <Checkbox id="se-mp-sep" label={t("settings-search-mp-sep")}
     checked={settingsStore.state.match_path_when_term_contains_separator} onChange={(v) => patch("match_path_when_term_contains_separator", v)} />
-  <Checkbox id="se-mw-fn" label="Match whole filename when using wildcards"
+  <Checkbox id="se-mw-fn" label={t("settings-search-mw-fn")}
     checked={settingsStore.state.match_whole_filename_with_wildcards} onChange={(v) => patch("match_whole_filename_with_wildcards", v)} />
-  <Checkbox id="se-lit-ops" label="Allow literal operators (when off, AND / OR are matched literally)"
+  <Checkbox id="se-lit-ops" label={t("settings-search-lit-ops")}
     checked={settingsStore.state.allow_literal_operators} onChange={(v) => patch("allow_literal_operators", v)} />
-  <Checkbox id="se-paren" label="Allow round bracket grouping"
+  <Checkbox id="se-paren" label={t("settings-search-paren")}
     checked={settingsStore.state.allow_round_bracket_grouping} onChange={(v) => patch("allow_round_bracket_grouping", v)} />
-  <Checkbox id="se-env" label="Expand environment variables"
+  <Checkbox id="se-env" label={t("settings-search-env")}
     checked={settingsStore.state.expand_environment_variables} onChange={(v) => patch("expand_environment_variables", v)} />
-  <Checkbox id="se-fwd" label="Replace forward slashes with backslashes (Windows utility)"
+  <Checkbox id="se-fwd" label={t("settings-search-fwd-slash")}
     checked={settingsStore.state.replace_forward_with_backslashes} onChange={(v) => patch("replace_forward_with_backslashes", v)} />
-  <Dropdown id="se-prec" label="Operator precedence"
+  <Dropdown id="se-prec" label={t("settings-search-precedence")}
     value={settingsStore.state.operator_precedence}
-    options={[ { value: "or_first", label: "OR > AND (default)" }, { value: "and_first", label: "AND > OR" } ]}
+    options={[ { value: "or_first", label: t("opt-or-and-default") }, { value: "and_first", label: t("opt-and-or") } ]}
     onChange={(v) => patch("operator_precedence", v)} />
 </Section>
 
-<Section title="Sourcerer Extensions (+)">
-  <Checkbox id="se-strict" label="Strict Everything syntax mode (reject Sourcerer-only modifiers)"
+<Section title={t("section-sourcerer-extensions")}>
+  <Checkbox id="se-strict" label={t("settings-search-strict-everything")}
     checked={settingsStore.state.strict_everything_mode} onChange={(v) => patch("strict_everything_mode", v)} />
-  <Checkbox id="se-auto-rgx" label="Auto-detect regex (^…$ patterns route to regex automatically)"
+  <Checkbox id="se-auto-rgx" label={t("settings-search-auto-regex")}
     checked={settingsStore.state.auto_detect_regex} onChange={(v) => patch("auto_detect_regex", v)} />
-  <Checkbox id="se-mod-comp" label="Modifier completions (lufs: / size: / codec: hint chips)"
+  <Checkbox id="se-mod-comp" label={t("settings-search-mod-comp")}
     checked={settingsStore.state.modifier_completions} onChange={(v) => patch("modifier_completions", v)} />
-  <Checkbox id="se-parse-tree" label="Show parse-tree on hover"
+  <Checkbox id="se-parse-tree" label={t("settings-search-parse-tree")}
     checked={settingsStore.state.show_parse_tree_on_hover} onChange={(v) => patch("show_parse_tree_on_hover", v)} />
 </Section>
 

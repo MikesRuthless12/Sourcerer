@@ -29,6 +29,7 @@
   import BackupPanel from "./panels/BackupPanel.svelte";
   import LocalePanel from "./panels/LocalePanel.svelte";
   import AboutPanel from "./panels/AboutPanel.svelte";
+  import { t } from "../../lib/i18n/t";
 
   interface Props {
     open: boolean;
@@ -58,12 +59,12 @@
       class="modal"
       role="dialog"
       aria-modal="true"
-      aria-label="Sourcerer Options"
+      aria-label={t("settings-title")}
       onclick={(e) => e.stopPropagation()}
       onkeydown={(e) => e.stopPropagation()}
     >
       <header>
-        <h2>Options</h2>
+        <h2>{t("settings-title")}</h2>
       </header>
       <div class="body">
         <SettingsTreeNav />

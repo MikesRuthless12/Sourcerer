@@ -3,6 +3,7 @@
   import { settingsDialog } from "../../../lib/stores/settings_dialog.svelte";
   import Section from "../controls/Section.svelte";
   import TextInput from "../controls/TextInput.svelte";
+  import { t } from "../../../lib/i18n/t";
   import type { KeyboardChord, KeyboardState } from "../../../lib/ipc/types";
 
   let filter = $state("");
@@ -39,34 +40,34 @@
   );
 </script>
 
-<h1>Keyboard</h1>
+<h1>{t("settings-node-keyboard")}</h1>
 
-<Section title="Global Hotkeys">
-  <TextInput id="kb-global" label="Global Hotkey" value={settingsStore.state.hotkey}
-    placeholder="Super+Space"
+<Section title={t("keyboard-section-global")}>
+  <TextInput id="kb-global" label={t("settings-keyboard-global-hotkey")} value={settingsStore.state.hotkey}
+    placeholder={t("keyboard-placeholder-example")}
     onChange={(v) => patchHotkey(v)} />
-  <TextInput id="kb-new" label="New window Hotkey" value={settingsStore.state.keyboard.new_window_hotkey}
+  <TextInput id="kb-new" label={t("settings-keyboard-new-window")} value={settingsStore.state.keyboard.new_window_hotkey}
     onChange={(v) => patchKbd({ new_window_hotkey: v })} />
-  <TextInput id="kb-show" label="Show window Hotkey" value={settingsStore.state.keyboard.show_window_hotkey}
+  <TextInput id="kb-show" label={t("settings-keyboard-show-window")} value={settingsStore.state.keyboard.show_window_hotkey}
     onChange={(v) => patchKbd({ show_window_hotkey: v })} />
-  <TextInput id="kb-toggle" label="Toggle window Hotkey" value={settingsStore.state.keyboard.toggle_window_hotkey}
+  <TextInput id="kb-toggle" label={t("settings-keyboard-toggle-window")} value={settingsStore.state.keyboard.toggle_window_hotkey}
     onChange={(v) => patchKbd({ toggle_window_hotkey: v })} />
 </Section>
 
-<Section title="Commands">
-  <TextInput id="kb-filter" label="Show commands containing" value={filter}
+<Section title={t("keyboard-section-commands")}>
+  <TextInput id="kb-filter" label={t("settings-keyboard-show-commands")} value={filter}
     onChange={(v) => (filter = v)} />
-  <button type="button" class="add" onclick={addChord}>+ Add chord</button>
+  <button type="button" class="add" onclick={addChord}>{t("settings-keyboard-add-chord")}</button>
   <ul>
     {#each visible as chord, i (i)}
       <li>
-        <input class="cmd" placeholder="command id (e.g. file.export_results)"
+        <input class="cmd" placeholder={t("keyboard-placeholder-command")}
           value={chord.command}
           oninput={(e) => setChord(i, { command: (e.currentTarget as HTMLInputElement).value })} />
-        <input class="bind" placeholder="Ctrl+K, B"
+        <input class="bind" placeholder={t("keyboard-placeholder-binding")}
           value={chord.binding}
           oninput={(e) => setChord(i, { binding: (e.currentTarget as HTMLInputElement).value })} />
-        <button type="button" onclick={() => removeChord(i)}>Remove</button>
+        <button type="button" onclick={() => removeChord(i)}>{t("settings-keyboard-remove-chord")}</button>
       </li>
     {/each}
   </ul>

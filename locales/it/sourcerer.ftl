@@ -380,3 +380,408 @@ settings-about-version = Sourcerer { $version }
 settings-about-license = Licenza
 settings-about-credits = Riconoscimenti
 settings-about-notices = Avvisi open-source
+
+# --- Aggiunte TASK-098: suggerimenti, segnaposto, sotto-sezioni, notifiche ---
+
+# Rifiniture procedura guidata.
+wizard-aria-label = Procedura guidata primo avvio
+wizard-step-of-total = Passo { $step } di { $total }
+wizard-roots-hint = Aggiungi le cartelle o i volumi che vuoi far monitorare a Sourcerer. Puoi modificarli in seguito dalle impostazioni Indici.
+wizard-browse = Sfoglia…
+wizard-roots-placeholder = …oppure incolla un percorso
+wizard-roots-add = Aggiungi
+wizard-roots-remove = Rimuovi
+wizard-roots-empty = Nessuna radice configurata.
+wizard-locale-hint = Sourcerer è disponibile in 18 lingue. Puoi cambiarla in seguito.
+wizard-theme-hint = "Sistema" segue l'impostazione dell'aspetto del tuo OS.
+wizard-back = Indietro
+wizard-next = Avanti
+
+# Rifiniture barra di stato.
+statusbar-hotkey-hint = Scorciatoia: { $hotkey }
+statusbar-cycle-theme = Cambia tema
+statusbar-indexed-suffix = indicizzati
+
+# Risultati / lenti.
+lens-expand = Espandi lente
+lens-collapse = Riduci lente
+lens-no-matches = Nessuna corrispondenza in questa lente.
+
+# Riquadro di anteprima.
+preview-header = Anteprima
+preview-loading = Caricamento…
+preview-select-file = Seleziona un file per l'anteprima.
+preview-unavailable = Nessuna anteprima disponibile
+
+# Segnalibri.
+bookmarks-label = ★ Segnalibri
+bookmarks-empty-hint = Nessun segnalibro. Premi Ctrl+D per salvare la query corrente.
+bookmarks-organize-title = Organizza segnalibri
+bookmarks-organize-empty = Nessun segnalibro.
+bookmarks-rename = Rinomina
+bookmarks-close = Chiudi
+
+# Extra albero impostazioni.
+settings-group-history = Cronologia
+settings-group-privacy = Privacy e aggiornamenti
+settings-group-logs = Log e debug
+settings-group-backup = Backup, esportazione, ripristino
+settings-tree-custom-lens = Personalizzata
+settings-unsaved-changes = modifiche non salvate
+
+# Finestra di dialogo Informazioni.
+about-dialog-title = Sourcerer
+about-copyright = Copyright © 2026 Mike Weaver. Tutti i diritti riservati.
+about-close = Chiudi
+
+# Finestra di dialogo connessione endpoint.
+connect-ftp-title = Connetti al server FTP
+connect-ftp-host = Host:
+connect-ftp-port = Porta:
+connect-ftp-username = Nome utente:
+connect-ftp-password = Password:
+connect-ftp-link-type = Tipo di collegamento:
+
+# Pannello UI.
+ui-hint = Tema, integrazione con barra di sistema / barra dei menu, ricerca durante la digitazione, densità delle righe. Parità diretta con voidtools-Everything più le aggiunte Sourcerer contrassegnate con (+).
+ui-section-theme = Tema
+ui-theme-system-default = Sistema (predefinito)
+ui-section-tray = Barra di sistema / Barra dei menu
+ui-section-search-behavior = Comportamento della ricerca
+ui-section-result-rows = Righe dei risultati
+ui-single-click-system-default = Impostazioni di sistema (predefinito)
+ui-single-click-always = Sempre singolo clic
+ui-single-click-always-double = Sempre doppio clic
+ui-underline-always = Sempre
+ui-underline-on-hover = Al passaggio del mouse
+ui-underline-never = Mai
+
+# Pannello Home.
+home-hint = Valori predefiniti caricati all'avvio dell'app — ogni menu a tendina può rimanere su "Usa ultimo valore" o fissare un valore. La visibilità delle lenti / i limiti dei risultati sono aggiunte di Sourcerer (+).
+home-section-match = Predefiniti di corrispondenza
+home-section-search-sort = Predefiniti di ricerca e ordinamento
+home-search-placeholder = Vuoto come predefinito
+home-section-index = Sorgente indice
+home-file-list-path = Percorso elenco file
+home-https-endpoint = URL endpoint API HTTPS
+home-endpoint-token = Token (impronta mostrata)
+
+# Pannello Backup.
+backup-section-settings = Impostazioni (+)
+backup-section-bookmarks = Segnalibri + estrattori personalizzati (+)
+backup-section-reset = Ripristino
+backup-toast-exported = Impostazioni esportate in { $path }
+backup-toast-export-failed = Esportazione non riuscita: { $error }
+backup-toast-imported = Impostazioni importate
+backup-toast-import-failed = Importazione non riuscita: { $error }
+backup-toast-bookmarks-exported = Segnalibri esportati
+backup-toast-bookmarks-export-failed = Esportazione segnalibri non riuscita: { $error }
+backup-toast-bookmarks-imported = Segnalibri importati
+backup-toast-bookmarks-import-failed = Importazione segnalibri non riuscita: { $error }
+backup-confirm-reset = Ripristinare tutte le impostazioni ai valori predefiniti? L'operazione non può essere annullata (la finestra di dialogo resta aperta).
+backup-toast-reset = Tutte le impostazioni sono state ripristinate
+
+# Pannello Tastiera.
+keyboard-section-global = Scorciatoie globali
+keyboard-placeholder-example = Super+Space
+keyboard-section-commands = Comandi
+keyboard-placeholder-command = id comando (es. file.export_results)
+keyboard-placeholder-binding = Ctrl+K, B
+
+# Pannello Cronologia.
+history-section-search = Cronologia delle ricerche
+history-section-run = Cronologia delle esecuzioni
+history-section-privacy = Privacy (+)
+history-record-filename = Registra cronologia lente nome file
+history-record-content = Registra cronologia lente contenuto
+history-record-audio = Registra cronologia lente audio
+history-record-similarity = Registra cronologia lente somiglianza
+
+# Pannello Lingua.
+locale-section-language = Lingua (+)
+locale-section-time-date = Ora / Data (+)
+locale-date-os = Predefinito del OS
+locale-date-iso8601 = ISO 8601
+locale-date-rfc3339 = RFC 3339
+locale-date-custom-label = Personalizzato
+locale-date-custom-format = Formato personalizzato
+locale-date-placeholder = YYYY-MM-DD
+locale-section-numbers = Numeri (+)
+locale-number-os = Predefinito del OS
+locale-number-custom = Personalizzato
+locale-thousands-sep = Separatore delle migliaia
+locale-decimal-sep = Separatore decimale
+
+# Pannello Cartelle.
+folders-hint = Cartelle monitorate aggiuntive oltre ai volumi predefiniti.
+folders-list-title = Cartelle monitorate
+folders-empty = Nessuna cartella aggiunta.
+folders-remove = Rimuovi
+folders-section-title-dynamic = Impostazioni per { $path }
+folders-section-schedule = Pianificazione riscansione
+folders-schedule-daily = Ogni giorno alle HH:MM
+folders-schedule-hours = Ogni N ore
+folders-schedule-never = Mai
+folders-hour = Ora
+folders-minute = Minuto
+folders-hours = Ore
+folders-id-label = ID cartella (sola lettura)
+folders-select-prompt = Seleziona una cartella per configurarla.
+folders-section-extras = Extra Sourcerer (+)
+folders-extras-note = La riscansione al ripristino dalla sospensione è abilitata per impostazione predefinita in questa build; l'interruttore si unirà ai controlli a livello di cartella nella rifinitura della Fase 13.
+
+# Pannello Volumi.
+volumes-hint = Analogo multipiattaforma dei pannelli NTFS / ReFS di voidtools-Everything. Rileva automaticamente NTFS / ReFS / exFAT / FAT32 (Win), APFS / HFS+ (macOS), ext4 / Btrfs / ZFS / XFS / F2FS (Linux).
+volumes-section-auto-include = Inclusione automatica
+volumes-list-title = Volumi rilevati
+volumes-detecting = Rilevamento…
+volumes-empty = Nessun volume rilevato.
+volumes-select-prompt = Seleziona un volume per configurarlo.
+
+# Rifiniture pannello Informazioni.
+about-section-version = Versione (+)
+about-section-license = Licenza (+)
+about-license-text = Mike Weaver — Tutti i diritti riservati. Questo è software proprietario.
+about-license-spdx = SPDX: { $spdx }
+about-section-credits = Riconoscimenti (+)
+about-credits-inspired = Ispirato da Everything di voidtools.
+about-credits-voidtools = voidtools.com
+about-credits-repo = Repository del progetto
+
+# --- Barra dei menu (PRD §8.28) — ogni etichetta + sottomenu + suggerimento al passaggio nella barra di stato ---
+
+# Menu File.
+menu-file-hint = Contiene comandi per lavorare con Sourcerer.
+menu-file-new-window = Nuova finestra di ricerca
+menu-file-open-list = Apri elenco file…
+menu-file-close-list = Chiudi elenco file
+menu-file-close = Chiudi
+menu-file-export-results = Esporta risultati…
+menu-file-export-bundle = Esporta bundle indice…
+menu-file-exit = Esci
+
+# Menu Modifica.
+menu-edit-hint = Contiene comandi per modificare i risultati della ricerca.
+menu-edit-cut = Taglia
+menu-edit-copy = Copia
+menu-edit-paste = Incolla
+menu-edit-copy-to-folder = Copia nella cartella…
+menu-edit-move-to-folder = Sposta nella cartella…
+menu-edit-select-all = Seleziona tutto
+menu-edit-invert-selection = Inverti selezione
+menu-edit-advanced = Avanzato
+menu-edit-copy-full-name = Copia nome completo
+menu-edit-copy-path = Copia percorso
+menu-edit-copy-filename = Copia nome file
+menu-edit-copy-as-json = Copia come JSON
+menu-edit-copy-with-metadata = Copia con metadati
+menu-edit-copy-as-bundle-ref = Copia come riferimento Sourcerer Bundle
+
+# Menu Visualizza.
+menu-view-hint = Contiene comandi per manipolare la vista.
+menu-view-filters = Filtri
+menu-view-preview = Anteprima
+menu-view-status-bar = Barra di stato
+menu-view-thumbs-xl = Miniature extra grandi
+menu-view-thumbs-l = Miniature grandi
+menu-view-thumbs-m = Miniature medie
+menu-view-details = Dettagli
+menu-view-window-size = Dimensione finestra
+menu-view-window-size-hint = Contiene comandi per regolare la dimensione della finestra.
+menu-view-window-small = Piccola
+menu-view-window-medium = Media
+menu-view-window-large = Grande
+menu-view-window-auto = Adattamento automatico
+menu-view-zoom = Zoom
+menu-view-zoom-hint = Contiene comandi per regolare la dimensione di caratteri e icone.
+menu-view-zoom-in = Aumenta zoom
+menu-view-zoom-out = Riduci zoom
+menu-view-zoom-reset = Reimposta
+menu-view-sort-by = Ordina per
+menu-view-sort-by-hint = Contiene comandi per ordinare l'elenco dei risultati.
+menu-view-sort-name = Nome
+menu-view-sort-path = Percorso
+menu-view-sort-size = Dimensione
+menu-view-sort-ext = Estensione
+menu-view-sort-type = Tipo
+menu-view-sort-modified = Data modifica
+menu-view-sort-created = Data creazione
+menu-view-sort-accessed = Data accesso
+menu-view-sort-attributes = Attributi
+menu-view-sort-recently-changed = Data modifica recente
+menu-view-sort-run-count = Conteggio esecuzioni
+menu-view-sort-run-date = Data esecuzione
+menu-view-sort-file-list-filename = Nome file dell'elenco file
+menu-view-sort-lufs = LUFS
+menu-view-sort-length = Durata
+menu-view-sort-similarity = Punteggio di somiglianza
+menu-view-sort-asc = Crescente
+menu-view-sort-desc = Decrescente
+menu-view-go-to = Vai a
+menu-view-refresh = Aggiorna
+menu-view-theme = Tema
+menu-view-theme-hint = Passa da tema sistema, chiaro o scuro.
+menu-view-lenses = Lenti
+menu-view-lenses-hint = Attiva/disattiva la visibilità di ogni lente nell'elenco dei risultati.
+menu-view-on-top = In primo piano
+menu-view-on-top-hint = Contiene comandi per mantenere questa finestra sopra le altre finestre.
+menu-view-on-top-never = Mai
+menu-view-on-top-always = Sempre
+menu-view-on-top-while-searching = Durante la ricerca
+
+# Menu Cerca.
+menu-search-hint = Contiene interruttori di ricerca.
+menu-search-match-case = Distingui maiuscole e minuscole
+menu-search-match-whole-word = Parola intera
+menu-search-match-path = Cerca nel percorso
+menu-search-match-diacritics = Distingui i segni diacritici
+menu-search-enable-regex = Abilita Regex
+menu-search-advanced = Ricerca avanzata…
+menu-search-add-to-filters = Aggiungi ai filtri…
+menu-search-organize-filters = Organizza filtri…
+menu-search-filter-everything = Tutto
+menu-search-filter-archive = Compressi (archivi)
+menu-search-filter-folder = Cartella
+menu-search-filter-custom = Filtro personalizzato…
+
+# Menu Segnalibri.
+menu-bookmarks-hint = Contiene comandi per lavorare con i segnalibri.
+menu-bookmarks-add = Aggiungi ai segnalibri
+menu-bookmarks-organize = Organizza segnalibri…
+
+# Menu Strumenti.
+menu-tools-hint = Contiene comandi degli strumenti.
+menu-tools-connect = Connetti al server FTP…
+menu-tools-disconnect = Disconnetti dal server FTP
+menu-tools-file-list-editor = Editor elenco file…
+menu-tools-index-maintenance = Manutenzione indice
+menu-tools-index-maintenance-hint = Strumenti di manutenzione indice.
+menu-tools-verify-index = Verifica indice…
+menu-tools-compact-index = Compatta indice…
+menu-tools-rebuild-index = Forza ricostruzione indice…
+menu-tools-custom-extractor = Gestore estrattori personalizzati…
+menu-tools-custom-extractor-hint = Gestisci estrattori personalizzati in sandbox Wasm.
+menu-tools-options = Opzioni…
+
+# Menu Aiuto.
+menu-help-hint = Contiene comandi di aiuto.
+menu-help-help = Aiuto di Sourcerer
+menu-help-search-syntax = Sintassi di ricerca
+menu-help-regex-syntax = Sintassi Regex
+menu-help-audio-ref = Riferimento modificatori audio
+menu-help-similarity-ref = Riferimento modificatori somiglianza
+menu-help-cli-options = Opzioni riga di comando
+menu-help-website = Sito web Sourcerer
+menu-help-check-updates = Controlla aggiornamenti…
+menu-help-sponsor = Sponsorizza / Dona
+menu-help-about = Informazioni su Sourcerer…
+
+# Intestazioni colonne risultati (forme brevi usate nell'intestazione della tabella).
+column-name = Nome
+column-path = Percorso
+column-size = Dimensione
+column-modified = Modificato
+column-type = Tipo
+column-ext = Est
+column-sort-by = Ordina per { $name }
+column-resize = Ridimensiona colonna { $name }
+
+# Barre dei sottotitoli delle sezioni usate in piu pannelli delle impostazioni.
+section-behavior = Comportamento
+section-rendering = Rendering
+section-status-bar = Barra di stato
+section-display-format = Formato di visualizzazione
+section-loading-priority = Priorita di caricamento
+section-compatibility = Compatibilita
+section-storage = Archiviazione
+section-index-fields = Campi dell'indice
+section-maintenance = Manutenzione
+section-logging = Registrazione
+section-tools = Strumenti
+section-privacy = Privacy
+section-auto-update = Aggiornamento automatico (+)
+section-bind = Associa
+section-lens = Lente
+section-budgets = Budget
+section-other = Altro
+section-per-format-mode = Modalita per formato
+section-loudness = Volume
+section-tuning = Regolazione (+)
+section-minhash-lsh = Parametri MinHash + LSH (+)
+section-top-level = Livello superiore
+section-file-globs = Glob dei file
+section-file-list-settings = Impostazioni per la lista file selezionata
+section-editor-format = Editor + Formato (E + +)
+section-api-server = Server API (E adapted)
+section-sourcerer-extras = Extra Sourcerer (+)
+section-sourcerer-additions = Aggiunte Sourcerer (+)
+section-sourcerer-extensions = Estensioni Sourcerer (+)
+
+# Etichette di opzioni comuni usate in vari menu a discesa.
+opt-use-last-value = Usa ultimo valore
+opt-use-last-value-default = Usa ultimo valore (predefinito)
+opt-low = Basso
+opt-normal-default = Normale (predefinito)
+opt-high = Alto
+opt-disabled = Disabilitato
+opt-off = Disattivato
+opt-on-battery = Quando a batteria
+opt-always = Sempre
+opt-clamp-default = Limita (predefinito)
+opt-wrap = A capo
+opt-none = Nessuno
+opt-strict-refuse = Rigoroso (rifiuta query in caso di corruzione)
+opt-lenient-warn = Permissivo (avvisa ma esegue query)
+opt-system-default = Predefinito di sistema
+opt-drag-select = Selezione con trascinamento
+opt-auto-binary = Auto (binario)
+opt-auto-decimal = Auto (decimale)
+
+# Suffissi di unita mostrati accanto agli input numerici.
+unit-days = giorni
+unit-kb = KB
+unit-mb = MB
+
+# Etichette aggiuntive opzioni a discesa (modalita estrattore / ordinamento / vista / indice / pannello / precedenza / LUFS / picco / livello log / canale aggiornamenti).
+opt-eager = Immediato
+opt-lazy-default = Pigro (predefinito)
+opt-on = Attivo
+opt-on-default = Attivo (predefinito)
+opt-all = Tutti
+opt-weekly = Settimanale
+opt-monthly = Mensile
+opt-name-asc = Nome cresc.
+opt-name-desc = Nome decresc.
+opt-size-asc = Dimensione cresc.
+opt-size-desc = Dimensione decresc.
+opt-modified-asc = Data modifica cresc.
+opt-modified-desc = Data modifica decresc.
+opt-compact = Compatta
+opt-comfortable = Comoda
+opt-details = Dettagli
+opt-thumbnails = Miniature
+opt-local-db-default = Database locale (predefinito)
+opt-file-list = Elenco file
+opt-https-endpoint = Endpoint HTTPS API
+opt-right-default = Destra (predefinito)
+opt-bottom = Basso
+opt-or-and-default = OR > AND (predefinito)
+opt-and-or = AND > OR
+opt-ebu-r128-default = EBU R128 (predefinito)
+opt-atsc-a85 = ATSC A/85
+opt-spotify = Spotify (-14)
+opt-apple-music = Apple Music (-16)
+opt-broadcast-film = Film broadcast (-23)
+opt-true-peak = Picco reale (4× oversampling, predefinito)
+opt-sample-peak = Picco campione
+opt-auto-per-doc = Auto (per documento)
+opt-log-error = Errore
+opt-log-warn = Avviso
+opt-log-info-default = Info (predefinito)
+opt-log-debug = Debug
+opt-log-trace = Trace
+
+# unit-b / unit-gb / unit-tb (size units; conventional Latin acronyms — kept as-is, polish per-locale as needed).
+unit-b = B
+unit-gb = GB
+unit-tb = TB

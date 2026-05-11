@@ -5,6 +5,7 @@
   import Checkbox from "../controls/Checkbox.svelte";
   import TextInput from "../controls/TextInput.svelte";
   import { open as openDialog } from "@tauri-apps/plugin-dialog";
+  import { t } from "../../../lib/i18n/t";
   import type { ExcludeRules } from "../../../lib/ipc/types";
 
   function patch(p: Partial<ExcludeRules>) {
@@ -73,23 +74,23 @@
   }
 </script>
 
-<h1>Exclude</h1>
+<h1>{t("settings-node-exclude")}</h1>
 
-<Section title="Top-level">
-  <Checkbox id="ex-hidden" label="Exclude hidden files and folders"
+<Section title={t("section-top-level")}>
+  <Checkbox id="ex-hidden" label={t("settings-exclude-hidden")}
     checked={excludesStore.rules.exclude_hidden} onChange={(v) => patch({ exclude_hidden: v })} />
-  <Checkbox id="ex-system" label="Exclude system files and folders"
+  <Checkbox id="ex-system" label={t("settings-exclude-system")}
     checked={excludesStore.rules.exclude_system} onChange={(v) => patch({ exclude_system: v })} />
-  <Checkbox id="ex-list-en" label="Enable exclude list"
+  <Checkbox id="ex-list-en" label={t("settings-exclude-list-en")}
     checked={excludesStore.rules.list_enabled} onChange={(v) => patch({ list_enabled: v })} />
 </Section>
 
-<Section title="Exclude folders">
+<Section title={t("settings-exclude-folders")}>
   <ul>
     {#each excludesStore.rules.folders as f, i (f + i)}
       <li>
         <span>{f}</span>
-        <button type="button" onclick={() => removeFolder(i)}>Remove</button>
+        <button type="button" onclick={() => removeFolder(i)}>{t("settings-vol-remove")}</button>
       </li>
     {/each}
   </ul>
@@ -98,29 +99,29 @@
   </div>
 </Section>
 
-<Section title="File globs">
-  <TextInput id="ex-include-only" label="Include only files (glob)"
+<Section title={t("section-file-globs")}>
+  <TextInput id="ex-include-only" label={t("settings-exclude-include-only-files")}
     value={excludesStore.rules.include_only_files ?? ""}
     onChange={(v) => patch({ include_only_files: v.length === 0 ? null : v })} />
-  <TextInput id="ex-exclude" label="Exclude files (glob)"
+  <TextInput id="ex-exclude" label={t("settings-exclude-files")}
     value={excludesStore.rules.exclude_files ?? ""}
     onChange={(v) => patch({ exclude_files: v.length === 0 ? null : v })} />
 </Section>
 
-<Section title="Sourcerer Extras (+)">
-  <button type="button" onclick={applyOsRecommended}>Apply OS-recommended excludes</button>
+<Section title={t("folders-section-extras")}>
+  <button type="button" onclick={applyOsRecommended}>{t("settings-exclude-os-recommended")}</button>
   <div class="cls-row">
-    <span>Exclude by extension class:</span>
+    <span>{t("settings-exclude-by-class")}:</span>
     <button type="button" class:active={isClassActive("video")}
-      aria-pressed={isClassActive("video")} onclick={() => toggleClass("video")}>Video</button>
+      aria-pressed={isClassActive("video")} onclick={() => toggleClass("video")}>{t("quick-filter-video")}</button>
     <button type="button" class:active={isClassActive("audio")}
-      aria-pressed={isClassActive("audio")} onclick={() => toggleClass("audio")}>Audio</button>
+      aria-pressed={isClassActive("audio")} onclick={() => toggleClass("audio")}>{t("quick-filter-audio")}</button>
     <button type="button" class:active={isClassActive("image")}
-      aria-pressed={isClassActive("image")} onclick={() => toggleClass("image")}>Image</button>
+      aria-pressed={isClassActive("image")} onclick={() => toggleClass("image")}>{t("quick-filter-image")}</button>
     <button type="button" class:active={isClassActive("archive")}
-      aria-pressed={isClassActive("archive")} onclick={() => toggleClass("archive")}>Archive</button>
+      aria-pressed={isClassActive("archive")} onclick={() => toggleClass("archive")}>{t("quick-filter-archive")}</button>
     <button type="button" class:active={isClassActive("executable")}
-      aria-pressed={isClassActive("executable")} onclick={() => toggleClass("executable")}>Executable</button>
+      aria-pressed={isClassActive("executable")} onclick={() => toggleClass("executable")}>{t("quick-filter-executable")}</button>
   </div>
 </Section>
 

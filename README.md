@@ -101,7 +101,7 @@ Sourcerer ships **every** feature voidtools' *Everything* offers, on **all three
 | Result preview pane | ✅ (Win) | ✅ (cross-platform; uses native preview APIs) |
 | Optional thumbnails | ✅ | ✅ |
 | Global hotkey | ✅ | ✅ — per-OS configurable |
-| Multiple languages | ✅ (~40) | ✅ — 18 ship in v0.19.84, others by community |
+| Multiple languages | ✅ (~40) | ✅ — 18 ship in v0.19.84 (see [Languages](#languages)), others by community |
 | Highlighting in results | ✅ | ✅ |
 | Service mode (background daemon) | ✅ (Win Service) | ✅ — Win Service / launchd agent / systemd user unit |
 | HTTP server for browser search | ✅ | ✅ |
@@ -222,6 +222,35 @@ CI runs the same flow on `windows-latest`, `macos-14`, and `ubuntu-22.04` for ev
 Zero outbound network calls by default. Sourcerer never sends your filesystem layout — the index never leaves your machine. The HTTPS API server is opt-in. Auto-update is the single, opt-out exception.
 
 See [`docs/SECURITY.md`](docs/SECURITY.md) for the full threat model and dependency policy.
+
+---
+
+## Languages
+
+Sourcerer ships in 18 languages on v0.19.84. The entire UI — menu bar, status bar, settings dialog (every panel), first-run wizard, preview pane, bookmarks — switches live when the locale is changed in **Settings → Locale**. Arabic automatically flips the layout to right-to-left.
+
+| Locale | Language | Native name |
+|---|---|---|
+| `en` | English | English |
+| `es` | Spanish | Español |
+| `de` | German | Deutsch |
+| `fr` | French | Français |
+| `it` | Italian | Italiano |
+| `nl` | Dutch | Nederlands |
+| `pl` | Polish | Polski |
+| `pt-BR` | Portuguese (Brazil) | Português |
+| `tr` | Turkish | Türkçe |
+| `vi` | Vietnamese | Tiếng Việt |
+| `id` | Indonesian | Bahasa Indonesia |
+| `ru` | Russian | Русский |
+| `uk` | Ukrainian | Українська |
+| `ar` | Arabic (RTL) | العربية |
+| `hi` | Hindi | हिन्दी |
+| `ja` | Japanese | 日本語 |
+| `ko` | Korean | 한국어 |
+| `zh-CN` | Chinese (Simplified) | 简体中文 |
+
+All 18 locale files live at `locales/<code>/sourcerer.ftl` and stay in lockstep on key set — a CI test (`tests/unit/i18n.test.ts`) fails the build if any locale drifts. Community translations for additional locales are welcome via PR; see [`docs/I18N_TODO.md`](docs/I18N_TODO.md).
 
 ---
 

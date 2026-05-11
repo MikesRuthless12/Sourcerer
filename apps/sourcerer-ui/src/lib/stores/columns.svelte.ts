@@ -9,13 +9,15 @@ export interface VisibleColumn {
   width_px: number;
 }
 
-export const COLUMN_LABELS: Record<ColumnId, string> = {
-  name: "Name",
-  path: "Path",
-  size: "Size",
-  modified: "Modified",
-  type: "Type",
-  ext: "Ext"
+// Fluent keys per column id. Consumers call `t(COLUMN_LABEL_KEYS[id])`
+// so the header re-renders on locale switch.
+export const COLUMN_LABEL_KEYS: Record<ColumnId, string> = {
+  name: "column-name",
+  path: "column-path",
+  size: "column-size",
+  modified: "column-modified",
+  type: "column-type",
+  ext: "column-ext"
 };
 
 export const MIN_COL_WIDTH = 60;

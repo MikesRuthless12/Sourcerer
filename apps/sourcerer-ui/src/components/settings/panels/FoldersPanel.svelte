@@ -7,6 +7,7 @@
   import Dropdown from "../controls/Dropdown.svelte";
   import TextInput from "../controls/TextInput.svelte";
   import { open as openDialog } from "@tauri-apps/plugin-dialog";
+  import { t } from "../../../lib/i18n/t";
   import type { WatchedFolder, RescanSchedule } from "../../../lib/ipc/types";
 
   let selectedId = $state<string | null>(null);
@@ -53,14 +54,14 @@
   }
 </script>
 
-<h1>Folders</h1>
-<p class="hint">Additional watched folders beyond the default volumes.</p>
+<h1>{t("settings-node-folders")}</h1>
+<p class="hint">{t("folders-hint")}</p>
 
 <div class="split">
   <div class="flist">
-    <h3>Watched folders</h3>
+    <h3>{t("folders-list-title")}</h3>
     {#if foldersStore.list.length === 0}
-      <p class="muted">No folders added yet.</p>
+      <p class="muted">{t("folders-empty")}</p>
     {:else}
       <ul>
         {#each foldersStore.list as f (f.id)}
@@ -73,49 +74,48 @@
       </ul>
     {/if}
     <div class="actions">
-      <button type="button" onclick={pickAndAdd}>Add…</button>
-      <button type="button" onclick={removeSelected} disabled={!selected}>Remove</button>
-      <button type="button" disabled={!selected} onclick={() => selected && foldersStore.rescan(selected.id)}>Rescan Now</button>
-      <button type="button" onclick={() => foldersStore.rescanAll()}>Rescan All Now</button>
+      <button type="button" onclick={pickAndAdd}>{t("settings-folders-add")}</button>
+      <button type="button" onclick={removeSelected} disabled={!selected}>{t("folders-remove")}</button>
+      <button type="button" disabled={!selected} onclick={() => selected && foldersStore.rescan(selected.id)}>{t("settings-folders-rescan-now")}</button>
+      <button type="button" onclick={() => foldersStore.rescanAll()}>{t("settings-folders-rescan-all")}</button>
     </div>
   </div>
 
   <div class="fdetail">
     {#if selected}
-      <Section title="Settings for {selected.path}">
-        <Checkbox id={`fld-${selected.id}-monitor`} label="Attempt to monitor changes"
+      <Section title={t("folders-section-title-dynamic", { path: selected.path })}>
+        <Checkbox id={`fld-${selected.id}-monitor`} label={t("settings-folders-monitor")}
           checked={selected.monitor_changes} onChange={(v) => update({ monitor_changes: v })} />
-        <NumberInput id={`fld-${selected.id}-buf`} label="Buffer size"
-          min={0} max={65536} suffix="KB"
+        <NumberInput id={`fld-${selected.id}-buf`} label={t("settings-folders-buffer")}
+          min={0} max={65536} suffix={t("unit-kb")}
           value={selected.buffer_kb} onChange={(n) => update({ buffer_kb: n })} />
-        <Checkbox id={`fld-${selected.id}-on-full`} label="Rescan on full buffer"
+        <Checkbox id={`fld-${selected.id}-on-full`} label={t("settings-folders-rescan-on-full")}
           checked={selected.rescan_on_full_buffer}
           onChange={(v) => update({ rescan_on_full_buffer: v })} />
-        <Dropdown id={`fld-${selected.id}-sched`} label="Rescan schedule"
+        <Dropdown id={`fld-${selected.id}-sched`} label={t("folders-section-schedule")}
           value={selected.rescan_schedule.kind}
-          options={[ { value: "at_time", label: "Every day at HH:MM" }, { value: "every_hours", label: "Every N hours" }, { value: "never", label: "Never" } ]}
+          options={[ { value: "at_time", label: t("folders-schedule-daily") }, { value: "every_hours", label: t("folders-schedule-hours") }, { value: "never", label: t("folders-schedule-never") } ]}
           onChange={(v) => setSchedule(v)} />
         {#if selected.rescan_schedule.kind === "at_time"}
-          <NumberInput id={`fld-${selected.id}-hour`} label="Hour" min={0} max={23}
+          <NumberInput id={`fld-${selected.id}-hour`} label={t("folders-hour")} min={0} max={23}
             value={selected.rescan_schedule.hour} onChange={(n) => update({ rescan_schedule: { kind: "at_time", hour: n, minute: selected.rescan_schedule.kind === "at_time" ? selected.rescan_schedule.minute : 0 } })} />
-          <NumberInput id={`fld-${selected.id}-min`} label="Minute" min={0} max={59}
+          <NumberInput id={`fld-${selected.id}-min`} label={t("folders-minute")} min={0} max={59}
             value={selected.rescan_schedule.minute} onChange={(n) => update({ rescan_schedule: { kind: "at_time", hour: selected.rescan_schedule.kind === "at_time" ? selected.rescan_schedule.hour : 3, minute: n } })} />
         {:else if selected.rescan_schedule.kind === "every_hours"}
-          <NumberInput id={`fld-${selected.id}-hours`} label="Hours" min={1} max={720}
+          <NumberInput id={`fld-${selected.id}-hours`} label={t("folders-hours")} min={1} max={720}
             value={selected.rescan_schedule.hours} onChange={(n) => update({ rescan_schedule: { kind: "every_hours", hours: n } })} />
         {/if}
-        <TextInput id={`fld-${selected.id}-id`} label="Folder ID (read-only)"
+        <TextInput id={`fld-${selected.id}-id`} label={t("folders-id-label")}
           value={selected.id} onChange={() => {}} />
       </Section>
     {:else}
-      <p class="muted">Select a folder to configure it.</p>
+      <p class="muted">{t("folders-select-prompt")}</p>
     {/if}
   </div>
 </div>
 
-<Section title="Sourcerer Extras (+)">
-  <p class="muted">Rescan on resume from sleep is enabled by default in this build; the toggle joins the
-  folder-level controls in Phase 13's polish pass.</p>
+<Section title={t("folders-section-extras")}>
+  <p class="muted">{t("folders-extras-note")}</p>
 </Section>
 
 <style>

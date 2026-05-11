@@ -350,3 +350,408 @@ settings-about-version = Sourcerer { $version }
 settings-about-license = الترخيص
 settings-about-credits = الاعتمادات
 settings-about-notices = إشعارات المصدر المفتوح
+
+# --- إضافات TASK-098: تلميحات، عناصر نائبة، أقسام فرعية، إشعارات منبثقة ---
+
+# تحسينات المعالج.
+wizard-aria-label = معالج التشغيل الأول
+wizard-step-of-total = الخطوة { $step } من { $total }
+wizard-roots-hint = أضف المجلدات أو وحدات التخزين التي تريد أن يراقبها Sourcerer. يمكنك تغيير ذلك لاحقًا من إعدادات الفهارس.
+wizard-browse = استعراض…
+wizard-roots-placeholder = …أو الصق مسارًا
+wizard-roots-add = إضافة
+wizard-roots-remove = إزالة
+wizard-roots-empty = لم يتم تكوين أي جذور بعد.
+wizard-locale-hint = يأتي Sourcerer بـ 18 لغة. يمكنك التبديل لاحقًا.
+wizard-theme-hint = يتبع وضع النظام إعداد مظهر نظام التشغيل لديك.
+wizard-back = رجوع
+wizard-next = التالي
+
+# تحسينات شريط الحالة.
+statusbar-hotkey-hint = الاختصار: { $hotkey }
+statusbar-cycle-theme = تدوير السمة
+statusbar-indexed-suffix = مفهرس
+
+# النتائج / العدسات.
+lens-expand = توسيع العدسة
+lens-collapse = طي العدسة
+lens-no-matches = لا توجد تطابقات في هذه العدسة.
+
+# جزء المعاينة.
+preview-header = معاينة
+preview-loading = جارٍ التحميل…
+preview-select-file = حدد ملفًا للمعاينة.
+preview-unavailable = لا تتوفر معاينة
+
+# الإشارات المرجعية.
+bookmarks-label = ★ الإشارات المرجعية
+bookmarks-empty-hint = لا توجد إشارات مرجعية بعد. اضغط Ctrl+D لحفظ الاستعلام الحالي.
+bookmarks-organize-title = تنظيم الإشارات المرجعية
+bookmarks-organize-empty = لا توجد إشارات مرجعية بعد.
+bookmarks-rename = إعادة تسمية
+bookmarks-close = إغلاق
+
+# إضافات شجرة الإعدادات.
+settings-group-history = السجل
+settings-group-privacy = الخصوصية والتحديثات
+settings-group-logs = السجلات والتصحيح
+settings-group-backup = النسخ الاحتياطي والتصدير وإعادة الضبط
+settings-tree-custom-lens = مخصص
+settings-unsaved-changes = تغييرات غير محفوظة
+
+# مربع حوار "حول".
+about-dialog-title = Sourcerer
+about-copyright = حقوق النشر © 2026 Mike Weaver. جميع الحقوق محفوظة.
+about-close = إغلاق
+
+# مربع حوار اتصال نقطة النهاية.
+connect-ftp-title = الاتصال بخادم FTP
+connect-ftp-host = المضيف:
+connect-ftp-port = المنفذ:
+connect-ftp-username = اسم المستخدم:
+connect-ftp-password = كلمة المرور:
+connect-ftp-link-type = نوع الاتصال:
+
+# لوحة الواجهة.
+ui-hint = السمة، التكامل مع شريط النظام / شريط القوائم، البحث أثناء الكتابة، كثافة الصفوف. تكافؤ مباشر مع voidtools-Everything إضافة إلى إضافات Sourcerer المميزة بـ (+).
+ui-section-theme = السمة
+ui-theme-system-default = النظام (افتراضي)
+ui-section-tray = شريط النظام / شريط القوائم
+ui-section-search-behavior = سلوك البحث
+ui-section-result-rows = صفوف النتائج
+ui-single-click-system-default = إعدادات النظام (افتراضي)
+ui-single-click-always = نقرة واحدة دائمًا
+ui-single-click-always-double = نقرة مزدوجة دائمًا
+ui-underline-always = دائمًا
+ui-underline-on-hover = عند التحويم
+ui-underline-never = أبدًا
+
+# لوحة الصفحة الرئيسية.
+home-hint = الإعدادات الافتراضية التي يتم تحميلها عند تشغيل التطبيق — يمكن لكل قائمة منسدلة أن تلتزم بـ "استخدام آخر قيمة" أو تثبيت قيمة ثابتة. رؤية العدسات / حدود النتائج من إضافات Sourcerer (+).
+home-section-match = إعدادات المطابقة الافتراضية
+home-section-search-sort = إعدادات البحث والترتيب الافتراضية
+home-search-placeholder = فارغ افتراضيًا
+home-section-index = مصدر الفهرس
+home-file-list-path = مسار قائمة الملفات
+home-https-endpoint = عنوان URL لنقطة نهاية واجهة HTTPS البرمجية
+home-endpoint-token = الرمز المميز (يظهر البصمة)
+
+# لوحة النسخ الاحتياطي.
+backup-section-settings = الإعدادات (+)
+backup-section-bookmarks = الإشارات المرجعية + المستخرجات المخصصة (+)
+backup-section-reset = إعادة الضبط
+backup-toast-exported = تم تصدير الإعدادات إلى { $path }
+backup-toast-export-failed = فشل التصدير: { $error }
+backup-toast-imported = تم استيراد الإعدادات
+backup-toast-import-failed = فشل الاستيراد: { $error }
+backup-toast-bookmarks-exported = تم تصدير الإشارات المرجعية
+backup-toast-bookmarks-export-failed = فشل تصدير الإشارات المرجعية: { $error }
+backup-toast-bookmarks-imported = تم استيراد الإشارات المرجعية
+backup-toast-bookmarks-import-failed = فشل استيراد الإشارات المرجعية: { $error }
+backup-confirm-reset = إعادة ضبط جميع الإعدادات إلى الافتراضية؟ لا يمكن التراجع عن هذا الإجراء (يظل مربع الحوار مفتوحًا).
+backup-toast-reset = تمت إعادة ضبط جميع الإعدادات
+
+# لوحة لوحة المفاتيح.
+keyboard-section-global = الاختصارات العامة
+keyboard-placeholder-example = Super+Space
+keyboard-section-commands = الأوامر
+keyboard-placeholder-command = معرّف الأمر (مثل file.export_results)
+keyboard-placeholder-binding = Ctrl+K, B
+
+# لوحة السجل.
+history-section-search = سجل البحث
+history-section-run = سجل التشغيل
+history-section-privacy = الخصوصية (+)
+history-record-filename = تسجيل سجل عدسة اسم الملف
+history-record-content = تسجيل سجل عدسة المحتوى
+history-record-audio = تسجيل سجل عدسة الصوت
+history-record-similarity = تسجيل سجل عدسة التشابه
+
+# لوحة اللغة.
+locale-section-language = اللغة (+)
+locale-section-time-date = الوقت / التاريخ (+)
+locale-date-os = افتراضي نظام التشغيل
+locale-date-iso8601 = ISO 8601
+locale-date-rfc3339 = RFC 3339
+locale-date-custom-label = مخصص
+locale-date-custom-format = تنسيق مخصص
+locale-date-placeholder = YYYY-MM-DD
+locale-section-numbers = الأرقام (+)
+locale-number-os = افتراضي نظام التشغيل
+locale-number-custom = مخصص
+locale-thousands-sep = فاصل الآلاف
+locale-decimal-sep = الفاصل العشري
+
+# لوحة المجلدات.
+folders-hint = مجلدات مراقبة إضافية بخلاف وحدات التخزين الافتراضية.
+folders-list-title = المجلدات المراقبة
+folders-empty = لم تتم إضافة أي مجلدات بعد.
+folders-remove = إزالة
+folders-section-title-dynamic = إعدادات { $path }
+folders-section-schedule = جدول إعادة المسح
+folders-schedule-daily = كل يوم في الساعة HH:MM
+folders-schedule-hours = كل N ساعات
+folders-schedule-never = أبدًا
+folders-hour = ساعة
+folders-minute = دقيقة
+folders-hours = ساعات
+folders-id-label = معرّف المجلد (للقراءة فقط)
+folders-select-prompt = حدد مجلدًا لتكوينه.
+folders-section-extras = إضافات Sourcerer (+)
+folders-extras-note = إعادة المسح عند الاستئناف من السكون مفعّلة افتراضيًا في هذا الإصدار؛ سينضم زر التبديل إلى عناصر التحكم على مستوى المجلد في تحسينات المرحلة 13.
+
+# لوحة وحدات التخزين.
+volumes-hint = نظير عبر الأنظمة الأساسية لألواح NTFS / ReFS في voidtools-Everything. يكتشف تلقائيًا NTFS / ReFS / exFAT / FAT32 (Win)، APFS / HFS+ (macOS)، ext4 / Btrfs / ZFS / XFS / F2FS (Linux).
+volumes-section-auto-include = الإدراج التلقائي
+volumes-list-title = وحدات التخزين المكتشفة
+volumes-detecting = جارٍ الاكتشاف…
+volumes-empty = لم يتم اكتشاف أي وحدات تخزين.
+volumes-select-prompt = حدد وحدة تخزين لتكوينها.
+
+# تحسينات لوحة "حول".
+about-section-version = الإصدار (+)
+about-section-license = الترخيص (+)
+about-license-text = Mike Weaver — جميع الحقوق محفوظة. هذا برنامج خاص.
+about-license-spdx = SPDX: { $spdx }
+about-section-credits = الاعتمادات (+)
+about-credits-inspired = مستوحى من Everything من voidtools.
+about-credits-voidtools = voidtools.com
+about-credits-repo = مستودع المشروع
+
+# --- شريط القوائم (PRD §8.28) — كل تسمية + قائمة فرعية + تلميح تحويم في شريط الحالة ---
+
+# قائمة ملف.
+menu-file-hint = يحتوي على أوامر للعمل مع Sourcerer.
+menu-file-new-window = نافذة بحث جديدة
+menu-file-open-list = فتح قائمة الملفات…
+menu-file-close-list = إغلاق قائمة الملفات
+menu-file-close = إغلاق
+menu-file-export-results = تصدير النتائج…
+menu-file-export-bundle = تصدير حزمة الفهرس…
+menu-file-exit = خروج
+
+# قائمة تحرير.
+menu-edit-hint = يحتوي على أوامر لتحرير نتائج البحث.
+menu-edit-cut = قص
+menu-edit-copy = نسخ
+menu-edit-paste = لصق
+menu-edit-copy-to-folder = نسخ إلى مجلد…
+menu-edit-move-to-folder = نقل إلى مجلد…
+menu-edit-select-all = تحديد الكل
+menu-edit-invert-selection = عكس التحديد
+menu-edit-advanced = متقدم
+menu-edit-copy-full-name = نسخ الاسم الكامل
+menu-edit-copy-path = نسخ المسار
+menu-edit-copy-filename = نسخ اسم الملف
+menu-edit-copy-as-json = نسخ كـ JSON
+menu-edit-copy-with-metadata = نسخ مع البيانات الوصفية
+menu-edit-copy-as-bundle-ref = نسخ كمرجع حزمة Sourcerer
+
+# قائمة عرض.
+menu-view-hint = يحتوي على أوامر للتحكم في العرض.
+menu-view-filters = المرشحات
+menu-view-preview = معاينة
+menu-view-status-bar = شريط الحالة
+menu-view-thumbs-xl = صور مصغرة كبيرة جدًا
+menu-view-thumbs-l = صور مصغرة كبيرة
+menu-view-thumbs-m = صور مصغرة متوسطة
+menu-view-details = تفاصيل
+menu-view-window-size = حجم النافذة
+menu-view-window-size-hint = يحتوي على أوامر لضبط حجم النافذة.
+menu-view-window-small = صغير
+menu-view-window-medium = متوسط
+menu-view-window-large = كبير
+menu-view-window-auto = ملاءمة تلقائية
+menu-view-zoom = تكبير
+menu-view-zoom-hint = يحتوي على أوامر لضبط حجم الخط والأيقونات.
+menu-view-zoom-in = تكبير
+menu-view-zoom-out = تصغير
+menu-view-zoom-reset = إعادة الضبط
+menu-view-sort-by = الترتيب حسب
+menu-view-sort-by-hint = يحتوي على أوامر لترتيب قائمة النتائج.
+menu-view-sort-name = الاسم
+menu-view-sort-path = المسار
+menu-view-sort-size = الحجم
+menu-view-sort-ext = الامتداد
+menu-view-sort-type = النوع
+menu-view-sort-modified = تاريخ التعديل
+menu-view-sort-created = تاريخ الإنشاء
+menu-view-sort-accessed = تاريخ الوصول
+menu-view-sort-attributes = السمات
+menu-view-sort-recently-changed = تاريخ التغيير الأخير
+menu-view-sort-run-count = عدد مرات التشغيل
+menu-view-sort-run-date = تاريخ التشغيل
+menu-view-sort-file-list-filename = اسم ملف قائمة الملفات
+menu-view-sort-lufs = LUFS
+menu-view-sort-length = المدة
+menu-view-sort-similarity = درجة التشابه
+menu-view-sort-asc = تصاعدي
+menu-view-sort-desc = تنازلي
+menu-view-go-to = الانتقال إلى
+menu-view-refresh = تحديث
+menu-view-theme = السمة
+menu-view-theme-hint = التبديل بين سمات النظام أو الفاتحة أو الداكنة.
+menu-view-lenses = العدسات
+menu-view-lenses-hint = تبديل رؤية كل عدسة في قائمة النتائج.
+menu-view-on-top = في المقدمة
+menu-view-on-top-hint = يحتوي على أوامر للحفاظ على هذه النافذة فوق النوافذ الأخرى.
+menu-view-on-top-never = أبدًا
+menu-view-on-top-always = دائمًا
+menu-view-on-top-while-searching = أثناء البحث
+
+# قائمة بحث.
+menu-search-hint = يحتوي على مفاتيح تبديل البحث.
+menu-search-match-case = مطابقة حالة الأحرف
+menu-search-match-whole-word = مطابقة الكلمة الكاملة
+menu-search-match-path = مطابقة المسار
+menu-search-match-diacritics = مطابقة التشكيل
+menu-search-enable-regex = تمكين Regex
+menu-search-advanced = بحث متقدم…
+menu-search-add-to-filters = إضافة إلى المرشحات…
+menu-search-organize-filters = تنظيم المرشحات…
+menu-search-filter-everything = الكل
+menu-search-filter-archive = مضغوط (أرشيف)
+menu-search-filter-folder = مجلد
+menu-search-filter-custom = مرشح مخصص…
+
+# قائمة الإشارات المرجعية.
+menu-bookmarks-hint = يحتوي على أوامر للعمل مع الإشارات المرجعية.
+menu-bookmarks-add = إضافة إلى الإشارات المرجعية
+menu-bookmarks-organize = تنظيم الإشارات المرجعية…
+
+# قائمة أدوات.
+menu-tools-hint = يحتوي على أوامر الأدوات.
+menu-tools-connect = الاتصال بخادم FTP…
+menu-tools-disconnect = قطع الاتصال بخادم FTP
+menu-tools-file-list-editor = محرر قائمة الملفات…
+menu-tools-index-maintenance = صيانة الفهرس
+menu-tools-index-maintenance-hint = أدوات صيانة الفهرس.
+menu-tools-verify-index = التحقق من الفهرس…
+menu-tools-compact-index = ضغط الفهرس…
+menu-tools-rebuild-index = فرض إعادة بناء الفهرس…
+menu-tools-custom-extractor = إدارة المستخرج المخصص…
+menu-tools-custom-extractor-hint = إدارة المستخرجات المخصصة المعزولة في Wasm.
+menu-tools-options = الخيارات…
+
+# قائمة مساعدة.
+menu-help-hint = يحتوي على أوامر المساعدة.
+menu-help-help = مساعدة Sourcerer
+menu-help-search-syntax = صياغة البحث
+menu-help-regex-syntax = صياغة Regex
+menu-help-audio-ref = مرجع معدّلات الصوت
+menu-help-similarity-ref = مرجع معدّلات التشابه
+menu-help-cli-options = خيارات سطر الأوامر
+menu-help-website = موقع Sourcerer الإلكتروني
+menu-help-check-updates = التحقق من التحديثات…
+menu-help-sponsor = ادعم / تبرع
+menu-help-about = حول Sourcerer…
+
+# رؤوس أعمدة النتائج (الأشكال المختصرة المستخدمة في صف رأس الجدول).
+column-name = الاسم
+column-path = المسار
+column-size = الحجم
+column-modified = آخر تعديل
+column-type = النوع
+column-ext = الامتداد
+column-sort-by = ترتيب حسب { $name }
+column-resize = تغيير حجم عمود { $name }
+
+# أشرطة العناوين الفرعية للأقسام المستخدمة داخل لوحات الإعدادات المتعددة.
+section-behavior = السلوك
+section-rendering = العرض
+section-status-bar = شريط الحالة
+section-display-format = تنسيق العرض
+section-loading-priority = أولوية التحميل
+section-compatibility = التوافق
+section-storage = التخزين
+section-index-fields = حقول الفهرس
+section-maintenance = الصيانة
+section-logging = التسجيل
+section-tools = الأدوات
+section-privacy = الخصوصية
+section-auto-update = التحديث التلقائي (+)
+section-bind = الربط
+section-lens = العدسة
+section-budgets = الميزانيات
+section-other = أخرى
+section-per-format-mode = وضع لكل تنسيق
+section-loudness = الجهارة
+section-tuning = الضبط (+)
+section-minhash-lsh = معاملات MinHash + LSH (+)
+section-top-level = المستوى الأعلى
+section-file-globs = أنماط الملفات
+section-file-list-settings = إعدادات قائمة الملفات المحددة
+section-editor-format = المحرر + التنسيق (E + +)
+section-api-server = خادم API (E adapted)
+section-sourcerer-extras = إضافات Sourcerer (+)
+section-sourcerer-additions = إضافات Sourcerer (+)
+section-sourcerer-extensions = امتدادات Sourcerer (+)
+
+# تسميات الخيارات الشائعة المستخدمة في عدة قوائم منسدلة.
+opt-use-last-value = استخدام آخر قيمة
+opt-use-last-value-default = استخدام آخر قيمة (افتراضي)
+opt-low = منخفض
+opt-normal-default = عادي (افتراضي)
+opt-high = مرتفع
+opt-disabled = معطّل
+opt-off = إيقاف
+opt-on-battery = عند العمل بالبطارية
+opt-always = دائمًا
+opt-clamp-default = تثبيت (افتراضي)
+opt-wrap = التفاف
+opt-none = بدون
+opt-strict-refuse = صارم (رفض الاستعلامات عند التلف)
+opt-lenient-warn = متساهل (تحذير مع متابعة الاستعلام)
+opt-system-default = إعداد النظام الافتراضي
+opt-drag-select = التحديد بالسحب
+opt-auto-binary = تلقائي (ثنائي)
+opt-auto-decimal = تلقائي (عشري)
+
+# لاحقات الوحدات المعروضة بجانب حقول الأرقام.
+unit-days = أيام
+unit-kb = KB
+unit-mb = MB
+
+# تسميات خيارات القوائم المنسدلة الإضافية (وضع المستخرج / الفرز / العرض / الفهرس / اللوحة / الأسبقية / LUFS / الذروة / مستوى السجل / قناة التحديث).
+opt-eager = حريص
+opt-lazy-default = كسول (افتراضي)
+opt-on = تشغيل
+opt-on-default = تشغيل (افتراضي)
+opt-all = الكل
+opt-weekly = أسبوعي
+opt-monthly = شهري
+opt-name-asc = الاسم تصاعدي
+opt-name-desc = الاسم تنازلي
+opt-size-asc = الحجم تصاعدي
+opt-size-desc = الحجم تنازلي
+opt-modified-asc = تاريخ التعديل تصاعدي
+opt-modified-desc = تاريخ التعديل تنازلي
+opt-compact = مدمج
+opt-comfortable = مريح
+opt-details = تفاصيل
+opt-thumbnails = صور مصغرة
+opt-local-db-default = قاعدة بيانات محلية (افتراضي)
+opt-file-list = قائمة الملفات
+opt-https-endpoint = نقطة نهاية HTTPS API
+opt-right-default = يمين (افتراضي)
+opt-bottom = أسفل
+opt-or-and-default = OR > AND (افتراضي)
+opt-and-or = AND > OR
+opt-ebu-r128-default = EBU R128 (افتراضي)
+opt-atsc-a85 = ATSC A/85
+opt-spotify = Spotify (-14)
+opt-apple-music = Apple Music (-16)
+opt-broadcast-film = فيلم بثي (-23)
+opt-true-peak = الذروة الحقيقية (4× زيادة في العينات، افتراضي)
+opt-sample-peak = ذروة العينة
+opt-auto-per-doc = تلقائي (لكل مستند)
+opt-log-error = خطأ
+opt-log-warn = تحذير
+opt-log-info-default = معلومات (افتراضي)
+opt-log-debug = تصحيح
+opt-log-trace = تتبع
+
+# unit-b / unit-gb / unit-tb (size units; conventional Latin acronyms — kept as-is, polish per-locale as needed).
+unit-b = B
+unit-gb = GB
+unit-tb = TB
