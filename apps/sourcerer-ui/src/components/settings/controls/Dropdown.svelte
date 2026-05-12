@@ -6,7 +6,7 @@
   interface Props {
     label?: string;
     value: T;
-    options: Option[];
+    options: readonly Option[];
     onChange: (next: T) => void;
     disabled?: boolean;
     id?: string;

@@ -1,7 +1,8 @@
 <script lang="ts">
   import type { ColumnId } from "../../lib/ipc/types";
-  import { columnsStore, COLUMN_LABELS, MIN_COL_WIDTH, MAX_COL_WIDTH } from "../../lib/stores/columns.svelte";
+  import { columnsStore, COLUMN_LABEL_KEYS, MIN_COL_WIDTH, MAX_COL_WIDTH } from "../../lib/stores/columns.svelte";
   import { sortStore } from "../../lib/stores/sort.svelte";
+  import { t } from "../../lib/i18n/t";
 
   interface Props {
     id: ColumnId;
@@ -39,23 +40,24 @@
 
   const isSorted = $derived(sortStore.field === id);
   const arrow = $derived(isSorted ? (sortStore.order === "asc" ? "▲" : "▼") : "");
+  const label = $derived(t(COLUMN_LABEL_KEYS[id]));
 </script>
 
-<div class="col-header" style="width: {width}px;" role="columnheader" aria-sort={isSorted ? sortStore.order : "none"}>
+<div class="col-header" style="width: {width}px;" role="columnheader" aria-sort={isSorted ? (sortStore.order === "asc" ? "ascending" : "descending") : "none"}>
   <button
     type="button"
     class="title"
     onclick={onSortClick}
-    aria-label={`Sort by ${COLUMN_LABELS[id]}`}
+    aria-label={t("column-sort-by", { name: label })}
   >
-    {COLUMN_LABELS[id]}
+    {label}
     {#if arrow}<span class="arrow" aria-hidden="true">{arrow}</span>{/if}
   </button>
   <div
     class="grip"
     role="separator"
     aria-orientation="vertical"
-    aria-label={`Resize ${COLUMN_LABELS[id]} column`}
+    aria-label={t("column-resize", { name: label })}
     tabindex="0"
     onpointerdown={onPointerDown}
     onpointermove={onPointerMove}

@@ -270,9 +270,18 @@ function registerHandlers() {
   registry.register("file.exit", async () => exitApp());
 
   // ---- Edit ----
-  registry.register("edit.cut", async () => document.execCommand("cut"));
-  registry.register("edit.copy", async () => document.execCommand("copy"));
-  registry.register("edit.paste", async () => document.execCommand("paste"));
+  // `execCommand` returns a boolean; the command registry expects `void`,
+  // so we discard it. Failure to apply the clipboard op is silent here —
+  // the OS-level clipboard is still the source of truth.
+  registry.register("edit.cut", async () => {
+    document.execCommand("cut");
+  });
+  registry.register("edit.copy", async () => {
+    document.execCommand("copy");
+  });
+  registry.register("edit.paste", async () => {
+    document.execCommand("paste");
+  });
   registry.register("edit.copy_to_folder", async () => {
     try {
       const { open } = await import("@tauri-apps/plugin-dialog");

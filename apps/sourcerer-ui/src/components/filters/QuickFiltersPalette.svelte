@@ -2,22 +2,23 @@
   import { queryStore } from "../../lib/stores/query.svelte";
   import { resultsStore } from "../../lib/stores/results.svelte";
   import { typeFilterStore, type TypeFilterId } from "../../lib/stores/type_filter.svelte";
+  import { t } from "../../lib/i18n/t";
 
   interface FilterChip {
     id: TypeFilterId;
-    label: string;
+    labelKey: string;
     icon: string;
   }
 
   // PRD §8.28 Search filter set + Sourcerer additions.
   const CHIPS: FilterChip[] = [
-    { id: "audio", label: "Audio", icon: "♪" },
-    { id: "video", label: "Video", icon: "▶" },
-    { id: "picture", label: "Image", icon: "▣" },
-    { id: "document", label: "Document", icon: "📄" },
-    { id: "executable", label: "Executable", icon: "▷" },
-    { id: "compressed", label: "Archive", icon: "🗜" },
-    { id: "folder", label: "Folder", icon: "📁" }
+    { id: "audio", labelKey: "quick-filter-audio", icon: "♪" },
+    { id: "video", labelKey: "quick-filter-video", icon: "▶" },
+    { id: "picture", labelKey: "quick-filter-image", icon: "▣" },
+    { id: "document", labelKey: "quick-filter-document", icon: "📄" },
+    { id: "executable", labelKey: "quick-filter-executable", icon: "▷" },
+    { id: "compressed", labelKey: "quick-filter-archive", icon: "🗜" },
+    { id: "folder", labelKey: "menu-search-filter-folder", icon: "📁" }
   ];
 
   async function toggle(chip: FilterChip) {
@@ -26,7 +27,7 @@
   }
 </script>
 
-<div class="palette" role="toolbar" aria-label="Quick filters">
+<div class="palette" role="toolbar" aria-label={t("menu-view-filters")}>
   {#each CHIPS as chip (chip.id)}
     <button
       type="button"
@@ -36,7 +37,7 @@
       onclick={() => toggle(chip)}
     >
       <span class="icon" aria-hidden="true">{chip.icon}</span>
-      <span>{chip.label}</span>
+      <span>{t(chip.labelKey)}</span>
     </button>
   {/each}
 </div>

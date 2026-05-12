@@ -4,6 +4,7 @@
   import Checkbox from "../controls/Checkbox.svelte";
   import TextInput from "../controls/TextInput.svelte";
   import NumberInput from "../controls/NumberInput.svelte";
+  import { t } from "../../../lib/i18n/t";
 
   let busy = $state(false);
   let toast = $state("");
@@ -43,26 +44,26 @@
 
 <h1>HTTPS Server</h1>
 
-<Section title="Bind">
-  <Checkbox id="ns-running" label="Enable HTTPS server"
+<Section title={t("section-bind")}>
+  <Checkbox id="ns-running" label={t("settings-net-https-enable")}
     checked={networkStore.status.https_running} disabled={busy}
     onChange={() => startStop()} />
-  <TextInput id="ns-bind" label="Bind to interfaces"
+  <TextInput id="ns-bind" label={t("settings-net-bind")}
     value={networkStore.desiredBind}
     onChange={(v) => (networkStore.desiredBind = v)} />
-  <NumberInput id="ns-port" label="Listen on port" min={1} max={65535}
+  <NumberInput id="ns-port" label={t("settings-net-port")} min={1} max={65535}
     value={networkStore.desiredPort}
     onChange={(n) => (networkStore.desiredPort = n)} />
-  <Checkbox id="ns-force-https" label="Force HTTPS (+) (generates local-CA-signed cert)"
+  <Checkbox id="ns-force-https" label={t("settings-net-force-https")}
     checked={networkStore.forceHttps}
     onChange={(v) => (networkStore.forceHttps = v)} />
-  <Checkbox id="ns-legacy" label="Legacy HTTP-basic auth (off by default; token-only is preferred)"
+  <Checkbox id="ns-legacy" label={t("settings-net-legacy-auth")}
     checked={networkStore.legacyAuth}
     onChange={(v) => (networkStore.legacyAuth = v)} />
   {#if networkStore.status.https_token_fingerprint}
     <p class="muted">Token fingerprint: <code>{networkStore.status.https_token_fingerprint}</code></p>
   {/if}
-  <button type="button" onclick={regen} disabled={busy}>Token regenerate</button>
+  <button type="button" onclick={regen} disabled={busy}>{t("settings-net-token-regen")}</button>
   {#if toast}<p class="toast">{toast}</p>{/if}
 </Section>
 

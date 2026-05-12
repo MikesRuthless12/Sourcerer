@@ -343,7 +343,6 @@ export interface LogsAndDebugSettings {
 
 export interface LocaleSettings {
   locale: string;
-  rtl_preview: boolean;
   date_format: "os" | "iso8601" | "rfc3339" | "custom";
   date_format_custom: string;
   number_format: "os" | "custom";
@@ -475,6 +474,8 @@ export interface SettingsState {
   extractor_modes: Record<string, "eager" | "lazy" | "disabled">;
   first_run_complete: boolean;
   privacy_mode: boolean;
+  /** Persisted window size from the View → Window Size menu, restored on launch. */
+  window_size?: { w: number; h: number };
 }
 
 // ---- files ----

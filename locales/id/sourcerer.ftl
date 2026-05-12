@@ -380,3 +380,412 @@ settings-about-version = Sourcerer { $version }
 settings-about-license = Lisensi
 settings-about-credits = Kredit
 settings-about-notices = Pemberitahuan sumber-terbuka
+
+# --- Tambahan TASK-098: petunjuk, placeholder, sub-bagian, toast ---
+
+# Polesan wizard.
+wizard-aria-label = Wizard menjalankan-pertama
+wizard-step-of-total = Langkah { $step } dari { $total }
+wizard-roots-hint = Tambahkan folder atau volume yang ingin dipantau oleh Sourcerer. Anda dapat mengubahnya nanti dari pengaturan Indeks.
+wizard-browse = Telusuri…
+wizard-roots-placeholder = …atau tempel path
+wizard-roots-add = Tambah
+wizard-roots-remove = Hapus
+wizard-roots-empty = Belum ada root yang dikonfigurasi.
+wizard-locale-hint = Sourcerer tersedia dalam 18 bahasa. Anda dapat menggantinya nanti.
+wizard-theme-hint = Sistem mengikuti pengaturan tampilan OS Anda.
+wizard-back = Kembali
+wizard-next = Berikutnya
+
+# Polesan bilah status.
+statusbar-hotkey-hint = Tombol pintas: { $hotkey }
+statusbar-cycle-theme = Putar tema
+statusbar-indexed-suffix = terindeks
+
+# Hasil / lensa.
+lens-expand = Bentangkan lensa
+lens-collapse = Ciutkan lensa
+lens-no-matches = Tidak ada kecocokan di lensa ini.
+
+# Panel pratinjau.
+preview-header = Pratinjau
+preview-loading = Memuat…
+preview-select-file = Pilih berkas untuk dipratinjau.
+preview-unavailable = Tidak ada pratinjau yang tersedia
+
+# Markah.
+bookmarks-label = ★ Markah
+bookmarks-empty-hint = Belum ada markah. Tekan Ctrl+D untuk menyimpan kueri saat ini.
+bookmarks-organize-title = Atur Markah
+bookmarks-organize-empty = Belum ada markah.
+bookmarks-rename = Ganti Nama
+bookmarks-close = Tutup
+
+# Ekstra pohon pengaturan.
+settings-group-history = Riwayat
+settings-group-privacy = Privasi & Pembaruan
+settings-group-logs = Log & Debug
+settings-group-backup = Cadangan, Ekspor, Atur Ulang
+settings-tree-custom-lens = Kustom
+settings-unsaved-changes = perubahan belum disimpan
+
+# Dialog tentang.
+about-dialog-title = Sourcerer
+about-copyright = Hak Cipta © 2026 Mike Weaver. Semua hak dilindungi.
+about-close = Tutup
+
+# Dialog hubungkan endpoint.
+connect-ftp-title = Hubungkan Ke Server FTP
+connect-ftp-host = Host:
+connect-ftp-port = Port:
+connect-ftp-username = Nama pengguna:
+connect-ftp-password = Kata sandi:
+connect-ftp-link-type = Jenis tautan:
+
+# Panel UI.
+ui-hint = Tema, integrasi baki / bilah-menu, cari-saat-mengetik, kepadatan baris. Paritas langsung dengan voidtools-Everything plus tambahan Sourcerer yang ditandai dengan (+).
+ui-section-theme = Tema
+ui-theme-system-default = Sistem (bawaan)
+ui-section-tray = Baki / Bilah Menu
+ui-section-search-behavior = Perilaku Pencarian
+ui-section-result-rows = Baris Hasil
+ui-single-click-system-default = Pengaturan sistem (bawaan)
+ui-single-click-always = Selalu klik tunggal
+ui-single-click-always-double = Selalu klik ganda
+ui-underline-always = Selalu
+ui-underline-on-hover = Saat hover
+ui-underline-never = Tidak pernah
+
+# Panel beranda.
+home-hint = Bawaan dimuat saat aplikasi dijalankan — setiap dropdown bisa tetap pada "Gunakan nilai terakhir" atau menyematkan nilai tetap. Visibilitas lensa / batas hasil adalah tambahan Sourcerer (+).
+home-section-match = Bawaan Pencocokan
+home-section-search-sort = Bawaan Pencarian & Urutan
+home-search-placeholder = Kosong secara bawaan
+home-section-index = Sumber Indeks
+home-file-list-path = Path daftar berkas
+home-https-endpoint = URL endpoint API HTTPS
+home-endpoint-token = Token (sidik jari ditampilkan)
+
+# Panel cadangan.
+backup-section-settings = Pengaturan (+)
+backup-section-bookmarks = Markah + Ekstraktor Kustom (+)
+backup-section-reset = Atur Ulang
+backup-toast-exported = Pengaturan diekspor ke { $path }
+backup-toast-export-failed = Ekspor gagal: { $error }
+backup-toast-imported = Pengaturan diimpor
+backup-toast-import-failed = Impor gagal: { $error }
+backup-toast-bookmarks-exported = Markah diekspor
+backup-toast-bookmarks-export-failed = Ekspor markah gagal: { $error }
+backup-toast-bookmarks-imported = Markah diimpor
+backup-toast-bookmarks-import-failed = Impor markah gagal: { $error }
+backup-confirm-reset = Atur ulang semua pengaturan ke bawaan? Ini tidak dapat dibatalkan (dialog tetap terbuka).
+backup-toast-reset = Semua pengaturan diatur ulang
+
+# Panel papan ketik.
+keyboard-section-global = Tombol Pintas Global
+keyboard-placeholder-example = Super+Space
+keyboard-section-commands = Perintah
+keyboard-placeholder-command = id perintah (mis. file.export_results)
+keyboard-placeholder-binding = Ctrl+K, B
+
+# Panel riwayat.
+history-section-search = Riwayat Pencarian
+history-section-run = Riwayat Menjalankan
+history-section-privacy = Privasi (+)
+history-record-filename = Catat riwayat lensa-nama-berkas
+history-record-content = Catat riwayat lensa-konten
+history-record-audio = Catat riwayat lensa-audio
+history-record-similarity = Catat riwayat lensa-kemiripan
+
+# Panel lokal.
+locale-section-language = Bahasa (+)
+locale-section-time-date = Waktu / Tanggal (+)
+locale-date-os = Bawaan OS
+locale-date-iso8601 = ISO 8601
+locale-date-rfc3339 = RFC 3339
+locale-date-custom-label = Kustom
+locale-date-custom-format = Format kustom
+locale-date-placeholder = YYYY-MM-DD
+locale-section-numbers = Angka (+)
+locale-number-os = Bawaan OS
+locale-number-custom = Kustom
+locale-thousands-sep = Pemisah ribuan
+locale-decimal-sep = Pemisah desimal
+
+# Panel folder.
+folders-hint = Folder yang dipantau tambahan di luar volume bawaan.
+folders-list-title = Folder yang dipantau
+folders-empty = Belum ada folder yang ditambahkan.
+folders-remove = Hapus
+folders-section-title-dynamic = Pengaturan untuk { $path }
+folders-section-schedule = Jadwal pemindaian ulang
+folders-schedule-daily = Setiap hari pada HH:MM
+folders-schedule-hours = Setiap N jam
+folders-schedule-never = Tidak pernah
+folders-hour = Jam
+folders-minute = Menit
+folders-hours = Jam
+folders-id-label = ID Folder (hanya-baca)
+folders-select-prompt = Pilih folder untuk mengonfigurasinya.
+folders-section-extras = Ekstra Sourcerer (+)
+folders-extras-note = Pindai ulang saat melanjutkan dari tidur diaktifkan secara bawaan di build ini; sakelar bergabung dengan kontrol tingkat-folder dalam polesan Fase 13.
+
+# Panel volume.
+volumes-hint = Padanan lintas-platform dari panel NTFS / ReFS milik voidtools-Everything. Mendeteksi otomatis NTFS / ReFS / exFAT / FAT32 (Win), APFS / HFS+ (macOS), ext4 / Btrfs / ZFS / XFS / F2FS (Linux).
+volumes-section-auto-include = Sertakan otomatis
+volumes-list-title = Volume terdeteksi
+volumes-detecting = Mendeteksi…
+volumes-empty = Tidak ada volume terdeteksi.
+volumes-select-prompt = Pilih volume untuk mengonfigurasinya.
+
+# Polesan panel tentang.
+about-section-version = Versi (+)
+about-section-license = Lisensi (+)
+about-license-text = Mike Weaver — Semua Hak Dilindungi. Ini adalah perangkat lunak berpemilik.
+about-license-spdx = SPDX: { $spdx }
+about-section-credits = Kredit (+)
+about-credits-inspired = Terinspirasi oleh Everything dari voidtools.
+about-credits-voidtools = voidtools.com
+about-credits-repo = Repositori proyek
+
+# --- Bilah menu (PRD §8.28) — setiap label + submenu + petunjuk hover bilah-status ---
+
+# Menu berkas.
+menu-file-hint = Berisi perintah untuk bekerja dengan Sourcerer.
+menu-file-new-window = Jendela Pencarian Baru
+menu-file-open-list = Buka Daftar Berkas…
+menu-file-close-list = Tutup Daftar Berkas
+menu-file-close = Tutup
+menu-file-export-results = Ekspor Hasil…
+menu-file-export-bundle = Ekspor Bundel Indeks…
+menu-file-exit = Keluar
+
+# Menu sunting.
+menu-edit-hint = Berisi perintah untuk menyunting hasil pencarian.
+menu-edit-cut = Potong
+menu-edit-copy = Salin
+menu-edit-paste = Tempel
+menu-edit-copy-to-folder = Salin ke Folder…
+menu-edit-move-to-folder = Pindahkan ke Folder…
+menu-edit-select-all = Pilih Semua
+menu-edit-invert-selection = Balik Pilihan
+menu-edit-advanced = Lanjutan
+menu-edit-copy-full-name = Salin Nama Lengkap
+menu-edit-copy-path = Salin Path
+menu-edit-copy-filename = Salin Nama Berkas
+menu-edit-copy-as-json = Salin sebagai JSON
+menu-edit-copy-with-metadata = Salin dengan metadata
+menu-edit-copy-as-bundle-ref = Salin sebagai referensi Bundel Sourcerer
+
+# Menu tampilan.
+menu-view-hint = Berisi perintah untuk memanipulasi tampilan.
+menu-view-filters = Filter
+menu-view-preview = Pratinjau
+menu-view-status-bar = Bilah Status
+menu-view-thumbs-xl = Miniatur Sangat Besar
+menu-view-thumbs-l = Miniatur Besar
+menu-view-thumbs-m = Miniatur Sedang
+menu-view-details = Detail
+menu-view-window-size = Ukuran Jendela
+menu-view-window-size-hint = Berisi perintah untuk menyesuaikan ukuran jendela.
+menu-view-window-small = Kecil
+menu-view-window-medium = Sedang
+menu-view-window-large = Besar
+menu-view-window-auto = Sesuaikan Otomatis
+menu-view-zoom = Zum
+menu-view-zoom-hint = Berisi perintah untuk menyesuaikan ukuran fon dan ikon.
+menu-view-zoom-in = Perbesar
+menu-view-zoom-out = Perkecil
+menu-view-zoom-reset = Atur Ulang
+menu-view-sort-by = Urutkan menurut
+menu-view-sort-by-hint = Berisi perintah untuk mengurutkan daftar hasil.
+menu-view-sort-name = Nama
+menu-view-sort-path = Path
+menu-view-sort-size = Ukuran
+menu-view-sort-ext = Ekstensi
+menu-view-sort-type = Tipe
+menu-view-sort-modified = Tanggal Diubah
+menu-view-sort-created = Tanggal Dibuat
+menu-view-sort-accessed = Tanggal Diakses
+menu-view-sort-attributes = Atribut
+menu-view-sort-recently-changed = Tanggal Baru-baru Ini Diubah
+menu-view-sort-run-count = Jumlah Menjalankan
+menu-view-sort-run-date = Tanggal Dijalankan
+menu-view-sort-file-list-filename = Nama Berkas Daftar Berkas
+menu-view-sort-lufs = LUFS
+menu-view-sort-length = Durasi
+menu-view-sort-similarity = Skor Kemiripan
+menu-view-sort-asc = Menaik
+menu-view-sort-desc = Menurun
+menu-view-go-to = Pergi Ke
+menu-view-refresh = Segarkan
+menu-view-theme = Tema
+menu-view-theme-hint = Ganti antara tema sistem, terang, atau gelap.
+menu-view-lenses = Lensa
+menu-view-lenses-hint = Alihkan visibilitas setiap lensa di daftar hasil.
+menu-view-on-top = Di Atas
+menu-view-on-top-hint = Berisi perintah untuk menjaga jendela ini di atas jendela lain.
+menu-view-on-top-never = Tidak pernah
+menu-view-on-top-always = Selalu
+menu-view-on-top-while-searching = Saat Mencari
+
+# Menu cari.
+menu-search-hint = Berisi sakelar pencarian.
+menu-search-match-case = Cocokkan Huruf Besar/Kecil
+menu-search-match-whole-word = Cocokkan Kata Utuh
+menu-search-match-path = Cocokkan Path
+menu-search-match-diacritics = Cocokkan Diakritik
+menu-search-enable-regex = Aktifkan Regex
+menu-search-advanced = Pencarian Lanjutan…
+menu-search-add-to-filters = Tambah ke Filter…
+menu-search-organize-filters = Atur Filter…
+menu-search-filter-everything = Everything
+menu-search-filter-archive = Terkompresi (Arsip)
+menu-search-filter-folder = Folder
+menu-search-filter-custom = Filter Kustom…
+
+# Menu markah.
+menu-bookmarks-hint = Berisi perintah untuk bekerja dengan markah.
+menu-bookmarks-add = Tambah ke Markah
+menu-bookmarks-organize = Atur Markah…
+
+# Menu alat.
+menu-tools-hint = Berisi perintah alat.
+menu-tools-connect = Hubungkan ke Server FTP…
+menu-tools-disconnect = Putuskan dari Server FTP
+menu-tools-file-list-editor = Editor Daftar Berkas…
+menu-tools-index-maintenance = Pemeliharaan indeks
+menu-tools-index-maintenance-hint = Alat pemeliharaan indeks.
+menu-tools-verify-index = Verifikasi Indeks…
+menu-tools-compact-index = Padatkan Indeks…
+menu-tools-rebuild-index = Paksa Bangun Ulang Indeks…
+menu-tools-custom-extractor = Pengelola Ekstraktor Kustom…
+menu-tools-custom-extractor-hint = Kelola ekstraktor kustom ber-sandbox Wasm.
+menu-tools-options = Opsi…
+
+# Menu bantuan.
+menu-help-hint = Berisi perintah bantuan.
+menu-help-help = Bantuan Sourcerer
+menu-help-search-syntax = Sintaks Pencarian
+menu-help-regex-syntax = Sintaks Regex
+menu-help-audio-ref = Referensi Pemodifikasi Audio
+menu-help-similarity-ref = Referensi Pemodifikasi Kemiripan
+menu-help-cli-options = Opsi Baris Perintah
+menu-help-website = Situs Web Sourcerer
+menu-help-check-updates = Periksa Pembaruan…
+menu-help-sponsor = Sponsor / Donasi
+menu-help-about = Tentang Sourcerer…
+
+# Header kolom hasil (bentuk pendek yang digunakan pada baris header tabel).
+column-name = Nama
+column-path = Jalur
+column-size = Ukuran
+column-modified = Diubah
+column-type = Tipe
+column-ext = Ekst
+column-sort-by = Urutkan menurut { $name }
+column-resize = Ubah ukuran kolom { $name }
+
+# ---------------------------------------------------------------------------
+# Bilah subjudul bagian, opsi umum, dan satuan panel pengaturan
+# ---------------------------------------------------------------------------
+
+# Bilah subjudul bagian yang digunakan di dalam beberapa panel pengaturan.
+section-behavior = Perilaku
+section-rendering = Perenderan
+section-status-bar = Bilah Status
+section-display-format = Format Tampilan
+section-loading-priority = Prioritas Pemuatan
+section-compatibility = Kompatibilitas
+section-storage = Penyimpanan
+section-index-fields = Bidang Indeks
+section-maintenance = Pemeliharaan
+section-logging = Pencatatan
+section-tools = Alat
+section-privacy = Privasi
+section-auto-update = Pembaruan Otomatis (+)
+section-bind = Pengikatan
+section-lens = Lensa
+section-budgets = Anggaran
+section-other = Lainnya
+section-per-format-mode = Mode Per-format
+section-loudness = Kenyaringan
+section-tuning = Penyetelan (+)
+section-minhash-lsh = Parameter MinHash + LSH (+)
+section-top-level = Tingkat Atas
+section-file-globs = Pola berkas
+section-file-list-settings = Pengaturan untuk daftar berkas terpilih
+section-editor-format = Editor + Format (E + +)
+section-api-server = Server API (E adapted)
+section-sourcerer-extras = Tambahan Sourcerer (+)
+section-sourcerer-additions = Penambahan Sourcerer (+)
+section-sourcerer-extensions = Ekstensi Sourcerer (+)
+
+# Label opsi umum yang digunakan di beberapa Dropdown.
+opt-use-last-value = Gunakan nilai terakhir
+opt-use-last-value-default = Gunakan nilai terakhir (bawaan)
+opt-low = Rendah
+opt-normal-default = Normal (bawaan)
+opt-high = Tinggi
+opt-disabled = Dinonaktifkan
+opt-off = Mati
+opt-on-battery = Saat menggunakan baterai
+opt-always = Selalu
+opt-clamp-default = Jepit (bawaan)
+opt-wrap = Bungkus
+opt-none = Tidak ada
+opt-strict-refuse = Ketat (tolak kueri saat korup)
+opt-lenient-warn = Longgar (peringatkan tetapi kueri)
+opt-system-default = Bawaan sistem
+opt-drag-select = Pilih dengan seret
+opt-auto-binary = Otomatis (biner)
+opt-auto-decimal = Otomatis (desimal)
+
+# Akhiran satuan yang ditampilkan di sebelah input angka.
+unit-days = hari
+unit-kb = KB
+unit-mb = MB
+
+# Label opsi dropdown tambahan (mode pengekstrak / urutan / tampilan / indeks / panel / prioritas / LUFS / puncak / level log / saluran pembaruan).
+opt-eager = Bersemangat
+opt-lazy-default = Malas (bawaan)
+opt-on = Aktif
+opt-on-default = Aktif (bawaan)
+opt-all = Semua
+opt-weekly = Mingguan
+opt-monthly = Bulanan
+opt-name-asc = Nama naik
+opt-name-desc = Nama turun
+opt-size-asc = Ukuran naik
+opt-size-desc = Ukuran turun
+opt-modified-asc = Tanggal diubah naik
+opt-modified-desc = Tanggal diubah turun
+opt-compact = Ringkas
+opt-comfortable = Nyaman
+opt-details = Detail
+opt-thumbnails = Gambar mini
+opt-local-db-default = Basis data lokal (bawaan)
+opt-file-list = Daftar berkas
+opt-https-endpoint = Titik akhir HTTPS API
+opt-right-default = Kanan (bawaan)
+opt-bottom = Bawah
+opt-or-and-default = OR > AND (bawaan)
+opt-and-or = AND > OR
+opt-ebu-r128-default = EBU R128 (bawaan)
+opt-atsc-a85 = ATSC A/85
+opt-spotify = Spotify (-14)
+opt-apple-music = Apple Music (-16)
+opt-broadcast-film = Film siaran (-23)
+opt-true-peak = Puncak sebenarnya (4× oversampling, bawaan)
+opt-sample-peak = Puncak sampel
+opt-auto-per-doc = Otomatis (per-dokumen)
+opt-log-error = Galat
+opt-log-warn = Peringatan
+opt-log-info-default = Info (bawaan)
+opt-log-debug = Awakutu
+opt-log-trace = Lacak
+
+# unit-b / unit-gb / unit-tb (size units; conventional Latin acronyms — kept as-is, polish per-locale as needed).
+unit-b = B
+unit-gb = GB
+unit-tb = TB

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { settingsStore } from "../../lib/stores/settings.svelte";
+  import { t } from "../../lib/i18n/t";
 
   interface Props {
     open: boolean;
@@ -22,7 +23,9 @@
     await settingsStore.patch({
       endpoint: {
         name: host,
-        kind: "ftp",
+        // FTP servers connect over the network — surface them as "remote"
+        // so the menu's Disconnect gate (kind !== "local") lights up.
+        kind: "remote",
       },
     });
     onClose();
@@ -57,7 +60,7 @@
       onclick={(e) => e.stopPropagation()}
       onkeydown={(e) => e.stopPropagation()}
     >
-      <h2 id="connect-endpoint-title">Connect To FTP Server</h2>
+      <h2 id="connect-endpoint-title">{t("connect-ftp-title")}</h2>
       <form
         onsubmit={(e) => {
           e.preventDefault();
@@ -65,23 +68,23 @@
         }}
       >
         <label>
-          <span>Host:</span>
+          <span>{t("connect-ftp-host")}</span>
           <input type="text" bind:value={host} autocomplete="off" />
         </label>
         <label>
-          <span>Port:</span>
+          <span>{t("connect-ftp-port")}</span>
           <input type="number" min="1" max="65535" bind:value={port} />
         </label>
         <label>
-          <span>Username:</span>
+          <span>{t("connect-ftp-username")}</span>
           <input type="text" bind:value={username} autocomplete="off" />
         </label>
         <label>
-          <span>Password:</span>
+          <span>{t("connect-ftp-password")}</span>
           <input type="password" bind:value={password} autocomplete="off" />
         </label>
         <label>
-          <span>Link type:</span>
+          <span>{t("connect-ftp-link-type")}</span>
           <select bind:value={linkType}>
             <option value="\\\\Server\\C">{"\\\\Server\\C"}</option>
             <option value="C:\\">C:\</option>
@@ -89,8 +92,8 @@
           </select>
         </label>
         <footer>
-          <button type="submit" class="primary" disabled={!canSubmit}>OK</button>
-          <button type="button" onclick={close}>Cancel</button>
+          <button type="submit" class="primary" disabled={!canSubmit}>{t("settings-ok")}</button>
+          <button type="button" onclick={close}>{t("settings-cancel")}</button>
         </footer>
       </form>
     </div>

@@ -381,3 +381,406 @@ settings-about-version = Sourcerer { $version }
 settings-about-license = License
 settings-about-credits = Credits
 settings-about-notices = Open-source notices
+
+# --- TASK-098 additions: hints, placeholders, sub-sections, toasts ---
+
+# Wizard polish.
+wizard-aria-label = First-run wizard
+wizard-step-of-total = Step { $step } of { $total }
+wizard-roots-hint = Add the folders or volumes you want Sourcerer to watch. You can change this later from Indexes settings.
+wizard-browse = Browse…
+wizard-roots-placeholder = …or paste a path
+wizard-roots-add = Add
+wizard-roots-remove = Remove
+wizard-roots-empty = No roots configured yet.
+wizard-locale-hint = Sourcerer ships in 18 languages. You can switch later.
+wizard-theme-hint = System follows your OS appearance setting.
+wizard-back = Back
+wizard-next = Next
+
+# Status bar polish.
+statusbar-hotkey-hint = Hotkey: { $hotkey }
+statusbar-cycle-theme = Cycle theme
+statusbar-indexed-suffix = indexed
+
+# Results / lenses.
+lens-expand = Expand lens
+lens-collapse = Collapse lens
+lens-no-matches = No matches in this lens.
+
+# Preview pane.
+preview-header = Preview
+preview-loading = Loading…
+preview-select-file = Select a file to preview.
+preview-unavailable = No preview available
+
+# Bookmarks.
+bookmarks-label = ★ Bookmarks
+bookmarks-empty-hint = No bookmarks yet. Press Ctrl+D to save the current query.
+bookmarks-organize-title = Organize Bookmarks
+bookmarks-organize-empty = No bookmarks yet.
+bookmarks-rename = Rename
+bookmarks-close = Close
+
+# Settings tree extras.
+settings-group-history = History
+settings-group-privacy = Privacy & Updates
+settings-group-logs = Logs & Debug
+settings-group-backup = Backup, Export, Reset
+settings-tree-custom-lens = Custom
+settings-unsaved-changes = unsaved changes
+
+# About dialog.
+about-dialog-title = Sourcerer
+about-copyright = Copyright © 2026 Mike Weaver. All rights reserved.
+about-close = Close
+
+# Connect endpoint dialog.
+connect-ftp-title = Connect To FTP Server
+connect-ftp-host = Host:
+connect-ftp-port = Port:
+connect-ftp-username = Username:
+connect-ftp-password = Password:
+connect-ftp-link-type = Link type:
+
+# UI panel.
+ui-hint = Theme, tray / menu-bar integration, search-as-you-type, row density. Direct voidtools-Everything parity plus Sourcerer additions marked with (+).
+ui-section-theme = Theme
+ui-theme-system-default = System (default)
+ui-section-tray = Tray / Menu Bar
+ui-section-search-behavior = Search Behavior
+ui-section-result-rows = Result Rows
+ui-single-click-system-default = System settings (default)
+ui-single-click-always = Always single click
+ui-single-click-always-double = Always double click
+ui-underline-always = Always
+ui-underline-on-hover = On hover
+ui-underline-never = Never
+
+# Home panel.
+home-hint = Defaults loaded on app launch — every dropdown can stick to "Use last value" or pin a fixed value. Lens visibility / result limits are Sourcerer additions (+).
+home-section-match = Match Defaults
+home-section-search-sort = Search & Sort Defaults
+home-search-placeholder = Empty by default
+home-section-index = Index Source
+home-file-list-path = File list path
+home-https-endpoint = HTTPS API endpoint URL
+home-endpoint-token = Token (fingerprint shown)
+
+# Backup panel.
+backup-section-settings = Settings (+)
+backup-section-bookmarks = Bookmarks + Custom Extractors (+)
+backup-section-reset = Reset
+backup-toast-exported = Exported settings to { $path }
+backup-toast-export-failed = Export failed: { $error }
+backup-toast-imported = Imported settings
+backup-toast-import-failed = Import failed: { $error }
+backup-toast-bookmarks-exported = Exported bookmarks
+backup-toast-bookmarks-export-failed = Bookmark export failed: { $error }
+backup-toast-bookmarks-imported = Imported bookmarks
+backup-toast-bookmarks-import-failed = Bookmark import failed: { $error }
+backup-confirm-reset = Reset all settings to defaults? This cannot be undone (the dialog stays open).
+backup-toast-reset = All settings reset
+
+# Keyboard panel.
+keyboard-section-global = Global Hotkeys
+keyboard-placeholder-example = Super+Space
+keyboard-section-commands = Commands
+keyboard-placeholder-command = command id (e.g. file.export_results)
+keyboard-placeholder-binding = Ctrl+K, B
+
+# History panel.
+history-section-search = Search History
+history-section-run = Run History
+history-section-privacy = Privacy (+)
+history-record-filename = Record filename-lens history
+history-record-content = Record content-lens history
+history-record-audio = Record audio-lens history
+history-record-similarity = Record similarity-lens history
+
+# Locale panel.
+locale-section-language = Language (+)
+locale-section-time-date = Time / Date (+)
+locale-date-os = OS default
+locale-date-iso8601 = ISO 8601
+locale-date-rfc3339 = RFC 3339
+locale-date-custom-label = Custom
+locale-date-custom-format = Custom format
+locale-date-placeholder = YYYY-MM-DD
+locale-section-numbers = Numbers (+)
+locale-number-os = OS default
+locale-number-custom = Custom
+locale-thousands-sep = Thousands separator
+locale-decimal-sep = Decimal separator
+
+# Folders panel.
+folders-hint = Additional watched folders beyond the default volumes.
+folders-list-title = Watched folders
+folders-empty = No folders added yet.
+folders-remove = Remove
+folders-section-title-dynamic = Settings for { $path }
+folders-section-schedule = Rescan schedule
+folders-schedule-daily = Every day at HH:MM
+folders-schedule-hours = Every N hours
+folders-schedule-never = Never
+folders-hour = Hour
+folders-minute = Minute
+folders-hours = Hours
+folders-id-label = Folder ID (read-only)
+folders-select-prompt = Select a folder to configure it.
+folders-section-extras = Sourcerer Extras (+)
+folders-extras-note = Rescan on resume from sleep is enabled by default in this build; the toggle joins the folder-level controls in Phase 13's polish pass.
+
+# Volumes panel.
+volumes-hint = Cross-platform analogue of voidtools-Everything's NTFS / ReFS panels. Auto-detects NTFS / ReFS / exFAT / FAT32 (Win), APFS / HFS+ (macOS), ext4 / Btrfs / ZFS / XFS / F2FS (Linux).
+volumes-section-auto-include = Auto-include
+volumes-list-title = Detected volumes
+volumes-detecting = Detecting…
+volumes-empty = No volumes detected.
+volumes-select-prompt = Select a volume to configure it.
+
+# About panel polish.
+about-section-version = Version (+)
+about-section-license = License (+)
+about-license-text = Mike Weaver — All Rights Reserved. This is proprietary software.
+about-license-spdx = SPDX: { $spdx }
+about-section-credits = Credits (+)
+about-credits-inspired = Inspired by Everything by voidtools.
+about-credits-voidtools = voidtools.com
+about-credits-repo = Project repository
+
+# --- Menu bar (PRD §8.28) — every label + submenu + status-bar hover hint ---
+
+# File menu.
+menu-file-hint = Contains commands for working with Sourcerer.
+menu-file-new-window = New Search Window
+menu-file-open-list = Open File List…
+menu-file-close-list = Close File List
+menu-file-close = Close
+menu-file-export-results = Export Results…
+menu-file-export-bundle = Export Index Bundle…
+menu-file-exit = Exit
+
+# Edit menu.
+menu-edit-hint = Contains commands for editing search results.
+menu-edit-cut = Cut
+menu-edit-copy = Copy
+menu-edit-paste = Paste
+menu-edit-copy-to-folder = Copy to Folder…
+menu-edit-move-to-folder = Move to Folder…
+menu-edit-select-all = Select All
+menu-edit-invert-selection = Invert Selection
+menu-edit-advanced = Advanced
+menu-edit-copy-full-name = Copy Full Name
+menu-edit-copy-path = Copy Path
+menu-edit-copy-filename = Copy Filename
+menu-edit-copy-as-json = Copy as JSON
+menu-edit-copy-with-metadata = Copy with metadata
+menu-edit-copy-as-bundle-ref = Copy as Sourcerer Bundle reference
+
+# View menu.
+menu-view-hint = Contains commands for manipulating the view.
+menu-view-filters = Filters
+menu-view-preview = Preview
+menu-view-status-bar = Status Bar
+menu-view-thumbs-xl = Extra Large Thumbnails
+menu-view-thumbs-l = Large Thumbnails
+menu-view-thumbs-m = Medium Thumbnails
+menu-view-details = Details
+menu-view-window-size = Window Size
+menu-view-window-size-hint = Contains commands for adjusting the size of the window.
+menu-view-window-small = Small
+menu-view-window-medium = Medium
+menu-view-window-large = Large
+menu-view-window-auto = Auto Fit
+menu-view-zoom = Zoom
+menu-view-zoom-hint = Contains commands for adjusting the font and icon size.
+menu-view-zoom-in = Zoom In
+menu-view-zoom-out = Zoom Out
+menu-view-zoom-reset = Reset
+menu-view-sort-by = Sort by
+menu-view-sort-by-hint = Contains commands for sorting the result list.
+menu-view-sort-name = Name
+menu-view-sort-path = Path
+menu-view-sort-size = Size
+menu-view-sort-ext = Extension
+menu-view-sort-type = Type
+menu-view-sort-modified = Date Modified
+menu-view-sort-created = Date Created
+menu-view-sort-accessed = Date Accessed
+menu-view-sort-attributes = Attributes
+menu-view-sort-recently-changed = Date Recently Changed
+menu-view-sort-run-count = Run Count
+menu-view-sort-run-date = Date Run
+menu-view-sort-file-list-filename = File List Filename
+menu-view-sort-lufs = LUFS
+menu-view-sort-length = Length
+menu-view-sort-similarity = Similarity Score
+menu-view-sort-asc = Ascending
+menu-view-sort-desc = Descending
+menu-view-go-to = Go To
+menu-view-refresh = Refresh
+menu-view-theme = Theme
+menu-view-theme-hint = Switch between system, light, or dark themes.
+menu-view-lenses = Lenses
+menu-view-lenses-hint = Toggle visibility of each lens in the result list.
+menu-view-on-top = On Top
+menu-view-on-top-hint = Contains commands for keeping this window on top of other windows.
+menu-view-on-top-never = Never
+menu-view-on-top-always = Always
+menu-view-on-top-while-searching = While Searching
+
+# Search menu.
+menu-search-hint = Contains search toggles.
+menu-search-match-case = Match Case
+menu-search-match-whole-word = Match Whole Word
+menu-search-match-path = Match Path
+menu-search-match-diacritics = Match Diacritics
+menu-search-enable-regex = Enable Regex
+menu-search-advanced = Advanced Search…
+menu-search-add-to-filters = Add to Filters…
+menu-search-organize-filters = Organize Filters…
+menu-search-filter-everything = Everything
+menu-search-filter-archive = Compressed (Archive)
+menu-search-filter-folder = Folder
+menu-search-filter-custom = Custom Filter…
+
+# Bookmarks menu.
+menu-bookmarks-hint = Contains commands for working with bookmarks.
+menu-bookmarks-add = Add to Bookmarks
+menu-bookmarks-organize = Organize Bookmarks…
+
+# Tools menu.
+menu-tools-hint = Contains tools commands.
+menu-tools-connect = Connect to FTP Server…
+menu-tools-disconnect = Disconnect from FTP Server
+menu-tools-file-list-editor = File List Editor…
+menu-tools-index-maintenance = Index maintenance
+menu-tools-index-maintenance-hint = Index maintenance tools.
+menu-tools-verify-index = Verify Index…
+menu-tools-compact-index = Compact Index…
+menu-tools-rebuild-index = Force Rebuild Index…
+menu-tools-custom-extractor = Custom Extractor Manager…
+menu-tools-custom-extractor-hint = Manage Wasm-sandboxed custom extractors.
+menu-tools-options = Options…
+
+# Help menu.
+menu-help-hint = Contains help commands.
+menu-help-help = Sourcerer Help
+menu-help-search-syntax = Search Syntax
+menu-help-regex-syntax = Regex Syntax
+menu-help-audio-ref = Audio Modifier Reference
+menu-help-similarity-ref = Similarity Modifier Reference
+menu-help-cli-options = Command Line Options
+menu-help-website = Sourcerer Website
+menu-help-check-updates = Check for Updates…
+menu-help-sponsor = Sponsor / Donate
+menu-help-about = About Sourcerer…
+
+# Result column headers (short forms used in the table header row).
+column-name = Name
+column-path = Path
+column-size = Size
+column-modified = Modified
+column-type = Type
+column-ext = Ext
+column-sort-by = Sort by { $name }
+column-resize = Resize { $name } column
+
+# Section subtitle bars used inside multiple settings panels.
+section-behavior = Behavior
+section-rendering = Rendering
+section-status-bar = Status Bar
+section-display-format = Display Format
+section-loading-priority = Loading Priority
+section-compatibility = Compatibility
+section-storage = Storage
+section-index-fields = Index Fields
+section-maintenance = Maintenance
+section-logging = Logging
+section-tools = Tools
+section-privacy = Privacy
+section-auto-update = Auto-update (+)
+section-bind = Bind
+section-lens = Lens
+section-budgets = Budgets
+section-other = Other
+section-per-format-mode = Per-format Mode
+section-loudness = Loudness
+section-tuning = Tuning (+)
+section-minhash-lsh = MinHash + LSH Parameters (+)
+section-top-level = Top-level
+section-file-globs = File globs
+section-file-list-settings = Settings for selected file list
+section-editor-format = Editor + Format (E + +)
+section-api-server = API Server (E adapted)
+section-sourcerer-extras = Sourcerer Extras (+)
+section-sourcerer-additions = Sourcerer Additions (+)
+section-sourcerer-extensions = Sourcerer Extensions (+)
+
+# Common option labels used across several Dropdowns.
+opt-use-last-value = Use last value
+opt-use-last-value-default = Use last value (default)
+opt-low = Low
+opt-normal-default = Normal (default)
+opt-high = High
+opt-disabled = Disabled
+opt-off = Off
+opt-on-battery = When on battery
+opt-always = Always
+opt-clamp-default = Clamp (default)
+opt-wrap = Wrap
+opt-none = None
+opt-strict-refuse = Strict (refuse queries on corruption)
+opt-lenient-warn = Lenient (warn but query)
+opt-system-default = System default
+opt-drag-select = Drag-select
+opt-auto-binary = Auto (binary)
+opt-auto-decimal = Auto (decimal)
+
+# Unit suffixes shown next to number inputs.
+unit-days = days
+unit-b = B
+unit-kb = KB
+unit-mb = MB
+unit-gb = GB
+unit-tb = TB
+
+# Additional dropdown option labels (extractor mode / sort / view / index / pane / precedence / LUFS / peak / log level / update channel).
+opt-eager = Eager
+opt-lazy-default = Lazy (default)
+opt-on = On
+opt-on-default = On (default)
+opt-all = All
+opt-weekly = Weekly
+opt-monthly = Monthly
+opt-name-asc = Name asc
+opt-name-desc = Name desc
+opt-size-asc = Size asc
+opt-size-desc = Size desc
+opt-modified-asc = Date modified asc
+opt-modified-desc = Date modified desc
+opt-compact = Compact
+opt-comfortable = Comfortable
+opt-details = Details
+opt-thumbnails = Thumbnails
+opt-local-db-default = Local database (default)
+opt-file-list = File list
+opt-https-endpoint = HTTPS API endpoint
+opt-right-default = Right (default)
+opt-bottom = Bottom
+opt-or-and-default = OR > AND (default)
+opt-and-or = AND > OR
+opt-ebu-r128-default = EBU R128 (default)
+opt-atsc-a85 = ATSC A/85
+opt-spotify = Spotify (-14)
+opt-apple-music = Apple Music (-16)
+opt-broadcast-film = Broadcast film (-23)
+opt-true-peak = True peak (4× oversampling, default)
+opt-sample-peak = Sample peak
+opt-auto-per-doc = Auto (per-doc)
+opt-log-error = Error
+opt-log-warn = Warn
+opt-log-info-default = Info (default)
+opt-log-debug = Debug
+opt-log-trace = Trace

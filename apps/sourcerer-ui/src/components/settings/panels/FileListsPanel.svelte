@@ -4,6 +4,7 @@
   import Dropdown from "../controls/Dropdown.svelte";
   import { open as openDialog, save as saveDialog } from "@tauri-apps/plugin-dialog";
   import { settingsDialog } from "../../../lib/stores/settings_dialog.svelte";
+  import { t } from "../../../lib/i18n/t";
 
   let lists = $state<{ id: string; path: string; monitor_changes: boolean }[]>([]);
   let selectedId = $state<string | null>(null);
@@ -47,9 +48,9 @@
   }
 </script>
 
-<h1>File Lists</h1>
+<h1>{t("settings-node-file-lists")}</h1>
 
-<Section title="File Lists">
+<Section title={t("settings-node-file-lists")}>
   <ul>
     {#each lists as l (l.id)}
       <li>
@@ -60,14 +61,14 @@
     {/each}
   </ul>
   <div class="actions">
-    <button type="button" onclick={addList}>Add…</button>
-    <button type="button" onclick={removeSelected} disabled={!selected}>Remove</button>
+    <button type="button" onclick={addList}>{t("settings-flists-add")}</button>
+    <button type="button" onclick={removeSelected} disabled={!selected}>{t("settings-vol-remove")}</button>
   </div>
 </Section>
 
 {#if selected}
-  <Section title="Settings for selected file list">
-    <Checkbox id="fl-monitor" label="Monitor changes"
+  <Section title={t("section-file-list-settings")}>
+    <Checkbox id="fl-monitor" label={t("settings-flists-monitor")}
       checked={selected.monitor_changes}
       onChange={(v) => {
         lists = lists.map((l) => (l.id === selected!.id ? { ...l, monitor_changes: v } : l));
@@ -76,11 +77,11 @@
   </Section>
 {/if}
 
-<Section title="Editor + Format (E + +)">
-  <button type="button" onclick={openEditor}>File List Editor…</button>
-  <Dropdown id="fl-format" label="File list format"
+<Section title={t("section-editor-format")}>
+  <button type="button" onclick={openEditor}>{t("settings-flists-editor")}</button>
+  <Dropdown id="fl-format" label={t("settings-flists-format")}
     value={format}
-    options={[ { value: "text", label: "Text (one path per line, default)" }, { value: "json", label: "JSON (with per-entry metadata) (+)" }, { value: "srcb", label: "Sourcerer Bundle .srcb (+)" } ]}
+    options={[ { value: "text", label: t("settings-flists-format-text") }, { value: "json", label: t("settings-flists-format-json") }, { value: "srcb", label: t("settings-flists-format-srcb") } ]}
     onChange={(v) => { format = v; settingsDialog.markDirty("indexes.file_lists"); }} />
   <Checkbox id="fl-auto-export" label="Auto-export saved searches as file lists (+)"
     checked={autoExport}

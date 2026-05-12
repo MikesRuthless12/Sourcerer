@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { t } from "../../lib/i18n/t";
+
   interface Props {
     open: boolean;
     onClose: () => void;
@@ -17,16 +19,16 @@
       class="modal"
       role="dialog"
       aria-modal="true"
-      aria-label="About Sourcerer"
+      aria-label={t("menu-help-about")}
       onclick={(e) => e.stopPropagation()}
       onkeydown={(e) => e.stopPropagation()}
     >
-      <h1>Sourcerer</h1>
-      <p class="version">Version 0.19.84</p>
-      <p>One search. Every source. Every OS.</p>
-      <p class="meta">Copyright © 2026 Mike Weaver. All rights reserved.</p>
+      <h1>{t("app-name")}</h1>
+      <p class="version">{t("about-version", { version: "0.19.84" })}</p>
+      <p>{t("tagline")}</p>
+      <p class="meta">{t("about-copyright")}</p>
       <footer>
-        <button type="button" class="primary" onclick={onClose}>Close</button>
+        <button type="button" class="primary" onclick={onClose}>{t("about-close")}</button>
       </footer>
     </div>
   </div>
