@@ -24,6 +24,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Disable Defender real-time scan for workspace (Windows only)
+        # Windows-hosted runners ship Defender with real-time
+        # protection on. When Tantivy commits a segment, Defender
+        # briefly opens the new file to scan it, holding a handle
+        # that races with Tantivy's rename/delete and surfaces as
+        # `Access is denied (os error 5)`. PR #16 hit this in
+        # `phase_04_index::recovery_from_simulated_kill_dash_9`.
+        # Excluding the workspace + runner temp is the standard fix
+        # used by most Rust-on-Windows CI flows.
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Add-MpPreference -ExclusionPath $env:GITHUB_WORKSPACE
+          Add-MpPreference -ExclusionPath $env:RUNNER_TEMP
+
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
