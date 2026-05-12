@@ -1,9 +1,9 @@
 <script lang="ts" module>
-  function journalLabel(fs: string): string {
+  function journalLabel(fs: string, tFn: (k: string) => string): string {
     const f = fs.toLowerCase();
-    if (f === "ntfs" || f === "refs" || f === "exfat" || f === "fat32") return "Enable USN Journal";
-    if (f === "apfs" || f === "hfs+") return "Enable FSEvents stream";
-    return "Enable inotify (or fanotify if elevated)";
+    if (f === "ntfs" || f === "refs" || f === "exfat" || f === "fat32") return tFn("settings-vol-enable-usn");
+    if (f === "apfs" || f === "hfs+") return tFn("settings-vol-enable-fsevents");
+    return tFn("settings-vol-enable-inotify");
   }
   function isMacFs(fs: string): boolean { const f = fs.toLowerCase(); return f === "apfs" || f === "hfs+"; }
   function isLinuxFs(fs: string): boolean { const f = fs.toLowerCase(); return ["ext4", "btrfs", "zfs", "xfs", "f2fs"].includes(f); }
@@ -17,6 +17,7 @@
   import Checkbox from "../controls/Checkbox.svelte";
   import TextInput from "../controls/TextInput.svelte";
   import NumberInput from "../controls/NumberInput.svelte";
+  import { t } from "../../../lib/i18n/t";
   import type { VolumeInfo } from "../../../lib/ipc/types";
 
   let selectedId = $state<string | null>(null);
@@ -116,7 +117,7 @@
 
   function fmt(bytes: number): string {
     if (!bytes) return "—";
-    const units = ["B", "KB", "MB", "GB", "TB"];
+    const units = [t("unit-b"), t("unit-kb"), t("unit-mb"), t("unit-gb"), t("unit-tb")];
     let n = bytes;
     let i = 0;
     while (n >= 1024 && i < units.length - 1) { n /= 1024; i++; }
@@ -124,26 +125,25 @@
   }
 </script>
 
-<h1>Volumes</h1>
-<p class="hint">Cross-platform analogue of voidtools-Everything's NTFS / ReFS panels. Auto-detects
-NTFS / ReFS / exFAT / FAT32 (Win), APFS / HFS+ (macOS), ext4 / Btrfs / ZFS / XFS / F2FS (Linux).</p>
+<h1>{t("settings-node-volumes")}</h1>
+<p class="hint">{t("volumes-hint")}</p>
 
-<Section title="Auto-include">
-  <Checkbox id="vols-auto-fixed" label="Automatically include new fixed volumes"
+<Section title={t("volumes-section-auto-include")}>
+  <Checkbox id="vols-auto-fixed" label={t("settings-vol-auto-fixed")}
     checked={volsCfg.auto_include_fixed} onChange={(v) => patchTopLevel({ auto_include_fixed: v })} />
-  <Checkbox id="vols-auto-removable" label="Automatically include new removable volumes"
+  <Checkbox id="vols-auto-removable" label={t("settings-vol-auto-removable")}
     checked={volsCfg.auto_include_removable} onChange={(v) => patchTopLevel({ auto_include_removable: v })} />
-  <Checkbox id="vols-auto-remove-offline" label="Automatically remove offline volumes"
+  <Checkbox id="vols-auto-remove-offline" label={t("settings-vol-auto-remove-offline")}
     checked={volsCfg.auto_remove_offline} onChange={(v) => patchTopLevel({ auto_remove_offline: v })} />
 </Section>
 
 <div class="split">
   <div class="vlist">
-    <h3>Detected volumes</h3>
+    <h3>{t("volumes-list-title")}</h3>
     {#if volumesStore.loading}
-      <p class="muted">Detecting…</p>
+      <p class="muted">{t("volumes-detecting")}</p>
     {:else if volumesStore.list.length === 0}
-      <p class="muted">No volumes detected.</p>
+      <p class="muted">{t("volumes-empty")}</p>
     {:else}
       <ul>
         {#each volumesStore.list as v (v.id)}
@@ -160,47 +160,47 @@ NTFS / ReFS / exFAT / FAT32 (Win), APFS / HFS+ (macOS), ext4 / Btrfs / ZFS / XFS
     {/if}
     {#if selected}
       <button type="button" class="remove"
-        onclick={() => selected && volumesStore.remove(selected.id)}>Remove</button>
+        onclick={() => selected && volumesStore.remove(selected.id)}>{t("settings-vol-remove")}</button>
     {/if}
   </div>
 
   <div class="vdetail">
     {#if selected}
-      <Checkbox id={`vol-${selected.id}-indexed`} label="Include in index"
+      <Checkbox id={`vol-${selected.id}-indexed`} label={t("settings-vol-include")}
         checked={selected.indexed} disabled={busyVol === selected.id}
         onChange={(v) => selected && setIndexed(selected, v)} />
-      <TextInput id={`vol-${selected.id}-include`} label="Include only (glob/regex)"
+      <TextInput id={`vol-${selected.id}-include`} label={t("settings-vol-include-only")}
         value={selected.include_only ?? ""} onChange={(s) => selected && setIncludeOnly(selected, s)} />
       <Checkbox id={`vol-${selected.id}-journal`}
-        label={journalLabel(selected.fs_kind)}
+        label={journalLabel(selected.fs_kind, t)}
         checked={selected.journal_enabled} disabled={!selected.indexed}
         onChange={(v) => selected && setJournal(selected, v)} />
-      <NumberInput id={`vol-${selected.id}-buf`} label="Journal buffer size (KB)"
+      <NumberInput id={`vol-${selected.id}-buf`} label={t("settings-vol-buffer")}
         min={0} max={65536} value={selected.journal_buffer_kb}
         onChange={(n) => selected && setBuffer(selected, n)} />
       {#if selected.fs_kind.toLowerCase() === "ntfs"}
-        <NumberInput id={`vol-${selected.id}-alloc`} label="Allocation delta (KB)"
+        <NumberInput id={`vol-${selected.id}-alloc`} label={t("settings-vol-allocation-delta")}
           min={0} max={65536} value={selected.allocation_delta_kb ?? 0}
           onChange={(n) => selected && setAlloc(selected, n)} />
       {/if}
-      <Checkbox id={`vol-${selected.id}-load-recent`} label="Load recent changes from journal on startup"
+      <Checkbox id={`vol-${selected.id}-load-recent`} label={t("settings-vol-load-recent")}
         checked={selected.load_recent_changes}
         onChange={(v) => selected && setLoadRecent(selected, v)} />
-      <Checkbox id={`vol-${selected.id}-monitor`} label="Monitor changes"
+      <Checkbox id={`vol-${selected.id}-monitor`} label={t("settings-vol-monitor")}
         checked={selected.monitor_changes}
         onChange={(v) => selected && setMonitor(selected, v)} />
 
       {#if selected.fs_kind.toLowerCase() === "ntfs"}
-        <button type="button" onclick={() => selected && volumesStore.recreateJournal(selected.id)}>Recreate journal</button>
+        <button type="button" onclick={() => selected && volumesStore.recreateJournal(selected.id)}>{t("settings-vol-recreate-journal")}</button>
       {/if}
       {#if isMacFs(selected.fs_kind)}
-        <button type="button" onclick={() => selected && volumesStore.resetStream(selected.id)}>Reset FSEvents stream</button>
+        <button type="button" onclick={() => selected && volumesStore.resetStream(selected.id)}>{t("settings-vol-reset-stream")}</button>
       {/if}
       {#if isLinuxFs(selected.fs_kind)}
-        <button type="button" onclick={() => volumesStore.upgradeFanotify()}>Upgrade to fanotify (polkit)</button>
+        <button type="button" onclick={() => volumesStore.upgradeFanotify()}>{t("settings-vol-upgrade-fanotify")}</button>
       {/if}
     {:else}
-      <p class="muted">Select a volume to configure it.</p>
+      <p class="muted">{t("volumes-select-prompt")}</p>
     {/if}
   </div>
 </div>

@@ -380,3 +380,409 @@ settings-about-version = Sourcerer { $version }
 settings-about-license = 许可证
 settings-about-credits = 致谢
 settings-about-notices = 开源声明
+
+# --- TASK-098 新增内容(简体中文):提示、占位符、子分节、Toast 通知 ---
+
+# 向导细节优化。
+wizard-aria-label = 首次运行向导
+wizard-step-of-total = 第 { $step } 步,共 { $total } 步
+wizard-roots-hint = 添加你希望 Sourcerer 监视的文件夹或卷。稍后可在“索引”设置中更改。
+wizard-browse = 浏览…
+wizard-roots-placeholder = …或粘贴路径
+wizard-roots-add = 添加
+wizard-roots-remove = 移除
+wizard-roots-empty = 尚未配置任何根目录。
+wizard-locale-hint = Sourcerer 支持 18 种语言,稍后可随时切换。
+wizard-theme-hint = “跟随系统”会沿用你的 OS 外观设置。
+wizard-back = 上一步
+wizard-next = 下一步
+
+# 状态栏细节优化。
+statusbar-hotkey-hint = 热键:{ $hotkey }
+statusbar-cycle-theme = 循环切换主题
+statusbar-indexed-suffix = 已索引
+
+# 结果 / 透镜。
+lens-expand = 展开透镜
+lens-collapse = 折叠透镜
+lens-no-matches = 此透镜中没有匹配项。
+
+# 预览窗格。
+preview-header = 预览
+preview-loading = 加载中…
+preview-select-file = 选择一个文件以预览。
+preview-unavailable = 无可用预览
+
+# 书签。
+bookmarks-label = ★ 书签
+bookmarks-empty-hint = 尚无书签。按 Ctrl+D 保存当前查询。
+bookmarks-organize-title = 整理书签
+bookmarks-organize-empty = 尚无书签。
+bookmarks-rename = 重命名
+bookmarks-close = 关闭
+
+# 设置树补充项。
+settings-group-history = 历史记录
+settings-group-privacy = 隐私与更新
+settings-group-logs = 日志与调试
+settings-group-backup = 备份、导出、重置
+settings-tree-custom-lens = 自定义
+settings-unsaved-changes = 未保存的更改
+
+# 关于对话框。
+about-dialog-title = Sourcerer
+about-copyright = 版权所有 © 2026 Mike Weaver。保留所有权利。
+about-close = 关闭
+
+# 连接端点对话框。
+connect-ftp-title = 连接到 FTP 服务器
+connect-ftp-host = 主机:
+connect-ftp-port = 端口:
+connect-ftp-username = 用户名:
+connect-ftp-password = 密码:
+connect-ftp-link-type = 链接类型:
+
+# 界面面板。
+ui-hint = 主题、托盘 / 菜单栏集成、即时搜索、行密度。与 voidtools-Everything 直接对齐,Sourcerer 新增项以 (+) 标记。
+ui-section-theme = 主题
+ui-theme-system-default = 跟随系统(默认)
+ui-section-tray = 托盘 / 菜单栏
+ui-section-search-behavior = 搜索行为
+ui-section-result-rows = 结果行
+ui-single-click-system-default = 跟随系统设置(默认)
+ui-single-click-always = 始终单击
+ui-single-click-always-double = 始终双击
+ui-underline-always = 始终
+ui-underline-on-hover = 鼠标悬停时
+ui-underline-never = 从不
+
+# 主页面板。
+home-hint = 应用启动时加载的默认值 — 每个下拉菜单都可以保持“使用上次值”或固定为一个指定值。透镜可见性 / 结果数量上限为 Sourcerer 新增项 (+)。
+home-section-match = 匹配默认值
+home-section-search-sort = 搜索与排序默认值
+home-search-placeholder = 默认为空
+home-section-index = 索引来源
+home-file-list-path = 文件列表路径
+home-https-endpoint = HTTPS API 端点 URL
+home-endpoint-token = 令牌(显示指纹)
+
+# 备份面板。
+backup-section-settings = 设置 (+)
+backup-section-bookmarks = 书签 + 自定义提取器 (+)
+backup-section-reset = 重置
+backup-toast-exported = 已将设置导出到 { $path }
+backup-toast-export-failed = 导出失败:{ $error }
+backup-toast-imported = 已导入设置
+backup-toast-import-failed = 导入失败:{ $error }
+backup-toast-bookmarks-exported = 已导出书签
+backup-toast-bookmarks-export-failed = 书签导出失败:{ $error }
+backup-toast-bookmarks-imported = 已导入书签
+backup-toast-bookmarks-import-failed = 书签导入失败:{ $error }
+backup-confirm-reset = 将所有设置重置为默认值?此操作无法撤销(对话框将保持打开)。
+backup-toast-reset = 已重置所有设置
+
+# 键盘面板。
+keyboard-section-global = 全局热键
+keyboard-placeholder-example = Super+Space
+keyboard-section-commands = 命令
+keyboard-placeholder-command = 命令 ID(例如 file.export_results)
+keyboard-placeholder-binding = Ctrl+K, B
+
+# 历史记录面板。
+history-section-search = 搜索历史
+history-section-run = 运行历史
+history-section-privacy = 隐私 (+)
+history-record-filename = 记录文件名透镜历史
+history-record-content = 记录内容透镜历史
+history-record-audio = 记录音频透镜历史
+history-record-similarity = 记录相似度透镜历史
+
+# 区域面板。
+locale-section-language = 语言 (+)
+locale-section-time-date = 时间 / 日期 (+)
+locale-date-os = 跟随系统
+locale-date-iso8601 = ISO 8601
+locale-date-rfc3339 = RFC 3339
+locale-date-custom-label = 自定义
+locale-date-custom-format = 自定义格式
+locale-date-placeholder = YYYY-MM-DD
+locale-section-numbers = 数字 (+)
+locale-number-os = 跟随系统
+locale-number-custom = 自定义
+locale-thousands-sep = 千位分隔符
+locale-decimal-sep = 小数分隔符
+
+# 文件夹面板。
+folders-hint = 默认卷以外的其他受监视文件夹。
+folders-list-title = 监视的文件夹
+folders-empty = 尚未添加任何文件夹。
+folders-remove = 移除
+folders-section-title-dynamic = { $path } 的设置
+folders-section-schedule = 重新扫描计划
+folders-schedule-daily = 每天 HH:MM
+folders-schedule-hours = 每 N 小时
+folders-schedule-never = 从不
+folders-hour = 小时
+folders-minute = 分钟
+folders-hours = 小时数
+folders-id-label = 文件夹 ID(只读)
+folders-select-prompt = 选择一个文件夹以进行配置。
+folders-section-extras = Sourcerer 扩展功能 (+)
+folders-extras-note = 此版本默认启用“从睡眠恢复时重新扫描”;该开关将在 Phase 13 的打磨阶段加入文件夹级控件。
+
+# 卷面板。
+volumes-hint = voidtools-Everything 的 NTFS / ReFS 面板的跨平台对应版本。自动检测 NTFS / ReFS / exFAT / FAT32(Win)、APFS / HFS+(macOS)、ext4 / Btrfs / ZFS / XFS / F2FS(Linux)。
+volumes-section-auto-include = 自动包含
+volumes-list-title = 检测到的卷
+volumes-detecting = 检测中…
+volumes-empty = 未检测到任何卷。
+volumes-select-prompt = 选择一个卷以进行配置。
+
+# 关于面板细节优化。
+about-section-version = 版本 (+)
+about-section-license = 许可证 (+)
+about-license-text = Mike Weaver — 保留所有权利。本软件为专有软件。
+about-license-spdx = SPDX:{ $spdx }
+about-section-credits = 致谢 (+)
+about-credits-inspired = 灵感来自 voidtools 的 Everything。
+about-credits-voidtools = voidtools.com
+about-credits-repo = 项目仓库
+
+# --- 菜单栏(PRD §8.28)— 每个标签 + 子菜单 + 状态栏悬停提示 ---
+
+# 文件菜单。
+menu-file-hint = 包含用于操作 Sourcerer 的命令。
+menu-file-new-window = 新建搜索窗口
+menu-file-open-list = 打开文件列表…
+menu-file-close-list = 关闭文件列表
+menu-file-close = 关闭
+menu-file-export-results = 导出结果…
+menu-file-export-bundle = 导出索引包…
+menu-file-exit = 退出
+
+# 编辑菜单。
+menu-edit-hint = 包含用于编辑搜索结果的命令。
+menu-edit-cut = 剪切
+menu-edit-copy = 复制
+menu-edit-paste = 粘贴
+menu-edit-copy-to-folder = 复制到文件夹…
+menu-edit-move-to-folder = 移动到文件夹…
+menu-edit-select-all = 全选
+menu-edit-invert-selection = 反向选择
+menu-edit-advanced = 高级
+menu-edit-copy-full-name = 复制完整名称
+menu-edit-copy-path = 复制路径
+menu-edit-copy-filename = 复制文件名
+menu-edit-copy-as-json = 复制为 JSON
+menu-edit-copy-with-metadata = 复制并附带元数据
+menu-edit-copy-as-bundle-ref = 复制为 Sourcerer 包引用
+
+# 视图菜单。
+menu-view-hint = 包含用于操作视图的命令。
+menu-view-filters = 筛选器
+menu-view-preview = 预览
+menu-view-status-bar = 状态栏
+menu-view-thumbs-xl = 超大缩略图
+menu-view-thumbs-l = 大缩略图
+menu-view-thumbs-m = 中缩略图
+menu-view-details = 详细信息
+menu-view-window-size = 窗口大小
+menu-view-window-size-hint = 包含用于调整窗口大小的命令。
+menu-view-window-small = 小
+menu-view-window-medium = 中
+menu-view-window-large = 大
+menu-view-window-auto = 自动适应
+menu-view-zoom = 缩放
+menu-view-zoom-hint = 包含用于调整字体和图标大小的命令。
+menu-view-zoom-in = 放大
+menu-view-zoom-out = 缩小
+menu-view-zoom-reset = 重置
+menu-view-sort-by = 排序方式
+menu-view-sort-by-hint = 包含用于对结果列表排序的命令。
+menu-view-sort-name = 名称
+menu-view-sort-path = 路径
+menu-view-sort-size = 大小
+menu-view-sort-ext = 扩展名
+menu-view-sort-type = 类型
+menu-view-sort-modified = 修改日期
+menu-view-sort-created = 创建日期
+menu-view-sort-accessed = 访问日期
+menu-view-sort-attributes = 属性
+menu-view-sort-recently-changed = 最近变更日期
+menu-view-sort-run-count = 运行次数
+menu-view-sort-run-date = 运行日期
+menu-view-sort-file-list-filename = 文件列表文件名
+menu-view-sort-lufs = LUFS
+menu-view-sort-length = 时长
+menu-view-sort-similarity = 相似度分数
+menu-view-sort-asc = 升序
+menu-view-sort-desc = 降序
+menu-view-go-to = 跳转
+menu-view-refresh = 刷新
+menu-view-theme = 主题
+menu-view-theme-hint = 在跟随系统、浅色或深色主题之间切换。
+menu-view-lenses = 透镜
+menu-view-lenses-hint = 切换每个透镜在结果列表中的可见性。
+menu-view-on-top = 置顶
+menu-view-on-top-hint = 包含用于使此窗口保持在其他窗口之上的命令。
+menu-view-on-top-never = 从不
+menu-view-on-top-always = 始终
+menu-view-on-top-while-searching = 搜索时
+
+# 搜索菜单。
+menu-search-hint = 包含搜索开关。
+menu-search-match-case = 区分大小写
+menu-search-match-whole-word = 全字匹配
+menu-search-match-path = 匹配路径
+menu-search-match-diacritics = 区分变音符号
+menu-search-enable-regex = 启用 Regex
+menu-search-advanced = 高级搜索…
+menu-search-add-to-filters = 添加到筛选器…
+menu-search-organize-filters = 整理筛选器…
+menu-search-filter-everything = 全部
+menu-search-filter-archive = 压缩包(归档)
+menu-search-filter-folder = 文件夹
+menu-search-filter-custom = 自定义筛选器…
+
+# 书签菜单。
+menu-bookmarks-hint = 包含用于操作书签的命令。
+menu-bookmarks-add = 添加到书签
+menu-bookmarks-organize = 整理书签…
+
+# 工具菜单。
+menu-tools-hint = 包含工具命令。
+menu-tools-connect = 连接到 FTP 服务器…
+menu-tools-disconnect = 断开 FTP 服务器连接
+menu-tools-file-list-editor = 文件列表编辑器…
+menu-tools-index-maintenance = 索引维护
+menu-tools-index-maintenance-hint = 索引维护工具。
+menu-tools-verify-index = 校验索引…
+menu-tools-compact-index = 压缩索引…
+menu-tools-rebuild-index = 强制重建索引…
+menu-tools-custom-extractor = 自定义提取器管理器…
+menu-tools-custom-extractor-hint = 管理 Wasm 沙盒中的自定义提取器。
+menu-tools-options = 选项…
+
+# 帮助菜单。
+menu-help-hint = 包含帮助命令。
+menu-help-help = Sourcerer 帮助
+menu-help-search-syntax = 搜索语法
+menu-help-regex-syntax = Regex 语法
+menu-help-audio-ref = 音频修饰符参考
+menu-help-similarity-ref = 相似度修饰符参考
+menu-help-cli-options = 命令行选项
+menu-help-website = Sourcerer 官网
+menu-help-check-updates = 检查更新…
+menu-help-sponsor = 赞助 / 捐赠
+menu-help-about = 关于 Sourcerer…
+
+# 结果列标题(表头行使用的简短形式)。
+column-name = 名称
+column-path = 路径
+column-size = 大小
+column-modified = 修改时间
+column-type = 类型
+column-ext = 扩展名
+column-sort-by = 按 { $name } 排序
+column-resize = 调整 { $name } 列宽
+
+# zh-CN — 设置面板内使用的小节副标题栏。
+# 在多个设置面板中使用的小节副标题栏。
+section-behavior = 行为
+section-rendering = 渲染
+section-status-bar = 状态栏
+section-display-format = 显示格式
+section-loading-priority = 加载优先级
+section-compatibility = 兼容性
+section-storage = 存储
+section-index-fields = 索引字段
+section-maintenance = 维护
+section-logging = 日志
+section-tools = 工具
+section-privacy = 隐私
+section-auto-update = 自动更新 (+)
+section-bind = 绑定
+section-lens = 镜头
+section-budgets = 预算
+section-other = 其他
+section-per-format-mode = 按格式模式
+section-loudness = 响度
+section-tuning = 调优 (+)
+section-minhash-lsh = MinHash + LSH 参数 (+)
+section-top-level = 顶层
+section-file-globs = 文件通配符
+section-file-list-settings = 选定文件列表的设置
+section-editor-format = 编辑器 + 格式 (E + +)
+section-api-server = API 服务器 (E adapted)
+section-sourcerer-extras = Sourcerer 附加项 (+)
+section-sourcerer-additions = Sourcerer 新增项 (+)
+section-sourcerer-extensions = Sourcerer 扩展项 (+)
+
+# 跨多个下拉菜单使用的通用选项标签。
+opt-use-last-value = 使用上次值
+opt-use-last-value-default = 使用上次值 (默认)
+opt-low = 低
+opt-normal-default = 正常 (默认)
+opt-high = 高
+opt-disabled = 已禁用
+opt-off = 关闭
+opt-on-battery = 使用电池时
+opt-always = 始终
+opt-clamp-default = 钳制 (默认)
+opt-wrap = 换行
+opt-none = 无
+opt-strict-refuse = 严格 (损坏时拒绝查询)
+opt-lenient-warn = 宽松 (警告但继续查询)
+opt-system-default = 系统默认
+opt-drag-select = 拖拽选择
+opt-auto-binary = 自动 (二进制)
+opt-auto-decimal = 自动 (十进制)
+
+# 数字输入旁显示的单位后缀。
+unit-days = 天
+unit-kb = KB
+unit-mb = MB
+
+# 其他下拉选项标签（提取器模式 / 排序 / 视图 / 索引 / 面板 / 优先级 / LUFS / 峰值 / 日志级别 / 更新通道）。
+opt-eager = 主动
+opt-lazy-default = 惰性（默认）
+opt-on = 开启
+opt-on-default = 开启（默认）
+opt-all = 全部
+opt-weekly = 每周
+opt-monthly = 每月
+opt-name-asc = 名称升序
+opt-name-desc = 名称降序
+opt-size-asc = 大小升序
+opt-size-desc = 大小降序
+opt-modified-asc = 修改日期升序
+opt-modified-desc = 修改日期降序
+opt-compact = 紧凑
+opt-comfortable = 舒适
+opt-details = 详细信息
+opt-thumbnails = 缩略图
+opt-local-db-default = 本地数据库（默认）
+opt-file-list = 文件列表
+opt-https-endpoint = HTTPS API 端点
+opt-right-default = 右侧（默认）
+opt-bottom = 底部
+opt-or-and-default = OR > AND（默认）
+opt-and-or = AND > OR
+opt-ebu-r128-default = EBU R128（默认）
+opt-atsc-a85 = ATSC A/85
+opt-spotify = Spotify (-14)
+opt-apple-music = Apple Music (-16)
+opt-broadcast-film = 广播电影 (-23)
+opt-true-peak = 真峰值（4× 过采样，默认）
+opt-sample-peak = 采样峰值
+opt-auto-per-doc = 自动（按文档）
+opt-log-error = 错误
+opt-log-warn = 警告
+opt-log-info-default = 信息（默认）
+opt-log-debug = 调试
+opt-log-trace = 跟踪
+
+# unit-b / unit-gb / unit-tb (size units; conventional Latin acronyms — kept as-is, polish per-locale as needed).
+unit-b = B
+unit-gb = GB
+unit-tb = TB

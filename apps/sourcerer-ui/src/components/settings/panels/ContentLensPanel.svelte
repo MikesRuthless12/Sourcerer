@@ -1,11 +1,22 @@
 <script lang="ts">
   import { settingsStore } from "../../../lib/stores/settings.svelte";
   import { settingsDialog } from "../../../lib/stores/settings_dialog.svelte";
+  import { t } from "../../../lib/i18n/t";
+  import { LOCALES } from "../../../lib/i18n/bundle";
   import Section from "../controls/Section.svelte";
   import Checkbox from "../controls/Checkbox.svelte";
   import Dropdown from "../controls/Dropdown.svelte";
   import NumberInput from "../controls/NumberInput.svelte";
   import type { ContentLensSettings } from "../../../lib/ipc/types";
+
+  // Stop-words language list is derived from the 18 ship-locales so the
+  // entries are shown in their native scripts (same convention as the
+  // LocalePanel current-locale dropdown). The leading "auto" option is
+  // a per-document detect; it's not a locale.
+  const STOP_WORDS_OPTIONS = $derived([
+    { value: "auto", label: t("opt-auto-per-doc") },
+    ...LOCALES.map((l) => ({ value: l.value, label: l.label }))
+  ]);
 
   const FORMATS = [
     "plain_text",
@@ -34,44 +45,44 @@
   }
 </script>
 
-<h1>Content Lens (X-02)</h1>
+<h1>{t("lens-content")}</h1>
 
-<Section title="Lens">
-  <Checkbox id="lc-en" label="Enable content lens"
+<Section title={t("section-lens")}>
+  <Checkbox id="lc-en" label={t("settings-lc-enable")}
     checked={settingsStore.state.lens_content.enabled}
     onChange={(v) => patch({ enabled: v })} />
 </Section>
 
-<Section title="Per-format Mode">
+<Section title={t("section-per-format-mode")}>
   {#each FORMATS as fmt (fmt)}
     <Dropdown id={`lc-fmt-${fmt}`} label={fmt}
       value={effectiveMode(fmt)}
-      options={[ { value: "eager", label: "Eager" }, { value: "lazy", label: "Lazy (default)" }, { value: "disabled", label: "Disabled" } ]}
+      options={[ { value: "eager", label: t("opt-eager") }, { value: "lazy", label: t("opt-lazy-default") }, { value: "disabled", label: t("opt-disabled") } ]}
       onChange={(v) => setFormatMode(fmt, v)} />
   {/each}
 </Section>
 
-<Section title="Budgets">
-  <NumberInput id="lc-time" label="Time budget per document" min={50} max={60000} suffix="ms"
+<Section title={t("section-budgets")}>
+  <NumberInput id="lc-time" label={t("settings-lc-time-budget")} min={50} max={60000} suffix="ms"
     value={settingsStore.state.lens_content.time_budget_ms}
     onChange={(n) => patch({ time_budget_ms: n })} />
-  <NumberInput id="lc-mem" label="Memory ceiling per document" min={16} max={4096} suffix="MB"
+  <NumberInput id="lc-mem" label={t("settings-lc-mem-ceiling")} min={16} max={4096} suffix={t("unit-mb")}
     value={settingsStore.state.lens_content.memory_ceiling_mb}
     onChange={(n) => patch({ memory_ceiling_mb: n })} />
-  <NumberInput id="lc-snip" label="Snippet length" min={50} max={2000} suffix="chars"
+  <NumberInput id="lc-snip" label={t("settings-lc-snippet-len")} min={50} max={2000} suffix="chars"
     value={settingsStore.state.lens_content.snippet_length}
     onChange={(n) => patch({ snippet_length: n })} />
 </Section>
 
-<Section title="Other">
-  <Dropdown id="lc-stop" label="Stop-words language"
+<Section title={t("section-other")}>
+  <Dropdown id="lc-stop" label={t("settings-lc-stop-words")}
     value={settingsStore.state.lens_content.stop_words_language}
-    options={[ { value: "auto", label: "Auto (per-doc)" }, { value: "en", label: "English" }, { value: "es", label: "Spanish" }, { value: "zh-CN", label: "Chinese (Simplified)" }, { value: "hi", label: "Hindi" }, { value: "ar", label: "Arabic" }, { value: "pt-BR", label: "Portuguese (BR)" }, { value: "ru", label: "Russian" }, { value: "ja", label: "Japanese" }, { value: "de", label: "German" }, { value: "fr", label: "French" }, { value: "ko", label: "Korean" }, { value: "it", label: "Italian" }, { value: "tr", label: "Turkish" }, { value: "vi", label: "Vietnamese" }, { value: "pl", label: "Polish" }, { value: "nl", label: "Dutch" }, { value: "id", label: "Indonesian" }, { value: "uk", label: "Ukrainian" } ]}
+    options={STOP_WORDS_OPTIONS}
     onChange={(v) => patch({ stop_words_language: v })} />
-  <Checkbox id="lc-re-ext" label="Re-extract on settings change"
+  <Checkbox id="lc-re-ext" label={t("settings-lc-re-extract")}
     checked={settingsStore.state.lens_content.re_extract_on_settings_change}
     onChange={(v) => patch({ re_extract_on_settings_change: v })} />
-  <Checkbox id="lc-verify" label="Verify extracted-text blob checksums on read"
+  <Checkbox id="lc-verify" label={t("settings-lc-verify-blobs")}
     checked={settingsStore.state.lens_content.verify_blob_checksums_on_read}
     onChange={(v) => patch({ verify_blob_checksums_on_read: v })} />
 </Section>

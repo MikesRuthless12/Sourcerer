@@ -3,6 +3,7 @@
   import { queryStore } from "../../lib/stores/query.svelte";
   import { resultsStore } from "../../lib/stores/results.svelte";
   import { typeFilterStore } from "../../lib/stores/type_filter.svelte";
+  import { t } from "../../lib/i18n/t";
   import type { Bookmark } from "../../lib/ipc/types";
 
   let open = $state(false);
@@ -30,12 +31,12 @@
       open = !open;
     }}
   >
-    ★ Bookmarks
+    {t("bookmarks-label")}
   </button>
   {#if open}
     <div class="bm-list" role="menu">
       {#if bookmarksStore.items.length === 0}
-        <div class="empty">No bookmarks yet. Press Ctrl+D to save the current query.</div>
+        <div class="empty">{t("bookmarks-empty-hint")}</div>
       {:else}
         {#each bookmarksStore.items as bm (bm.id)}
           <button

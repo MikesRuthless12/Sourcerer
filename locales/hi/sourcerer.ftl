@@ -380,3 +380,412 @@ settings-about-version = Sourcerer { $version }
 settings-about-license = लाइसेंस
 settings-about-credits = श्रेय
 settings-about-notices = ओपन-सोर्स सूचनाएँ
+
+# --- TASK-098 परिवर्धन: संकेत, प्लेसहोल्डर, उप-अनुभाग, टोस्ट ---
+
+# विज़ार्ड परिष्करण।
+wizard-aria-label = पहली बार चलने का विज़ार्ड
+wizard-step-of-total = चरण { $step } / { $total }
+wizard-roots-hint = वे फ़ोल्डर या वॉल्यूम जोड़ें जिन पर आप Sourcerer से नज़र रखवाना चाहते हैं। आप इसे बाद में अनुक्रमणिका सेटिंग्स से बदल सकते हैं।
+wizard-browse = ब्राउज़ करें…
+wizard-roots-placeholder = …या एक पथ चिपकाएँ
+wizard-roots-add = जोड़ें
+wizard-roots-remove = हटाएँ
+wizard-roots-empty = अभी तक कोई रूट कॉन्फ़िगर नहीं किया गया।
+wizard-locale-hint = Sourcerer 18 भाषाओं में उपलब्ध है। आप बाद में बदल सकते हैं।
+wizard-theme-hint = सिस्टम आपकी OS उपस्थिति सेटिंग का अनुसरण करता है।
+wizard-back = वापस
+wizard-next = आगे
+
+# स्थिति बार परिष्करण।
+statusbar-hotkey-hint = हॉटकी: { $hotkey }
+statusbar-cycle-theme = थीम चक्र
+statusbar-indexed-suffix = अनुक्रमित
+
+# परिणाम / लेंस।
+lens-expand = लेंस का विस्तार करें
+lens-collapse = लेंस संक्षिप्त करें
+lens-no-matches = इस लेंस में कोई मिलान नहीं।
+
+# पूर्वावलोकन फलक।
+preview-header = पूर्वावलोकन
+preview-loading = लोड हो रहा है…
+preview-select-file = पूर्वावलोकन के लिए एक फ़ाइल चुनें।
+preview-unavailable = कोई पूर्वावलोकन उपलब्ध नहीं
+
+# बुकमार्क।
+bookmarks-label = ★ बुकमार्क
+bookmarks-empty-hint = अभी तक कोई बुकमार्क नहीं। वर्तमान क्वेरी सहेजने के लिए Ctrl+D दबाएँ।
+bookmarks-organize-title = बुकमार्क व्यवस्थित करें
+bookmarks-organize-empty = अभी तक कोई बुकमार्क नहीं।
+bookmarks-rename = नाम बदलें
+bookmarks-close = बंद करें
+
+# सेटिंग्स ट्री अतिरिक्त।
+settings-group-history = इतिहास
+settings-group-privacy = गोपनीयता और अद्यतन
+settings-group-logs = लॉग और डीबग
+settings-group-backup = बैकअप, निर्यात, रीसेट
+settings-tree-custom-lens = कस्टम
+settings-unsaved-changes = असहेजे परिवर्तन
+
+# परिचय संवाद।
+about-dialog-title = Sourcerer
+about-copyright = कॉपीराइट © 2026 Mike Weaver. सर्वाधिकार सुरक्षित।
+about-close = बंद करें
+
+# एंडपॉइंट कनेक्ट संवाद।
+connect-ftp-title = FTP सर्वर से कनेक्ट करें
+connect-ftp-host = होस्ट:
+connect-ftp-port = पोर्ट:
+connect-ftp-username = उपयोगकर्ता नाम:
+connect-ftp-password = पासवर्ड:
+connect-ftp-link-type = लिंक प्रकार:
+
+# UI पैनल।
+ui-hint = थीम, ट्रे / मेनू-बार एकीकरण, टाइप करते ही खोज, पंक्ति घनत्व। प्रत्यक्ष voidtools-Everything समानता साथ ही (+) से चिह्नित Sourcerer परिवर्धन।
+ui-section-theme = थीम
+ui-theme-system-default = सिस्टम (डिफ़ॉल्ट)
+ui-section-tray = ट्रे / मेनू बार
+ui-section-search-behavior = खोज व्यवहार
+ui-section-result-rows = परिणाम पंक्तियाँ
+ui-single-click-system-default = सिस्टम सेटिंग्स (डिफ़ॉल्ट)
+ui-single-click-always = हमेशा सिंगल क्लिक
+ui-single-click-always-double = हमेशा डबल क्लिक
+ui-underline-always = हमेशा
+ui-underline-on-hover = होवर पर
+ui-underline-never = कभी नहीं
+
+# होम पैनल।
+home-hint = ऐप लॉन्च पर लोड किए गए डिफ़ॉल्ट — हर ड्रॉपडाउन "अंतिम मान का उपयोग करें" पर बना रह सकता है या एक निश्चित मान पिन कर सकता है। लेंस दृश्यता / परिणाम सीमाएँ Sourcerer परिवर्धन (+) हैं।
+home-section-match = मिलान डिफ़ॉल्ट
+home-section-search-sort = खोज और क्रम डिफ़ॉल्ट
+home-search-placeholder = डिफ़ॉल्ट रूप से खाली
+home-section-index = अनुक्रमणिका स्रोत
+home-file-list-path = फ़ाइल सूची पथ
+home-https-endpoint = HTTPS API एंडपॉइंट URL
+home-endpoint-token = टोकन (फ़िंगरप्रिंट दिखाया गया)
+
+# बैकअप पैनल।
+backup-section-settings = सेटिंग्स (+)
+backup-section-bookmarks = बुकमार्क + कस्टम एक्सट्रैक्टर (+)
+backup-section-reset = रीसेट
+backup-toast-exported = सेटिंग्स { $path } पर निर्यात की गईं
+backup-toast-export-failed = निर्यात विफल: { $error }
+backup-toast-imported = सेटिंग्स आयात की गईं
+backup-toast-import-failed = आयात विफल: { $error }
+backup-toast-bookmarks-exported = बुकमार्क निर्यात किए गए
+backup-toast-bookmarks-export-failed = बुकमार्क निर्यात विफल: { $error }
+backup-toast-bookmarks-imported = बुकमार्क आयात किए गए
+backup-toast-bookmarks-import-failed = बुकमार्क आयात विफल: { $error }
+backup-confirm-reset = सभी सेटिंग्स को डिफ़ॉल्ट पर रीसेट करें? इसे पूर्ववत नहीं किया जा सकता (संवाद खुला रहता है)।
+backup-toast-reset = सभी सेटिंग्स रीसेट की गईं
+
+# कीबोर्ड पैनल।
+keyboard-section-global = ग्लोबल हॉटकी
+keyboard-placeholder-example = Super+Space
+keyboard-section-commands = कमांड
+keyboard-placeholder-command = कमांड आईडी (उदा. file.export_results)
+keyboard-placeholder-binding = Ctrl+K, B
+
+# इतिहास पैनल।
+history-section-search = खोज इतिहास
+history-section-run = रन इतिहास
+history-section-privacy = गोपनीयता (+)
+history-record-filename = फ़ाइलनाम-लेंस इतिहास रिकॉर्ड करें
+history-record-content = सामग्री-लेंस इतिहास रिकॉर्ड करें
+history-record-audio = ऑडियो-लेंस इतिहास रिकॉर्ड करें
+history-record-similarity = समानता-लेंस इतिहास रिकॉर्ड करें
+
+# लोकेल पैनल।
+locale-section-language = भाषा (+)
+locale-section-time-date = समय / तारीख (+)
+locale-date-os = OS डिफ़ॉल्ट
+locale-date-iso8601 = ISO 8601
+locale-date-rfc3339 = RFC 3339
+locale-date-custom-label = कस्टम
+locale-date-custom-format = कस्टम प्रारूप
+locale-date-placeholder = YYYY-MM-DD
+locale-section-numbers = संख्याएँ (+)
+locale-number-os = OS डिफ़ॉल्ट
+locale-number-custom = कस्टम
+locale-thousands-sep = हज़ारवाँ विभाजक
+locale-decimal-sep = दशमलव विभाजक
+
+# फ़ोल्डर पैनल।
+folders-hint = डिफ़ॉल्ट वॉल्यूम के अतिरिक्त निगरानी किए गए फ़ोल्डर।
+folders-list-title = निगरानी किए गए फ़ोल्डर
+folders-empty = अभी तक कोई फ़ोल्डर नहीं जोड़ा गया।
+folders-remove = हटाएँ
+folders-section-title-dynamic = { $path } के लिए सेटिंग्स
+folders-section-schedule = पुनः स्कैन शेड्यूल
+folders-schedule-daily = हर दिन HH:MM पर
+folders-schedule-hours = हर N घंटे
+folders-schedule-never = कभी नहीं
+folders-hour = घंटा
+folders-minute = मिनट
+folders-hours = घंटे
+folders-id-label = फ़ोल्डर आईडी (केवल पढ़ने के लिए)
+folders-select-prompt = कॉन्फ़िगर करने के लिए एक फ़ोल्डर चुनें।
+folders-section-extras = Sourcerer अतिरिक्त (+)
+folders-extras-note = स्लीप से फिर से शुरू करने पर पुनः स्कैन इस बिल्ड में डिफ़ॉल्ट रूप से सक्षम है; टॉगल चरण 13 के परिष्करण पास में फ़ोल्डर-स्तरीय नियंत्रणों में शामिल होगा।
+
+# वॉल्यूम पैनल।
+volumes-hint = voidtools-Everything के NTFS / ReFS पैनलों का क्रॉस-प्लेटफ़ॉर्म अनुरूप। NTFS / ReFS / exFAT / FAT32 (Win), APFS / HFS+ (macOS), ext4 / Btrfs / ZFS / XFS / F2FS (Linux) का स्वतः पता लगाता है।
+volumes-section-auto-include = स्वतः-शामिल करें
+volumes-list-title = पहचाने गए वॉल्यूम
+volumes-detecting = पता लगा रहा है…
+volumes-empty = कोई वॉल्यूम नहीं पाया गया।
+volumes-select-prompt = कॉन्फ़िगर करने के लिए एक वॉल्यूम चुनें।
+
+# परिचय पैनल परिष्करण।
+about-section-version = संस्करण (+)
+about-section-license = लाइसेंस (+)
+about-license-text = Mike Weaver — सर्वाधिकार सुरक्षित। यह स्वामित्व सॉफ़्टवेयर है।
+about-license-spdx = SPDX: { $spdx }
+about-section-credits = श्रेय (+)
+about-credits-inspired = voidtools द्वारा Everything से प्रेरित।
+about-credits-voidtools = voidtools.com
+about-credits-repo = प्रोजेक्ट रिपॉज़िटरी
+
+# --- मेनू बार (PRD §8.28) — हर लेबल + सबमेनू + स्थिति-बार होवर संकेत ---
+
+# फ़ाइल मेनू।
+menu-file-hint = Sourcerer के साथ काम करने के लिए कमांड शामिल हैं।
+menu-file-new-window = नई खोज विंडो
+menu-file-open-list = फ़ाइल सूची खोलें…
+menu-file-close-list = फ़ाइल सूची बंद करें
+menu-file-close = बंद करें
+menu-file-export-results = परिणाम निर्यात करें…
+menu-file-export-bundle = अनुक्रमणिका बंडल निर्यात करें…
+menu-file-exit = बाहर निकलें
+
+# संपादन मेनू।
+menu-edit-hint = खोज परिणाम संपादित करने के लिए कमांड शामिल हैं।
+menu-edit-cut = काटें
+menu-edit-copy = कॉपी करें
+menu-edit-paste = चिपकाएँ
+menu-edit-copy-to-folder = फ़ोल्डर में कॉपी करें…
+menu-edit-move-to-folder = फ़ोल्डर में ले जाएँ…
+menu-edit-select-all = सभी चुनें
+menu-edit-invert-selection = चयन उलटें
+menu-edit-advanced = उन्नत
+menu-edit-copy-full-name = पूरा नाम कॉपी करें
+menu-edit-copy-path = पथ कॉपी करें
+menu-edit-copy-filename = फ़ाइलनाम कॉपी करें
+menu-edit-copy-as-json = JSON के रूप में कॉपी करें
+menu-edit-copy-with-metadata = मेटाडेटा के साथ कॉपी करें
+menu-edit-copy-as-bundle-ref = Sourcerer बंडल संदर्भ के रूप में कॉपी करें
+
+# दृश्य मेनू।
+menu-view-hint = दृश्य में फेरबदल करने के लिए कमांड शामिल हैं।
+menu-view-filters = फ़िल्टर
+menu-view-preview = पूर्वावलोकन
+menu-view-status-bar = स्थिति बार
+menu-view-thumbs-xl = अतिरिक्त बड़े थंबनेल
+menu-view-thumbs-l = बड़े थंबनेल
+menu-view-thumbs-m = मध्यम थंबनेल
+menu-view-details = विवरण
+menu-view-window-size = विंडो आकार
+menu-view-window-size-hint = विंडो का आकार समायोजित करने के लिए कमांड शामिल हैं।
+menu-view-window-small = छोटा
+menu-view-window-medium = मध्यम
+menu-view-window-large = बड़ा
+menu-view-window-auto = स्वतः फ़िट
+menu-view-zoom = ज़ूम
+menu-view-zoom-hint = फ़ॉन्ट और आइकन आकार समायोजित करने के लिए कमांड शामिल हैं।
+menu-view-zoom-in = ज़ूम इन
+menu-view-zoom-out = ज़ूम आउट
+menu-view-zoom-reset = रीसेट
+menu-view-sort-by = इसके अनुसार क्रमबद्ध करें
+menu-view-sort-by-hint = परिणाम सूची को क्रमबद्ध करने के लिए कमांड शामिल हैं।
+menu-view-sort-name = नाम
+menu-view-sort-path = पथ
+menu-view-sort-size = आकार
+menu-view-sort-ext = एक्सटेंशन
+menu-view-sort-type = प्रकार
+menu-view-sort-modified = संशोधन तिथि
+menu-view-sort-created = निर्माण तिथि
+menu-view-sort-accessed = पहुँच तिथि
+menu-view-sort-attributes = विशेषताएँ
+menu-view-sort-recently-changed = हाल ही में परिवर्तन तिथि
+menu-view-sort-run-count = रन गणना
+menu-view-sort-run-date = रन तिथि
+menu-view-sort-file-list-filename = फ़ाइल सूची फ़ाइलनाम
+menu-view-sort-lufs = LUFS
+menu-view-sort-length = लंबाई
+menu-view-sort-similarity = समानता स्कोर
+menu-view-sort-asc = आरोही
+menu-view-sort-desc = अवरोही
+menu-view-go-to = पर जाएँ
+menu-view-refresh = ताज़ा करें
+menu-view-theme = थीम
+menu-view-theme-hint = सिस्टम, हल्की या गहरी थीम के बीच स्विच करें।
+menu-view-lenses = लेंस
+menu-view-lenses-hint = परिणाम सूची में प्रत्येक लेंस की दृश्यता टॉगल करें।
+menu-view-on-top = ऊपर
+menu-view-on-top-hint = इस विंडो को अन्य विंडो के ऊपर रखने के लिए कमांड शामिल हैं।
+menu-view-on-top-never = कभी नहीं
+menu-view-on-top-always = हमेशा
+menu-view-on-top-while-searching = खोजते समय
+
+# खोज मेनू।
+menu-search-hint = खोज टॉगल शामिल हैं।
+menu-search-match-case = केस मिलान करें
+menu-search-match-whole-word = पूरे शब्द का मिलान करें
+menu-search-match-path = पथ का मिलान करें
+menu-search-match-diacritics = डायक्रिटिक्स का मिलान करें
+menu-search-enable-regex = Regex सक्षम करें
+menu-search-advanced = उन्नत खोज…
+menu-search-add-to-filters = फ़िल्टर में जोड़ें…
+menu-search-organize-filters = फ़िल्टर व्यवस्थित करें…
+menu-search-filter-everything = सब कुछ
+menu-search-filter-archive = संपीड़ित (संग्रह)
+menu-search-filter-folder = फ़ोल्डर
+menu-search-filter-custom = कस्टम फ़िल्टर…
+
+# बुकमार्क मेनू।
+menu-bookmarks-hint = बुकमार्क के साथ काम करने के लिए कमांड शामिल हैं।
+menu-bookmarks-add = बुकमार्क में जोड़ें
+menu-bookmarks-organize = बुकमार्क व्यवस्थित करें…
+
+# उपकरण मेनू।
+menu-tools-hint = उपकरण कमांड शामिल हैं।
+menu-tools-connect = FTP सर्वर से कनेक्ट करें…
+menu-tools-disconnect = FTP सर्वर से डिस्कनेक्ट करें
+menu-tools-file-list-editor = फ़ाइल सूची संपादक…
+menu-tools-index-maintenance = अनुक्रमणिका रखरखाव
+menu-tools-index-maintenance-hint = अनुक्रमणिका रखरखाव उपकरण।
+menu-tools-verify-index = अनुक्रमणिका सत्यापित करें…
+menu-tools-compact-index = अनुक्रमणिका संक्षिप्त करें…
+menu-tools-rebuild-index = अनुक्रमणिका पुनर्निर्माण के लिए बाध्य करें…
+menu-tools-custom-extractor = कस्टम एक्सट्रैक्टर प्रबंधक…
+menu-tools-custom-extractor-hint = Wasm-सैंडबॉक्स्ड कस्टम एक्सट्रैक्टर प्रबंधित करें।
+menu-tools-options = विकल्प…
+
+# सहायता मेनू।
+menu-help-hint = सहायता कमांड शामिल हैं।
+menu-help-help = Sourcerer सहायता
+menu-help-search-syntax = खोज सिंटैक्स
+menu-help-regex-syntax = Regex सिंटैक्स
+menu-help-audio-ref = ऑडियो मॉडिफ़ायर संदर्भ
+menu-help-similarity-ref = समानता मॉडिफ़ायर संदर्भ
+menu-help-cli-options = कमांड लाइन विकल्प
+menu-help-website = Sourcerer वेबसाइट
+menu-help-check-updates = अद्यतन की जाँच करें…
+menu-help-sponsor = प्रायोजक / दान करें
+menu-help-about = Sourcerer के बारे में…
+
+# परिणाम कॉलम शीर्षक (तालिका शीर्षक पंक्ति में उपयोग किए जाने वाले संक्षिप्त रूप)।
+column-name = नाम
+column-path = पथ
+column-size = आकार
+column-modified = संशोधित
+column-type = प्रकार
+column-ext = एक्स्ट
+column-sort-by = { $name } के अनुसार क्रमबद्ध करें
+column-resize = { $name } कॉलम का आकार बदलें
+
+# ============================================================
+# सेटिंग्स पैनल अनुभाग और सामान्य विकल्प
+# ============================================================
+
+# कई सेटिंग्स पैनल के अंदर उपयोग किए जाने वाले अनुभाग उपशीर्षक बार।
+section-behavior = व्यवहार
+section-rendering = रेंडरिंग
+section-status-bar = स्थिति पट्टी
+section-display-format = प्रदर्शन प्रारूप
+section-loading-priority = लोडिंग प्राथमिकता
+section-compatibility = संगतता
+section-storage = भंडारण
+section-index-fields = इंडेक्स फ़ील्ड
+section-maintenance = रखरखाव
+section-logging = लॉगिंग
+section-tools = उपकरण
+section-privacy = गोपनीयता
+section-auto-update = स्वतः-अद्यतन (+)
+section-bind = बाइंड
+section-lens = लेंस
+section-budgets = बजट
+section-other = अन्य
+section-per-format-mode = प्रति-प्रारूप मोड
+section-loudness = ज़ोर
+section-tuning = ट्यूनिंग (+)
+section-minhash-lsh = MinHash + LSH पैरामीटर (+)
+section-top-level = शीर्ष-स्तर
+section-file-globs = फ़ाइल ग्लोब
+section-file-list-settings = चयनित फ़ाइल सूची के लिए सेटिंग्स
+section-editor-format = संपादक + प्रारूप (E + +)
+section-api-server = API सर्वर (E adapted)
+section-sourcerer-extras = Sourcerer अतिरिक्त (+)
+section-sourcerer-additions = Sourcerer जोड़ (+)
+section-sourcerer-extensions = Sourcerer एक्सटेंशन (+)
+
+# कई ड्रॉपडाउन में उपयोग किए जाने वाले सामान्य विकल्प लेबल।
+opt-use-last-value = अंतिम मान का उपयोग करें
+opt-use-last-value-default = अंतिम मान का उपयोग करें (डिफ़ॉल्ट)
+opt-low = कम
+opt-normal-default = सामान्य (डिफ़ॉल्ट)
+opt-high = उच्च
+opt-disabled = अक्षम
+opt-off = बंद
+opt-on-battery = बैटरी पर होने पर
+opt-always = हमेशा
+opt-clamp-default = क्लैंप (डिफ़ॉल्ट)
+opt-wrap = रैप
+opt-none = कोई नहीं
+opt-strict-refuse = सख़्त (भ्रष्टाचार पर प्रश्न अस्वीकार करें)
+opt-lenient-warn = उदार (चेतावनी दें लेकिन प्रश्न करें)
+opt-system-default = सिस्टम डिफ़ॉल्ट
+opt-drag-select = ड्रैग-चयन
+opt-auto-binary = स्वतः (बाइनरी)
+opt-auto-decimal = स्वतः (दशमलव)
+
+# संख्या इनपुट के बगल में दिखाए जाने वाले इकाई प्रत्यय।
+unit-days = दिन
+unit-kb = KB
+unit-mb = MB
+
+# अतिरिक्त ड्रॉपडाउन विकल्प लेबल (एक्सट्रैक्टर मोड / क्रम / दृश्य / इंडेक्स / पैनल / प्राथमिकता / LUFS / पीक / लॉग स्तर / अपडेट चैनल)।
+opt-eager = तत्पर
+opt-lazy-default = आलसी (डिफ़ॉल्ट)
+opt-on = चालू
+opt-on-default = चालू (डिफ़ॉल्ट)
+opt-all = सभी
+opt-weekly = साप्ताहिक
+opt-monthly = मासिक
+opt-name-asc = नाम आरोही
+opt-name-desc = नाम अवरोही
+opt-size-asc = आकार आरोही
+opt-size-desc = आकार अवरोही
+opt-modified-asc = संशोधन तिथि आरोही
+opt-modified-desc = संशोधन तिथि अवरोही
+opt-compact = सघन
+opt-comfortable = आरामदायक
+opt-details = विवरण
+opt-thumbnails = थंबनेल
+opt-local-db-default = स्थानीय डेटाबेस (डिफ़ॉल्ट)
+opt-file-list = फ़ाइल सूची
+opt-https-endpoint = HTTPS API एंडपॉइंट
+opt-right-default = दाएँ (डिफ़ॉल्ट)
+opt-bottom = नीचे
+opt-or-and-default = OR > AND (डिफ़ॉल्ट)
+opt-and-or = AND > OR
+opt-ebu-r128-default = EBU R128 (डिफ़ॉल्ट)
+opt-atsc-a85 = ATSC A/85
+opt-spotify = Spotify (-14)
+opt-apple-music = Apple Music (-16)
+opt-broadcast-film = प्रसारण फ़िल्म (-23)
+opt-true-peak = ट्रू पीक (4× ओवरसैम्पलिंग, डिफ़ॉल्ट)
+opt-sample-peak = सैम्पल पीक
+opt-auto-per-doc = स्वतः (प्रति-दस्तावेज़)
+opt-log-error = त्रुटि
+opt-log-warn = चेतावनी
+opt-log-info-default = जानकारी (डिफ़ॉल्ट)
+opt-log-debug = डीबग
+opt-log-trace = ट्रेस
+
+# unit-b / unit-gb / unit-tb (size units; conventional Latin acronyms — kept as-is, polish per-locale as needed).
+unit-b = B
+unit-gb = GB
+unit-tb = TB

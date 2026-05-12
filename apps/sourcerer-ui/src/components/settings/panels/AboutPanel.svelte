@@ -1,5 +1,6 @@
 <script lang="ts">
   import Section from "../controls/Section.svelte";
+  import { t } from "../../../lib/i18n/t";
 
   const VERSION = "0.19.84";
   const VENDOR_URL = "https://github.com/MikesRuthless12/Sourcerer";
@@ -38,34 +39,33 @@
   async function openVoidtools() { void openUrl(VOIDTOOLS_URL); }
 </script>
 
-<h1>About</h1>
+<h1>{t("settings-node-about")}</h1>
 
-<Section title="Version (+)">
-  <p>Sourcerer <strong>v{VERSION}</strong></p>
+<Section title={t("about-section-version")}>
+  <p>{t("settings-about-version", { version: `v${VERSION}` })}</p>
   <p class="muted">{osVer ?? "Detecting OS…"}</p>
 </Section>
 
-<Section title="License (+)">
-  <p><strong>Mike Weaver — All Rights Reserved.</strong> This is proprietary software.</p>
-  <p class="muted">SPDX: <code>LicenseRef-MikeWeaver-Proprietary-AllRightsReserved</code></p>
+<Section title={t("about-section-license")}>
+  <p><strong>{t("about-license-text")}</strong></p>
+  <p class="muted">{t("about-license-spdx", { spdx: "LicenseRef-MikeWeaver-Proprietary-AllRightsReserved" })}</p>
 </Section>
 
-<Section title="Credits (+)">
+<Section title={t("about-section-credits")}>
   <p>
-    <em>Inspired by Everything by voidtools.</em>
-    <button type="button" class="link" onclick={openVoidtools}>voidtools.com</button>
+    <em>{t("about-credits-inspired")}</em>
+    <button type="button" class="link" onclick={openVoidtools}>{t("about-credits-voidtools")}</button>
   </p>
-  <button type="button" class="link" onclick={openVendor}>Project repository</button>
+  <button type="button" class="link" onclick={openVendor}>{t("about-credits-repo")}</button>
   ·
-  <button type="button" class="link" onclick={openNotices}>Open-source notices</button>
+  <button type="button" class="link" onclick={openNotices}>{t("settings-about-notices")}</button>
   ·
-  <button type="button" class="link" onclick={() => openUrl("https://www.voidtools.com/")}>voidtools.com</button>
+  <button type="button" class="link" onclick={() => openUrl("https://www.voidtools.com/")}>{t("about-credits-voidtools")}</button>
 </Section>
 
 <style>
   h1 { margin: 0 0 4px; font-size: 18px; color: var(--text-primary); }
   p { color: var(--text-primary); font-size: 13px; line-height: 1.5; margin: 4px 0; }
   p.muted { color: var(--text-secondary); font-size: 12px; }
-  code { font-family: var(--font-mono); }
   button.link { background: none; border: 0; color: var(--accent-cyan); cursor: pointer; padding: 0; font: inherit; text-decoration: underline; }
 </style>

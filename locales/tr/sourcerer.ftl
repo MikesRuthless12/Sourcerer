@@ -380,3 +380,408 @@ settings-about-version = Sourcerer { $version }
 settings-about-license = Lisans
 settings-about-credits = Katkıda Bulunanlar
 settings-about-notices = Açık kaynak bildirimleri
+
+# --- TASK-098 eklemeleri: ipuçları, yer tutucular, alt bölümler, bildirimler ---
+
+# Sihirbaz cilası.
+wizard-aria-label = İlk çalıştırma sihirbazı
+wizard-step-of-total = Adım { $step } / { $total }
+wizard-roots-hint = Sourcerer'ın izlemesini istediğiniz klasörleri veya birimleri ekleyin. Bunu daha sonra Dizinler ayarlarından değiştirebilirsiniz.
+wizard-browse = Gözat…
+wizard-roots-placeholder = …veya bir yol yapıştırın
+wizard-roots-add = Ekle
+wizard-roots-remove = Kaldır
+wizard-roots-empty = Henüz yapılandırılmış kök yok.
+wizard-locale-hint = Sourcerer 18 dilde sunulur. Daha sonra değiştirebilirsiniz.
+wizard-theme-hint = Sistem, OS görünüm ayarınızı izler.
+wizard-back = Geri
+wizard-next = İleri
+
+# Durum çubuğu cilası.
+statusbar-hotkey-hint = Kısayol tuşu: { $hotkey }
+statusbar-cycle-theme = Temayı değiştir
+statusbar-indexed-suffix = dizine eklendi
+
+# Sonuçlar / mercekler.
+lens-expand = Merceği genişlet
+lens-collapse = Merceği daralt
+lens-no-matches = Bu mercekte eşleşme yok.
+
+# Önizleme bölmesi.
+preview-header = Önizleme
+preview-loading = Yükleniyor…
+preview-select-file = Önizlemek için bir dosya seçin.
+preview-unavailable = Önizleme kullanılamıyor
+
+# Yer imleri.
+bookmarks-label = ★ Yer İmleri
+bookmarks-empty-hint = Henüz yer imi yok. Mevcut sorguyu kaydetmek için Ctrl+D tuşlarına basın.
+bookmarks-organize-title = Yer İmlerini Düzenle
+bookmarks-organize-empty = Henüz yer imi yok.
+bookmarks-rename = Yeniden Adlandır
+bookmarks-close = Kapat
+
+# Ayarlar ağacı eklentileri.
+settings-group-history = Geçmiş
+settings-group-privacy = Gizlilik ve Güncellemeler
+settings-group-logs = Günlükler ve Hata Ayıklama
+settings-group-backup = Yedekleme, Dışa Aktarma, Sıfırlama
+settings-tree-custom-lens = Özel
+settings-unsaved-changes = kaydedilmemiş değişiklikler
+
+# Hakkında iletişim kutusu.
+about-dialog-title = Sourcerer
+about-copyright = Telif Hakkı © 2026 Mike Weaver. Tüm hakları saklıdır.
+about-close = Kapat
+
+# Uç noktaya bağlan iletişim kutusu.
+connect-ftp-title = FTP Sunucusuna Bağlan
+connect-ftp-host = Ana bilgisayar:
+connect-ftp-port = Bağlantı noktası:
+connect-ftp-username = Kullanıcı adı:
+connect-ftp-password = Parola:
+connect-ftp-link-type = Bağlantı türü:
+
+# Arayüz paneli.
+ui-hint = Tema, tepsi / menü çubuğu entegrasyonu, yazarken arama, satır yoğunluğu. Doğrudan voidtools-Everything paritesi artı (+) ile işaretli Sourcerer eklemeleri.
+ui-section-theme = Tema
+ui-theme-system-default = Sistem (varsayılan)
+ui-section-tray = Tepsi / Menü Çubuğu
+ui-section-search-behavior = Arama Davranışı
+ui-section-result-rows = Sonuç Satırları
+ui-single-click-system-default = Sistem ayarları (varsayılan)
+ui-single-click-always = Her zaman tek tıklama
+ui-single-click-always-double = Her zaman çift tıklama
+ui-underline-always = Her zaman
+ui-underline-on-hover = Üzerine gelince
+ui-underline-never = Asla
+
+# Başlangıç paneli.
+home-hint = Uygulama başlatıldığında yüklenen varsayılanlar — her açılır menü "Son değeri kullan" ile kalabilir veya sabit bir değere sabitlenebilir. Mercek görünürlüğü / sonuç sınırları Sourcerer eklemeleridir (+).
+home-section-match = Eşleştirme Varsayılanları
+home-section-search-sort = Arama ve Sıralama Varsayılanları
+home-search-placeholder = Varsayılan olarak boş
+home-section-index = Dizin Kaynağı
+home-file-list-path = Dosya listesi yolu
+home-https-endpoint = HTTPS API uç noktası URL'si
+home-endpoint-token = Belirteç (parmak izi gösterilir)
+
+# Yedekleme paneli.
+backup-section-settings = Ayarlar (+)
+backup-section-bookmarks = Yer İmleri + Özel Çıkarıcılar (+)
+backup-section-reset = Sıfırla
+backup-toast-exported = Ayarlar { $path } konumuna aktarıldı
+backup-toast-export-failed = Dışa aktarma başarısız: { $error }
+backup-toast-imported = Ayarlar içe aktarıldı
+backup-toast-import-failed = İçe aktarma başarısız: { $error }
+backup-toast-bookmarks-exported = Yer imleri dışa aktarıldı
+backup-toast-bookmarks-export-failed = Yer imi dışa aktarması başarısız: { $error }
+backup-toast-bookmarks-imported = Yer imleri içe aktarıldı
+backup-toast-bookmarks-import-failed = Yer imi içe aktarması başarısız: { $error }
+backup-confirm-reset = Tüm ayarlar varsayılanlara sıfırlansın mı? Bu geri alınamaz (iletişim kutusu açık kalır).
+backup-toast-reset = Tüm ayarlar sıfırlandı
+
+# Klavye paneli.
+keyboard-section-global = Genel Kısayol Tuşları
+keyboard-placeholder-example = Super+Space
+keyboard-section-commands = Komutlar
+keyboard-placeholder-command = komut kimliği (örn. file.export_results)
+keyboard-placeholder-binding = Ctrl+K, B
+
+# Geçmiş paneli.
+history-section-search = Arama Geçmişi
+history-section-run = Çalıştırma Geçmişi
+history-section-privacy = Gizlilik (+)
+history-record-filename = Dosya adı merceği geçmişini kaydet
+history-record-content = İçerik merceği geçmişini kaydet
+history-record-audio = Ses merceği geçmişini kaydet
+history-record-similarity = Benzerlik merceği geçmişini kaydet
+
+# Yerel ayar paneli.
+locale-section-language = Dil (+)
+locale-section-time-date = Saat / Tarih (+)
+locale-date-os = OS varsayılanı
+locale-date-iso8601 = ISO 8601
+locale-date-rfc3339 = RFC 3339
+locale-date-custom-label = Özel
+locale-date-custom-format = Özel biçim
+locale-date-placeholder = YYYY-MM-DD
+locale-section-numbers = Sayılar (+)
+locale-number-os = OS varsayılanı
+locale-number-custom = Özel
+locale-thousands-sep = Binlik ayırıcı
+locale-decimal-sep = Ondalık ayırıcı
+
+# Klasörler paneli.
+folders-hint = Varsayılan birimlerin ötesinde izlenen ek klasörler.
+folders-list-title = İzlenen klasörler
+folders-empty = Henüz eklenen klasör yok.
+folders-remove = Kaldır
+folders-section-title-dynamic = { $path } için ayarlar
+folders-section-schedule = Yeniden tarama zamanlaması
+folders-schedule-daily = Her gün SS:DD'de
+folders-schedule-hours = Her N saatte bir
+folders-schedule-never = Asla
+folders-hour = Saat
+folders-minute = Dakika
+folders-hours = Saat
+folders-id-label = Klasör Kimliği (salt okunur)
+folders-select-prompt = Yapılandırmak için bir klasör seçin.
+folders-section-extras = Sourcerer Ekstraları (+)
+folders-extras-note = Uykudan devam ederken yeniden tarama bu derlemede varsayılan olarak etkindir; geçiş, Aşama 13'ün cila geçişinde klasör düzeyi denetimlerine katılır.
+
+# Birimler paneli.
+volumes-hint = voidtools-Everything'in NTFS / ReFS panellerinin platformlar arası karşılığı. NTFS / ReFS / exFAT / FAT32 (Win), APFS / HFS+ (macOS), ext4 / Btrfs / ZFS / XFS / F2FS (Linux) otomatik algılanır.
+volumes-section-auto-include = Otomatik dahil et
+volumes-list-title = Algılanan birimler
+volumes-detecting = Algılanıyor…
+volumes-empty = Algılanan birim yok.
+volumes-select-prompt = Yapılandırmak için bir birim seçin.
+
+# Hakkında paneli cilası.
+about-section-version = Sürüm (+)
+about-section-license = Lisans (+)
+about-license-text = Mike Weaver — Tüm Hakları Saklıdır. Bu, tescilli yazılımdır.
+about-license-spdx = SPDX: { $spdx }
+about-section-credits = Katkıda Bulunanlar (+)
+about-credits-inspired = voidtools tarafından geliştirilen Everything'den ilham alınmıştır.
+about-credits-voidtools = voidtools.com
+about-credits-repo = Proje deposu
+
+# --- Menü çubuğu (PRD §8.28) — her etiket + alt menü + durum çubuğu üzerine gelme ipucu ---
+
+# Dosya menüsü.
+menu-file-hint = Sourcerer ile çalışmak için komutları içerir.
+menu-file-new-window = Yeni Arama Penceresi
+menu-file-open-list = Dosya Listesini Aç…
+menu-file-close-list = Dosya Listesini Kapat
+menu-file-close = Kapat
+menu-file-export-results = Sonuçları Dışa Aktar…
+menu-file-export-bundle = Dizin Paketini Dışa Aktar…
+menu-file-exit = Çıkış
+
+# Düzen menüsü.
+menu-edit-hint = Arama sonuçlarını düzenlemek için komutları içerir.
+menu-edit-cut = Kes
+menu-edit-copy = Kopyala
+menu-edit-paste = Yapıştır
+menu-edit-copy-to-folder = Klasöre Kopyala…
+menu-edit-move-to-folder = Klasöre Taşı…
+menu-edit-select-all = Tümünü Seç
+menu-edit-invert-selection = Seçimi Tersine Çevir
+menu-edit-advanced = Gelişmiş
+menu-edit-copy-full-name = Tam Adı Kopyala
+menu-edit-copy-path = Yolu Kopyala
+menu-edit-copy-filename = Dosya Adını Kopyala
+menu-edit-copy-as-json = JSON Olarak Kopyala
+menu-edit-copy-with-metadata = Meta verilerle kopyala
+menu-edit-copy-as-bundle-ref = Sourcerer Paketi referansı olarak kopyala
+
+# Görünüm menüsü.
+menu-view-hint = Görünümü değiştirmek için komutları içerir.
+menu-view-filters = Filtreler
+menu-view-preview = Önizleme
+menu-view-status-bar = Durum Çubuğu
+menu-view-thumbs-xl = Çok Büyük Küçük Resimler
+menu-view-thumbs-l = Büyük Küçük Resimler
+menu-view-thumbs-m = Orta Küçük Resimler
+menu-view-details = Ayrıntılar
+menu-view-window-size = Pencere Boyutu
+menu-view-window-size-hint = Pencere boyutunu ayarlamak için komutları içerir.
+menu-view-window-small = Küçük
+menu-view-window-medium = Orta
+menu-view-window-large = Büyük
+menu-view-window-auto = Otomatik Sığdır
+menu-view-zoom = Yakınlaştır
+menu-view-zoom-hint = Yazı tipi ve simge boyutunu ayarlamak için komutları içerir.
+menu-view-zoom-in = Yakınlaştır
+menu-view-zoom-out = Uzaklaştır
+menu-view-zoom-reset = Sıfırla
+menu-view-sort-by = Sıralama ölçütü
+menu-view-sort-by-hint = Sonuç listesini sıralamak için komutları içerir.
+menu-view-sort-name = Ad
+menu-view-sort-path = Yol
+menu-view-sort-size = Boyut
+menu-view-sort-ext = Uzantı
+menu-view-sort-type = Tür
+menu-view-sort-modified = Değiştirilme Tarihi
+menu-view-sort-created = Oluşturulma Tarihi
+menu-view-sort-accessed = Erişim Tarihi
+menu-view-sort-attributes = Öznitelikler
+menu-view-sort-recently-changed = Son Değişiklik Tarihi
+menu-view-sort-run-count = Çalıştırma Sayısı
+menu-view-sort-run-date = Çalıştırma Tarihi
+menu-view-sort-file-list-filename = Dosya Listesi Dosya Adı
+menu-view-sort-lufs = LUFS
+menu-view-sort-length = Uzunluk
+menu-view-sort-similarity = Benzerlik Skoru
+menu-view-sort-asc = Artan
+menu-view-sort-desc = Azalan
+menu-view-go-to = Git
+menu-view-refresh = Yenile
+menu-view-theme = Tema
+menu-view-theme-hint = Sistem, açık veya koyu temalar arasında geçiş yapın.
+menu-view-lenses = Mercekler
+menu-view-lenses-hint = Sonuç listesindeki her merceğin görünürlüğünü değiştir.
+menu-view-on-top = Üstte
+menu-view-on-top-hint = Bu pencereyi diğer pencerelerin üzerinde tutmak için komutları içerir.
+menu-view-on-top-never = Asla
+menu-view-on-top-always = Her zaman
+menu-view-on-top-while-searching = Arama Sırasında
+
+# Arama menüsü.
+menu-search-hint = Arama geçişlerini içerir.
+menu-search-match-case = Büyük/Küçük Harf Eşleştir
+menu-search-match-whole-word = Tam Sözcük Eşleştir
+menu-search-match-path = Yolu Eşleştir
+menu-search-match-diacritics = Aksanları Eşleştir
+menu-search-enable-regex = Regex'i Etkinleştir
+menu-search-advanced = Gelişmiş Arama…
+menu-search-add-to-filters = Filtrelere Ekle…
+menu-search-organize-filters = Filtreleri Düzenle…
+menu-search-filter-everything = Her Şey
+menu-search-filter-archive = Sıkıştırılmış (Arşiv)
+menu-search-filter-folder = Klasör
+menu-search-filter-custom = Özel Filtre…
+
+# Yer İmleri menüsü.
+menu-bookmarks-hint = Yer imleriyle çalışmak için komutları içerir.
+menu-bookmarks-add = Yer İmlerine Ekle
+menu-bookmarks-organize = Yer İmlerini Düzenle…
+
+# Araçlar menüsü.
+menu-tools-hint = Araç komutlarını içerir.
+menu-tools-connect = FTP Sunucusuna Bağlan…
+menu-tools-disconnect = FTP Sunucusundan Bağlantıyı Kes
+menu-tools-file-list-editor = Dosya Listesi Düzenleyicisi…
+menu-tools-index-maintenance = Dizin bakımı
+menu-tools-index-maintenance-hint = Dizin bakım araçları.
+menu-tools-verify-index = Dizini Doğrula…
+menu-tools-compact-index = Dizini Sıkıştır…
+menu-tools-rebuild-index = Dizini Yeniden Oluşturmaya Zorla…
+menu-tools-custom-extractor = Özel Çıkarıcı Yöneticisi…
+menu-tools-custom-extractor-hint = Wasm korumalı alanlı özel çıkarıcıları yönet.
+menu-tools-options = Seçenekler…
+
+# Yardım menüsü.
+menu-help-hint = Yardım komutlarını içerir.
+menu-help-help = Sourcerer Yardımı
+menu-help-search-syntax = Arama Söz Dizimi
+menu-help-regex-syntax = Regex Söz Dizimi
+menu-help-audio-ref = Ses Niteleyici Referansı
+menu-help-similarity-ref = Benzerlik Niteleyici Referansı
+menu-help-cli-options = Komut Satırı Seçenekleri
+menu-help-website = Sourcerer Web Sitesi
+menu-help-check-updates = Güncellemeleri Kontrol Et…
+menu-help-sponsor = Sponsor Ol / Bağış Yap
+menu-help-about = Sourcerer Hakkında…
+
+# Sonuç sütun başlıkları (tablo başlık satırında kullanılan kısa biçimler).
+column-name = Ad
+column-path = Yol
+column-size = Boyut
+column-modified = Değiştirilme
+column-type = Tür
+column-ext = Uzantı
+column-sort-by = { $name } sütununa göre sırala
+column-resize = { $name } sütununu yeniden boyutlandır
+
+# Birden fazla ayarlar panelinde kullanılan bölüm alt başlık çubukları.
+section-behavior = Davranış
+section-rendering = İşleme
+section-status-bar = Durum Çubuğu
+section-display-format = Görüntü Biçimi
+section-loading-priority = Yükleme Önceliği
+section-compatibility = Uyumluluk
+section-storage = Depolama
+section-index-fields = İndeks Alanları
+section-maintenance = Bakım
+section-logging = Günlükleme
+section-tools = Araçlar
+section-privacy = Gizlilik
+section-auto-update = Otomatik güncelleme (+)
+section-bind = Bağla
+section-lens = Mercek
+section-budgets = Bütçeler
+section-other = Diğer
+section-per-format-mode = Biçim Başına Mod
+section-loudness = Ses Yüksekliği
+section-tuning = İnce Ayar (+)
+section-minhash-lsh = MinHash + LSH Parametreleri (+)
+section-top-level = Üst Düzey
+section-file-globs = Dosya glob'ları
+section-file-list-settings = Seçili dosya listesi için ayarlar
+section-editor-format = Düzenleyici + Biçim (E + +)
+section-api-server = API Sunucusu (E adapted)
+section-sourcerer-extras = Sourcerer Ekleri (+)
+section-sourcerer-additions = Sourcerer İlaveleri (+)
+section-sourcerer-extensions = Sourcerer Uzantıları (+)
+
+# Birkaç Dropdown'da kullanılan ortak seçenek etiketleri.
+opt-use-last-value = Son değeri kullan
+opt-use-last-value-default = Son değeri kullan (varsayılan)
+opt-low = Düşük
+opt-normal-default = Normal (varsayılan)
+opt-high = Yüksek
+opt-disabled = Devre dışı
+opt-off = Kapalı
+opt-on-battery = Pilde çalışırken
+opt-always = Her zaman
+opt-clamp-default = Sıkıştır (varsayılan)
+opt-wrap = Sar
+opt-none = Yok
+opt-strict-refuse = Katı (bozulmada sorguları reddet)
+opt-lenient-warn = Hoşgörülü (uyar ama sorgula)
+opt-system-default = Sistem varsayılanı
+opt-drag-select = Sürükle-seç
+opt-auto-binary = Otomatik (ikili)
+opt-auto-decimal = Otomatik (ondalık)
+
+# Sayı girişlerinin yanında gösterilen birim ekleri.
+unit-days = gün
+unit-kb = KB
+unit-mb = MB
+
+# Ek açılır menü seçeneği etiketleri (çıkarıcı modu / sıralama / görünüm / dizin / panel / öncelik / LUFS / tepe / günlük seviyesi / güncelleme kanalı).
+opt-eager = Hevesli
+opt-lazy-default = Tembel (varsayılan)
+opt-on = Açık
+opt-on-default = Açık (varsayılan)
+opt-all = Tümü
+opt-weekly = Haftalık
+opt-monthly = Aylık
+opt-name-asc = Ad artan
+opt-name-desc = Ad azalan
+opt-size-asc = Boyut artan
+opt-size-desc = Boyut azalan
+opt-modified-asc = Değiştirilme tarihi artan
+opt-modified-desc = Değiştirilme tarihi azalan
+opt-compact = Sıkışık
+opt-comfortable = Ferah
+opt-details = Ayrıntılar
+opt-thumbnails = Küçük resimler
+opt-local-db-default = Yerel veritabanı (varsayılan)
+opt-file-list = Dosya listesi
+opt-https-endpoint = HTTPS API uç noktası
+opt-right-default = Sağ (varsayılan)
+opt-bottom = Alt
+opt-or-and-default = OR > AND (varsayılan)
+opt-and-or = AND > OR
+opt-ebu-r128-default = EBU R128 (varsayılan)
+opt-atsc-a85 = ATSC A/85
+opt-spotify = Spotify (-14)
+opt-apple-music = Apple Music (-16)
+opt-broadcast-film = Yayın filmi (-23)
+opt-true-peak = Gerçek tepe (4× üst örnekleme, varsayılan)
+opt-sample-peak = Örnek tepe
+opt-auto-per-doc = Otomatik (belge başına)
+opt-log-error = Hata
+opt-log-warn = Uyarı
+opt-log-info-default = Bilgi (varsayılan)
+opt-log-debug = Hata ayıklama
+opt-log-trace = İz
+
+# unit-b / unit-gb / unit-tb (size units; conventional Latin acronyms — kept as-is, polish per-locale as needed).
+unit-b = B
+unit-gb = GB
+unit-tb = TB

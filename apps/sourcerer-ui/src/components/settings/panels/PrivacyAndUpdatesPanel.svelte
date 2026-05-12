@@ -5,6 +5,7 @@
   import Dropdown from "../controls/Dropdown.svelte";
   import Checkbox from "../controls/Checkbox.svelte";
   import type { PrivacyAndUpdatesSettings } from "../../../lib/ipc/types";
+  import { t } from "../../../lib/i18n/t";
 
   function patch(p: Partial<PrivacyAndUpdatesSettings>) {
     settingsStore.patch({ privacy_and_updates: { ...settingsStore.state.privacy_and_updates, ...p } });
@@ -12,25 +13,25 @@
   }
 </script>
 
-<h1>Privacy & Updates</h1>
+<h1>{t("settings-group-privacy")}</h1>
 
-<Section title="Auto-update (+)">
-  <Dropdown id="pu-au" label="Auto-update"
+<Section title={t("section-auto-update")}>
+  <Dropdown id="pu-au" label={t("settings-privacy-auto-update")}
     value={settingsStore.state.privacy_and_updates.auto_update}
-    options={[ { value: "default", label: "On (default)" }, { value: "weekly", label: "Weekly" }, { value: "monthly", label: "Monthly" }, { value: "off", label: "Off" } ]}
+    options={[ { value: "default", label: t("opt-on-default") }, { value: "weekly", label: t("opt-weekly") }, { value: "monthly", label: t("opt-monthly") }, { value: "off", label: t("opt-off") } ]}
     onChange={(v) => patch({ auto_update: v })} />
-  <Checkbox id="pu-pre" label="Pre-release channel"
+  <Checkbox id="pu-pre" label={t("settings-privacy-prerelease")}
     checked={settingsStore.state.privacy_and_updates.pre_release_channel}
     onChange={(v) => patch({ pre_release_channel: v })} />
 </Section>
 
-<Section title="Privacy">
+<Section title={t("section-privacy")}>
   <p class="muted">Crash reports and telemetry are <strong>permanently disabled</strong> in Sourcerer
   per PRD §8.23 — there is no toggle. The only outbound URL when auto-update is on is
   <code>auto-update.api.sourcerer.app</code>.</p>
 </Section>
 
-<Section title="Network calls policy">
+<Section title={t("settings-privacy-network-policy")}>
   <ul class="urls">
     {#if settingsStore.state.privacy_and_updates.auto_update !== "off"}
       <li><code>auto-update.api.sourcerer.app</code></li>

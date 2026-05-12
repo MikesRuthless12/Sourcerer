@@ -3,6 +3,7 @@
   import { selectionStore } from "../../lib/stores/selection.svelte";
   import { settingsStore } from "../../lib/stores/settings.svelte";
   import * as files from "../../lib/ipc/files";
+  import { t } from "../../lib/i18n/t";
   import type { PreviewPayload } from "../../lib/ipc/types";
 
   let payload = $state<PreviewPayload | null>(null);
@@ -54,7 +55,7 @@
         },
         (e) => {
           console.error("[preview] rejected", target, e);
-          payload = { kind: "unsupported", message: "Preview unavailable" };
+          payload = { kind: "unsupported", message: undefined };
           loading = false;
         },
       );
@@ -62,19 +63,19 @@
 </script>
 
 {#if settingsStore.state.show_preview}
-  <aside class="preview" aria-label="Preview pane">
-    <header>Preview</header>
+  <aside class="preview" aria-label={t("preview-header")}>
+    <header>{t("preview-header")}</header>
     <div class="body">
       {#if loading}
-        <div class="hint">Loading…</div>
+        <div class="hint">{t("preview-loading")}</div>
       {:else if !payload}
-        <div class="hint">Select a file to preview.</div>
+        <div class="hint">{t("preview-select-file")}</div>
       {:else if payload.kind === "text" && payload.text}
         <pre class="text">{payload.text}</pre>
       {:else if payload.kind === "image" && payload.data_url}
-        <img src={payload.data_url} alt="Preview" />
+        <img src={payload.data_url} alt={t("preview-header")} />
       {:else}
-        <div class="hint">{payload.message ?? "No preview available"}</div>
+        <div class="hint">{payload.message ?? t("preview-unavailable")}</div>
       {/if}
     </div>
   </aside>
