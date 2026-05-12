@@ -76,3 +76,8 @@ coverage/
 /docs/PRODUCT-VISION.md
 /docs/GTM.md
 
+
+# IP scrub (2026-05-11) — pulled out of git history via filter-branch.
+docs/ARCHITECTURE.md
+docs/I18N_TODO.md
+docs/SECURITY.md
