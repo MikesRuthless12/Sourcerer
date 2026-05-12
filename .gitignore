@@ -81,3 +81,5 @@ coverage/
 docs/ARCHITECTURE.md
 docs/I18N_TODO.md
 docs/SECURITY.md
+LinuxOS-test.md
+macOS-test.md
