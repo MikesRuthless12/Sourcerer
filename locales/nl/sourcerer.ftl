@@ -1,4 +1,5 @@
-# Sourcerer — Nederlands.
+# Sourcerer — English (source locale).
+# Phase 0 surface; new keys land per-phase and propagate to all 18 locales.
 
 app-name = Sourcerer
 tagline = Eén zoekopdracht. Elke bron. Elk besturingssysteem.
@@ -38,7 +39,7 @@ lens-audio = Audio
 lens-similarity = Gelijkenis
 
 parse-error-empty = Typ een zoekopdracht om te beginnen.
-parse-error-unknown = Onherkende syntaxis op deze plek.
+parse-error-unknown = Onbekende syntaxis hier in de buurt.
 
 action-open = Openen
 action-reveal = Tonen in map
@@ -54,9 +55,9 @@ quick-filter-executable = Uitvoerbaar bestand
 quick-filter-archive = Archief
 
 wizard-title = Welkom bij Sourcerer
-wizard-step-roots = Kies wat u wilt indexeren
+wizard-step-roots = Kies wat je wilt indexeren
 wizard-step-hotkey = Kies een globale sneltoets
-wizard-step-locale = Kies uw taal
+wizard-step-locale = Kies je taal
 wizard-step-theme = Kies een thema
 wizard-finish = Voltooien
 
@@ -90,98 +91,98 @@ settings-node-volumes = Volumes
 settings-node-folders = Mappen
 settings-node-file-lists = Bestandslijsten
 settings-node-exclude = Uitsluiten
-settings-node-https-server = HTTP / HTTPS-server
-settings-node-etp-api = ETP / FTP-API
+settings-node-https-server = HTTP-/HTTPS-server
+settings-node-etp-api = ETP-/FTP-API
 settings-node-privacy = Privacy en updates
-settings-node-logs = Logs en debug
+settings-node-logs = Logboeken en foutopsporing
 settings-node-backup = Back-up, export, reset
-settings-node-locale = Taal en regio
+settings-node-locale = Landinstelling
 settings-node-about = Over
 
 # §8.2 General → UI.
 settings-ui-theme = Thema
 settings-ui-run-bg = Op de achtergrond uitvoeren
-settings-ui-show-tray = Pictogram in systeemvak / menubalk tonen
-settings-ui-single-click-tray = Enkele klik op systeemvak / menubalk
-settings-ui-new-window-from-tray = Nieuw venster openen vanuit systeemvakpictogram
+settings-ui-show-tray = Pictogram in systeemvak/menubalk tonen
+settings-ui-single-click-tray = Enkele klik op systeemvak/menubalk
+settings-ui-new-window-from-tray = Nieuw venster openen via systeemvakpictogram
 settings-ui-new-window-on-launch = Nieuw venster openen bij het starten van Sourcerer
-settings-ui-search-as-you-type = Zoeken tijdens typen
+settings-ui-search-as-you-type = Zoeken tijdens het typen
 settings-ui-select-on-mouse-click = Zoekopdracht selecteren bij muisklik
-settings-ui-focus-on-activate = Zoekveld focussen bij activeren
-settings-ui-full-row-select = Hele rij selecteren
+settings-ui-focus-on-activate = Zoekbalk focussen bij activeren
+settings-ui-full-row-select = Volledige rij selecteren
 settings-ui-single-click-open = Openen met enkele klik
 settings-ui-underline-titles = Pictogramtitels onderstrepen
 settings-ui-row-density = Resultaatdichtheid
 settings-ui-row-density-compact = Compact (32 px)
 settings-ui-row-density-comfortable = Comfortabel (44 px)
-settings-ui-show-timing-badges = Timingbadges per lens tonen
-settings-ui-anim-crossfade = Geanimeerde thema-overgang
+settings-ui-show-timing-badges = Tijdsindicatoren per lens tonen
+settings-ui-anim-crossfade = Geanimeerde overgang tussen thema's
 
 # §8.3 General → Home.
 settings-home-match-case = Hoofdlettergevoelig
 settings-home-match-whole-word = Heel woord zoeken
 settings-home-match-path = Pad doorzoeken
-settings-home-match-diacritics = Diakritische tekens meetellen
-settings-home-match-regex = Regex gebruiken
-settings-home-search = Zoeken (aangepaste standaardquery)
+settings-home-match-diacritics = Diakritische tekens meenemen
+settings-home-match-regex = Reguliere expressie gebruiken
+settings-home-search = Zoeken (aangepaste standaardzoekopdracht)
 settings-home-filter = Filter
-settings-home-sort = Sortering
+settings-home-sort = Sorteren
 settings-home-view = Beeld
 settings-home-index = Index
 settings-home-default-lens-visibility = Standaard zichtbaarheid van lenzen
 settings-home-default-lens-result-limits = Standaard resultaatlimieten per lens
 
 # §8.4 General → Search.
-settings-search-fast-ascii = Snelle ASCII-zoekopdracht
+settings-search-fast-ascii = Snel ASCII-zoeken
 settings-search-mp-sep = Pad doorzoeken wanneer een zoekterm een padscheidingsteken bevat
-settings-search-mw-fn = Hele bestandsnaam matchen bij gebruik van jokertekens
+settings-search-mw-fn = Volledige bestandsnaam zoeken bij gebruik van jokertekens
 settings-search-lit-ops = Letterlijke operatoren toestaan
-settings-search-paren = Groepering met haakjes toestaan
+settings-search-paren = Groeperen met ronde haakjes toestaan
 settings-search-env = Omgevingsvariabelen uitvouwen
-settings-search-fwd-slash = Slashes vervangen door backslashes
-settings-search-precedence = Operatorvolgorde
+settings-search-fwd-slash = Voorwaartse schuine strepen vervangen door backslashes
+settings-search-precedence = Operatorvoorrang
 settings-search-strict-everything = Strikte Everything-syntaxismodus
-settings-search-auto-regex = Regex automatisch detecteren
-settings-search-mod-comp = Aanvullingen voor modificatoren
-settings-search-parse-tree = Parse-tree tonen bij hover
+settings-search-auto-regex = Reguliere expressie automatisch detecteren
+settings-search-mod-comp = Aanvullingen voor modifiers
+settings-search-parse-tree = Ontledingsboom tonen bij zweven
 
 # §8.5 General → Results.
-settings-results-hide-empty = Resultaten verbergen bij lege zoekopdracht
+settings-results-hide-empty = Resultaten verbergen wanneer de zoekopdracht leeg is
 settings-results-clear-on-search = Selectie wissen bij zoeken
 settings-results-close-on-execute = Venster sluiten bij uitvoeren
 settings-results-dbl-path = Pad openen met dubbelklik in padkolom
-settings-results-auto-scroll = Automatisch scrollen
-settings-results-dquote-copy = Kopiëren met dubbele aanhalingstekens als pad
+settings-results-auto-scroll = Weergave automatisch scrollen
+settings-results-dquote-copy = Met dubbele aanhalingstekens kopiëren als pad
 settings-results-no-ext-rename = Extensie niet selecteren bij hernoemen
-settings-results-sort-date-desc = Eerst sorteren op datum aflopend
-settings-results-sort-size-desc = Eerst sorteren op grootte aflopend
+settings-results-sort-date-desc = Datum eerst aflopend sorteren
+settings-results-sort-size-desc = Grootte eerst aflopend sorteren
 settings-results-list-focus = Focus op resultaatlijst
 settings-results-icon-prio = Prioriteit voor laden van pictogrammen
 settings-results-thumb-prio = Prioriteit voor laden van miniaturen
 settings-results-ext-prio = Prioriteit voor laden van uitgebreide informatie
 settings-results-group-by-lens = Resultaten groeperen per lens
-settings-results-snippet-inline = Inline fragmentvoorbeeld tonen
+settings-results-snippet-inline = Fragmentvoorbeeld inline tonen
 
 # §8.6 General → View.
-settings-view-double-buffer = Dubbele buffer
+settings-view-double-buffer = Dubbele buffering
 settings-view-alt-rows = Afwisselende rijkleur
-settings-view-row-mouseover = Rijhover tonen
+settings-view-row-mouseover = Rij markeren bij muisover
 settings-view-highlight-terms = Gemarkeerde zoektermen tonen
-settings-view-status-show-selected = Geselecteerd item tonen in statusbalk
-settings-view-rc-with-sel = Resultaataantal naast selectieaantal tonen
-settings-view-status-show-size = Grootte tonen in statusbalk
+settings-view-status-show-selected = Geselecteerd item in statusbalk tonen
+settings-view-rc-with-sel = Resultaataantal samen met selectieaantal tonen
+settings-view-status-show-size = Grootte in statusbalk tonen
 settings-view-tooltips = Knopinfo tonen
-settings-view-update-on-scroll = Beeld direct bijwerken tijdens scrollen
-settings-view-size-format = Notatie voor bestandsgrootte
+settings-view-update-on-scroll = Weergave direct bijwerken na scrollen
+settings-view-size-format = Grootteformaat
 settings-view-selection-rect = Selectierechthoek
-settings-view-audio-badges = LUFS-, codec- en lengtebadges op audiorijen tonen
+settings-view-audio-badges = LUFS-/codec-/lengte-indicatoren op audiorijen tonen
 settings-view-similarity-score = MinHash-gelijkenisscore op gelijkenisrijen tonen
 settings-view-preview-pane = Voorbeeldvenster
 
 # §8.7 General → Context Menu.
 settings-context-menu-visibility = Zichtbaarheid
 settings-context-menu-show = Tonen
-settings-context-menu-shift = Alleen tonen bij ingedrukte Shift
+settings-context-menu-shift = Alleen tonen wanneer Shift ingedrukt is
 settings-context-menu-hide = Verbergen
 settings-context-menu-command = Opdrachtmacro
 settings-context-menu-open-folders = Openen (mappen)
@@ -212,29 +213,29 @@ settings-fc-bold = Vet
 settings-fc-italic = Cursief
 settings-fc-default = Standaard
 settings-fc-per-lens-accent = Accent per lens
-settings-fc-theme-inherit = Aangepaste kleuren automatisch omkeren bij themawissel
+settings-fc-theme-inherit = Aangepaste kleuren automatisch omkeren bij thema-wisseling
 
 # §8.9 General → Keyboard.
 settings-keyboard-global-hotkey = Globale sneltoets
-settings-keyboard-new-window = Sneltoets voor nieuw venster
-settings-keyboard-show-window = Sneltoets om venster te tonen
-settings-keyboard-toggle-window = Sneltoets om venster te schakelen
+settings-keyboard-new-window = Sneltoets nieuw venster
+settings-keyboard-show-window = Sneltoets venster tonen
+settings-keyboard-toggle-window = Sneltoets venster wisselen
 settings-keyboard-show-commands = Opdrachten tonen die bevatten
-settings-keyboard-add-chord = + Combinatie toevoegen
+settings-keyboard-add-chord = + Toetsencombinatie toevoegen
 settings-keyboard-remove-chord = Verwijderen
 
 # §8.10 History.
 settings-history-search-enable = Zoekgeschiedenis inschakelen
 settings-history-search-keep = Zoekgeschiedenis { $days } dagen bewaren
-settings-history-run-enable = Uitvoergeschiedenis inschakelen
-settings-history-run-keep = Uitvoergeschiedenis { $days } dagen bewaren
+settings-history-run-enable = Uitvoeringsgeschiedenis inschakelen
+settings-history-run-keep = Uitvoeringsgeschiedenis { $days } dagen bewaren
 settings-history-clear-now = Nu wissen
-settings-history-privacy-mode = Privémodus
+settings-history-privacy-mode = Privacymodus
 settings-history-per-lens = Geschiedenis per lens
 
 # §8.11 Indexes (top-level).
-settings-ix-database-location = Locatie van database
-settings-ix-multiuser = Bestandsnaam voor database met meerdere gebruikers
+settings-ix-database-location = Databaselocatie
+settings-ix-multiuser = Bestandsnaam multi-userdatabase
 settings-ix-compress = Database comprimeren
 settings-ix-recent-changes = Recente wijzigingen indexeren
 settings-ix-file-size = Bestandsgrootte indexeren
@@ -247,16 +248,16 @@ settings-ix-date-modified = Wijzigingsdatum indexeren
 settings-ix-fast-date-modified = Snel sorteren op wijzigingsdatum
 settings-ix-date-accessed = Toegangsdatum indexeren
 settings-ix-fast-date-accessed = Snel sorteren op toegangsdatum
-settings-ix-attributes = Attributen indexeren
-settings-ix-fast-attributes = Snel sorteren op attributen
+settings-ix-attributes = Kenmerken indexeren
+settings-ix-fast-attributes = Snel sorteren op kenmerken
 settings-ix-fast-path-sort = Snel sorteren op pad
 settings-ix-fast-extension-sort = Snel sorteren op extensie
-settings-ix-force-rebuild = Geforceerd herbouwen
-settings-ix-compact = Index compacteren
+settings-ix-force-rebuild = Opnieuw opbouwen forceren
+settings-ix-compact = Index comprimeren
 settings-ix-verify = Index verifiëren
-settings-ix-integrity-policy = Integriteitsbeleid voor index
-settings-ix-memory-budget = Geheugenbudget voor indexer
-settings-ix-throttle = Beperking van indexeren op de achtergrond
+settings-ix-integrity-policy = Beleid voor indexintegriteit
+settings-ix-memory-budget = Geheugenbudget voor indexeerprogramma
+settings-ix-throttle = Beperking van achtergrondindexering
 
 # §8.12 Indexes → Volumes.
 settings-vol-auto-fixed = Nieuwe vaste volumes automatisch opnemen
@@ -265,35 +266,35 @@ settings-vol-auto-remove-offline = Offline volumes automatisch verwijderen
 settings-vol-detected = Gedetecteerde volumes
 settings-vol-include = Opnemen in index
 settings-vol-include-only = Alleen opnemen (glob/regex)
-settings-vol-enable-usn = USN-journal inschakelen
+settings-vol-enable-usn = USN Journal inschakelen
 settings-vol-enable-fsevents = FSEvents-stream inschakelen
-settings-vol-enable-inotify = inotify inschakelen (of fanotify met verhoogde rechten)
-settings-vol-buffer = Buffergrootte van journal (KB)
-settings-vol-allocation-delta = Allocation delta (KB)
+settings-vol-enable-inotify = inotify inschakelen (of fanotify indien verhoogd)
+settings-vol-buffer = Journalbuffergrootte (KB)
+settings-vol-allocation-delta = Toewijzingsdelta (KB)
 settings-vol-load-recent = Recente wijzigingen uit journal laden bij opstarten
-settings-vol-monitor = Wijzigingen volgen
-settings-vol-recreate-journal = Journal opnieuw aanmaken
+settings-vol-monitor = Wijzigingen bewaken
+settings-vol-recreate-journal = Journal opnieuw maken
 settings-vol-reset-stream = FSEvents-stream resetten
 settings-vol-upgrade-fanotify = Upgraden naar fanotify (polkit)
 settings-vol-remove = Verwijderen
 
 # §8.13 Indexes → Folders.
-settings-folders-watched = Gevolgde mappen
+settings-folders-watched = Bewaakte mappen
 settings-folders-add = Toevoegen…
 settings-folders-rescan-now = Nu opnieuw scannen
 settings-folders-rescan-all = Alles nu opnieuw scannen
-settings-folders-monitor = Wijzigingen proberen te volgen
+settings-folders-monitor = Wijzigingen proberen te bewaken
 settings-folders-buffer = Buffergrootte
 settings-folders-rescan-on-full = Opnieuw scannen bij volle buffer
 
 # §8.14 Indexes → File Lists.
 settings-flists-add = Toevoegen…
-settings-flists-monitor = Wijzigingen volgen
-settings-flists-editor = Bestandslijst-editor…
-settings-flists-format = Bestandslijstindeling
+settings-flists-monitor = Wijzigingen bewaken
+settings-flists-editor = Editor voor bestandslijsten…
+settings-flists-format = Indeling bestandslijst
 settings-flists-format-text = Tekst (één pad per regel)
 settings-flists-format-json = JSON (met metadata)
-settings-flists-format-srcb = Sourcerer-bundel (.srcb)
+settings-flists-format-srcb = Sourcerer Bundle (.srcb)
 
 # §8.15 Indexes → Exclude.
 settings-exclude-hidden = Verborgen bestanden en mappen uitsluiten
@@ -302,34 +303,34 @@ settings-exclude-list-en = Uitsluitlijst inschakelen
 settings-exclude-folders = Mappen uitsluiten
 settings-exclude-include-only-files = Alleen bestanden opnemen (glob)
 settings-exclude-files = Bestanden uitsluiten (glob)
-settings-exclude-os-recommended = Door OS aanbevolen uitsluitingen toepassen
+settings-exclude-os-recommended = Door besturingssysteem aanbevolen uitsluitingen toepassen
 settings-exclude-by-class = Uitsluiten op extensieklasse
 
 # §8.16 Lenses → Filename.
 settings-lf-trigram = Agressiviteit van trigram-voorfilter
-settings-lf-suffix-mem = Geheugenbudget voor suffix-array
-settings-lf-wildcard-limit = Limiet voor uitvouwen van jokertekens
-settings-lf-regex-timeout = Time-out voor Regex
+settings-lf-suffix-mem = Geheugenbudget voor suffixarray
+settings-lf-wildcard-limit = Limiet voor jokertekenuitbreiding
+settings-lf-regex-timeout = Time-out voor reguliere expressie
 
 # §8.17 Lenses → Content.
 settings-lc-enable = Inhoudslens inschakelen
-settings-lc-time-budget = Tijdbudget per document
+settings-lc-time-budget = Tijdsbudget per document
 settings-lc-mem-ceiling = Geheugenplafond per document
-settings-lc-snippet-len = Lengte van fragment
+settings-lc-snippet-len = Fragmentlengte
 settings-lc-stop-words = Taal voor stopwoorden
-settings-lc-re-extract = Opnieuw extraheren bij wijziging van instellingen
-settings-lc-verify-blobs = Checksums van geëxtraheerde-tekst-blobs verifiëren bij lezen
+settings-lc-re-extract = Opnieuw extraheren bij instellingswijziging
+settings-lc-verify-blobs = Controlesommen van geëxtraheerde-tekstblobs verifiëren bij lezen
 
 # §8.18 Lenses → Audio.
 settings-la-enable = Audiolens inschakelen
-settings-la-lufs-ref = LUFS-referentienorm
+settings-la-lufs-ref = LUFS-referentiestandaard
 settings-la-peak-compute = Piek berekenen via
 settings-la-silence-thresh = Stiltedrempel
-settings-la-re-extract-modify = Opnieuw extraheren bij Modify-event
+settings-la-re-extract-modify = Opnieuw extraheren bij wijzigingsgebeurtenis
 
 # §8.19 Lenses → Similarity.
 settings-ls-enable = Gelijkenislens inschakelen
-settings-ls-sig-size = Grootte van MinHash-signatuur (k)
+settings-ls-sig-size = MinHash-signatuurgrootte (k)
 settings-ls-bands = LSH-banden
 settings-ls-recall = Recall-drempel
 settings-ls-result-cap = Resultaatlimiet
@@ -341,39 +342,39 @@ settings-custom-refresh-hashes = Hashes vernieuwen
 
 # §8.21-§8.22 Network.
 settings-net-https-enable = HTTPS-server inschakelen
-settings-net-bind = Binden aan interfaces
+settings-net-bind = Aan interfaces binden
 settings-net-port = Luisteren op poort
 settings-net-force-https = HTTPS afdwingen
-settings-net-legacy-auth = Verouderde HTTP-basic-authenticatie
+settings-net-legacy-auth = Verouderde HTTP-basisauthenticatie
 settings-net-token-regen = Token opnieuw genereren
 settings-net-api-enable = API-server inschakelen
-settings-net-legacy-ftp = Ondersteuning voor verouderde plain FTP/ETP
+settings-net-legacy-ftp = Ondersteuning voor verouderde gewone FTP/ETP
 
 # §8.23 Privacy & Updates.
 settings-privacy-auto-update = Automatisch bijwerken
 settings-privacy-prerelease = Pre-releasekanaal
-settings-privacy-network-policy = Beleid voor netwerkverzoeken
+settings-privacy-network-policy = Beleid voor netwerkaanvragen
 
 # §8.24 Logs & Debug.
 settings-logs-level = Logniveau
 settings-logs-location = Locatie van logbestand
-settings-logs-retention = Logbewaartermijn
-settings-logs-debug-overlay = Debug-overlay tonen
+settings-logs-retention = Bewaartermijn logboeken
+settings-logs-debug-overlay = Foutopsporingsoverlay tonen
 settings-logs-open-folder = Logmap openen
-settings-logs-export-bundle = Diagnosebundel exporteren
+settings-logs-export-bundle = Diagnostiekbundel exporteren
 
 # §8.25 Backup, Export, Reset.
 settings-backup-export = Instellingen exporteren
 settings-backup-import = Instellingen importeren
 settings-backup-export-bookmarks = Bladwijzerbundel exporteren
 settings-backup-import-bookmarks = Bladwijzerbundel importeren
-settings-backup-reset-all = Alle instellingen herstellen naar standaardwaarden
+settings-backup-reset-all = Alle instellingen terugzetten naar standaardwaarden
 
 # §8.26 Locale.
-settings-locale-current = Huidige taal en regio
+settings-locale-current = Huidige landinstelling
 settings-locale-rtl-preview = RTL-voorbeeld
 settings-locale-date-format = Datumnotatie
-settings-locale-number-format = Getalsnotatie
+settings-locale-number-format = Getalnotatie
 
 # §8.27 About.
 settings-about-version = Sourcerer { $version }
@@ -381,84 +382,84 @@ settings-about-license = Licentie
 settings-about-credits = Met dank aan
 settings-about-notices = Open-sourcevermeldingen
 
-# --- TASK-098 toevoegingen: hints, placeholders, subsecties, meldingen ---
+# --- TASK-098 additions: hints, placeholders, sub-sections, toasts ---
 
-# Wizard-verfijning.
-wizard-aria-label = Wizard voor eerste start
+# Wizard polish.
+wizard-aria-label = Wizard voor eerste keer opstarten
 wizard-step-of-total = Stap { $step } van { $total }
-wizard-roots-hint = Voeg de mappen of volumes toe die u door Sourcerer wilt laten volgen. U kunt dit later wijzigen via Index-instellingen.
+wizard-roots-hint = Voeg de mappen of volumes toe die je door Sourcerer wilt laten bewaken. Je kunt dit later wijzigen via de indexinstellingen.
 wizard-browse = Bladeren…
 wizard-roots-placeholder = …of plak een pad
 wizard-roots-add = Toevoegen
 wizard-roots-remove = Verwijderen
 wizard-roots-empty = Nog geen bronnen geconfigureerd.
-wizard-locale-hint = Sourcerer wordt geleverd in 18 talen. U kunt later wisselen.
-wizard-theme-hint = Systeem volgt de weergave-instelling van uw OS.
+wizard-locale-hint = Sourcerer is beschikbaar in 18 talen. Je kunt later wisselen.
+wizard-theme-hint = Systeem volgt de weergave-instelling van je besturingssysteem.
 wizard-back = Terug
 wizard-next = Volgende
 
-# Verfijning van de statusbalk.
+# Status bar polish.
 statusbar-hotkey-hint = Sneltoets: { $hotkey }
-statusbar-cycle-theme = Thema wisselen
+statusbar-cycle-theme = Door thema's bladeren
 statusbar-indexed-suffix = geïndexeerd
 
-# Resultaten / lenzen.
+# Results / lenses.
 lens-expand = Lens uitvouwen
 lens-collapse = Lens samenvouwen
 lens-no-matches = Geen overeenkomsten in deze lens.
 
-# Voorbeeldvenster.
+# Preview pane.
 preview-header = Voorbeeld
 preview-loading = Laden…
-preview-select-file = Selecteer een bestand om een voorbeeld te bekijken.
+preview-select-file = Selecteer een bestand voor een voorbeeld.
 preview-unavailable = Geen voorbeeld beschikbaar
 
-# Bladwijzers.
+# Bookmarks.
 bookmarks-label = ★ Bladwijzers
 bookmarks-empty-hint = Nog geen bladwijzers. Druk op Ctrl+D om de huidige zoekopdracht op te slaan.
-bookmarks-organize-title = Bladwijzers beheren
+bookmarks-organize-title = Bladwijzers ordenen
 bookmarks-organize-empty = Nog geen bladwijzers.
 bookmarks-rename = Hernoemen
 bookmarks-close = Sluiten
 
-# Extra's voor de instellingenboom.
+# Settings tree extras.
 settings-group-history = Geschiedenis
 settings-group-privacy = Privacy en updates
-settings-group-logs = Logs en debug
+settings-group-logs = Logboeken en foutopsporing
 settings-group-backup = Back-up, export, reset
 settings-tree-custom-lens = Aangepast
 settings-unsaved-changes = niet-opgeslagen wijzigingen
 
-# Over-dialoogvenster.
+# About dialog.
 about-dialog-title = Sourcerer
 about-copyright = Copyright © 2026 Mike Weaver. Alle rechten voorbehouden.
 about-close = Sluiten
 
-# Dialoogvenster voor eindpuntverbinding.
-connect-ftp-title = Verbinding maken met FTP-server
+# Connect endpoint dialog.
+connect-ftp-title = Verbinden met FTP-server
 connect-ftp-host = Host:
 connect-ftp-port = Poort:
 connect-ftp-username = Gebruikersnaam:
 connect-ftp-password = Wachtwoord:
 connect-ftp-link-type = Verbindingstype:
 
-# UI-paneel.
-ui-hint = Thema, integratie met systeemvak / menubalk, zoeken tijdens typen, rijdichtheid. Directe pariteit met voidtools Everything plus Sourcerer-toevoegingen gemarkeerd met (+).
+# UI panel.
+ui-hint = Thema, integratie met systeemvak/menubalk, zoeken tijdens het typen, rijdichtheid. Directe pariteit met voidtools Everything plus toevoegingen van Sourcerer, gemarkeerd met (+).
 ui-section-theme = Thema
 ui-theme-system-default = Systeem (standaard)
-ui-section-tray = Systeemvak / menubalk
+ui-section-tray = Systeemvak/menubalk
 ui-section-search-behavior = Zoekgedrag
 ui-section-result-rows = Resultaatrijen
 ui-single-click-system-default = Systeeminstellingen (standaard)
 ui-single-click-always = Altijd enkele klik
-ui-single-click-always-double = Altijd dubbele klik
+ui-single-click-always-double = Altijd dubbelklik
 ui-underline-always = Altijd
-ui-underline-on-hover = Bij hover
+ui-underline-on-hover = Bij zweven
 ui-underline-never = Nooit
 
-# Startpaneel.
-home-hint = Standaardwaarden geladen bij het opstarten van de app — elke vervolgkeuzelijst kan op "Laatste waarde gebruiken" blijven staan of een vaste waarde vastpinnen. Zichtbaarheid van lenzen / resultaatlimieten zijn Sourcerer-toevoegingen (+).
-home-section-match = Standaardwaarden voor matchen
+# Home panel.
+home-hint = Standaardwaarden geladen bij het starten van de app — elk vervolgkeuzemenu kan op "Laatste waarde gebruiken" blijven staan of een vaste waarde vastzetten. Lenszichtbaarheid/resultaatlimieten zijn toevoegingen van Sourcerer (+).
+home-section-match = Standaardwaarden voor overeenkomst
 home-section-search-sort = Standaardwaarden voor zoeken en sorteren
 home-search-placeholder = Standaard leeg
 home-section-index = Indexbron
@@ -466,59 +467,59 @@ home-file-list-path = Pad naar bestandslijst
 home-https-endpoint = URL van HTTPS-API-eindpunt
 home-endpoint-token = Token (vingerafdruk getoond)
 
-# Back-uppaneel.
+# Backup panel.
 backup-section-settings = Instellingen (+)
 backup-section-bookmarks = Bladwijzers + aangepaste extractors (+)
-backup-section-reset = Resetten
+backup-section-reset = Reset
 backup-toast-exported = Instellingen geëxporteerd naar { $path }
-backup-toast-export-failed = Exporteren mislukt: { $error }
+backup-toast-export-failed = Export mislukt: { $error }
 backup-toast-imported = Instellingen geïmporteerd
-backup-toast-import-failed = Importeren mislukt: { $error }
+backup-toast-import-failed = Import mislukt: { $error }
 backup-toast-bookmarks-exported = Bladwijzers geëxporteerd
-backup-toast-bookmarks-export-failed = Exporteren van bladwijzers mislukt: { $error }
+backup-toast-bookmarks-export-failed = Export van bladwijzers mislukt: { $error }
 backup-toast-bookmarks-imported = Bladwijzers geïmporteerd
-backup-toast-bookmarks-import-failed = Importeren van bladwijzers mislukt: { $error }
+backup-toast-bookmarks-import-failed = Import van bladwijzers mislukt: { $error }
 backup-confirm-reset = Alle instellingen terugzetten naar standaardwaarden? Dit kan niet ongedaan worden gemaakt (het dialoogvenster blijft open).
-backup-toast-reset = Alle instellingen zijn teruggezet
+backup-toast-reset = Alle instellingen gereset
 
-# Toetsenbordpaneel.
+# Keyboard panel.
 keyboard-section-global = Globale sneltoetsen
 keyboard-placeholder-example = Super+Space
 keyboard-section-commands = Opdrachten
-keyboard-placeholder-command = opdracht-id (bv. file.export_results)
+keyboard-placeholder-command = opdracht-id (bijv. file.export_results)
 keyboard-placeholder-binding = Ctrl+K, B
 
-# Geschiedenispaneel.
+# History panel.
 history-section-search = Zoekgeschiedenis
-history-section-run = Uitvoergeschiedenis
+history-section-run = Uitvoeringsgeschiedenis
 history-section-privacy = Privacy (+)
-history-record-filename = Geschiedenis van bestandsnaamlens bijhouden
-history-record-content = Geschiedenis van inhoudslens bijhouden
-history-record-audio = Geschiedenis van audiolens bijhouden
-history-record-similarity = Geschiedenis van gelijkenislens bijhouden
+history-record-filename = Geschiedenis van bestandsnaamlens vastleggen
+history-record-content = Geschiedenis van inhoudslens vastleggen
+history-record-audio = Geschiedenis van audiolens vastleggen
+history-record-similarity = Geschiedenis van gelijkenislens vastleggen
 
-# Taalpaneel.
+# Locale panel.
 locale-section-language = Taal (+)
-locale-section-time-date = Tijd / datum (+)
-locale-date-os = OS-standaard
+locale-section-time-date = Tijd/datum (+)
+locale-date-os = Standaard besturingssysteem
 locale-date-iso8601 = ISO 8601
 locale-date-rfc3339 = RFC 3339
 locale-date-custom-label = Aangepast
 locale-date-custom-format = Aangepaste notatie
 locale-date-placeholder = YYYY-MM-DD
 locale-section-numbers = Getallen (+)
-locale-number-os = OS-standaard
+locale-number-os = Standaard besturingssysteem
 locale-number-custom = Aangepast
 locale-thousands-sep = Scheidingsteken voor duizendtallen
 locale-decimal-sep = Decimaalscheidingsteken
 
-# Mappenpaneel.
-folders-hint = Extra gevolgde mappen naast de standaardvolumes.
-folders-list-title = Gevolgde mappen
+# Folders panel.
+folders-hint = Aanvullende bewaakte mappen naast de standaardvolumes.
+folders-list-title = Bewaakte mappen
 folders-empty = Nog geen mappen toegevoegd.
 folders-remove = Verwijderen
 folders-section-title-dynamic = Instellingen voor { $path }
-folders-section-schedule = Herscan-schema
+folders-section-schedule = Schema voor opnieuw scannen
 folders-schedule-daily = Elke dag om HH:MM
 folders-schedule-hours = Elke N uur
 folders-schedule-never = Nooit
@@ -528,29 +529,29 @@ folders-hours = Uren
 folders-id-label = Map-ID (alleen-lezen)
 folders-select-prompt = Selecteer een map om deze te configureren.
 folders-section-extras = Sourcerer-extra's (+)
-folders-extras-note = Opnieuw scannen bij hervatten uit slaapstand is standaard ingeschakeld in deze build; de schakelaar voegt zich bij de besturingselementen op mapniveau in de verfijningsronde van Fase 13.
+folders-extras-note = Opnieuw scannen bij hervatten uit slaapstand is in deze build standaard ingeschakeld; de schakelaar wordt in de afwerkingsronde van fase 13 toegevoegd aan de bedieningselementen op mapniveau.
 
-# Volumespaneel.
-volumes-hint = Cross-platform tegenhanger van de NTFS- / ReFS-panelen van voidtools Everything. Detecteert automatisch NTFS / ReFS / exFAT / FAT32 (Win), APFS / HFS+ (macOS), ext4 / Btrfs / ZFS / XFS / F2FS (Linux).
+# Volumes panel.
+volumes-hint = Platformonafhankelijke tegenhanger van de NTFS-/ReFS-panelen van voidtools Everything. Detecteert automatisch NTFS/ReFS/exFAT/FAT32 (Win), APFS/HFS+ (macOS), ext4/Btrfs/ZFS/XFS/F2FS (Linux).
 volumes-section-auto-include = Automatisch opnemen
 volumes-list-title = Gedetecteerde volumes
 volumes-detecting = Detecteren…
 volumes-empty = Geen volumes gedetecteerd.
 volumes-select-prompt = Selecteer een volume om dit te configureren.
 
-# Verfijning van Over-paneel.
+# About panel polish.
 about-section-version = Versie (+)
 about-section-license = Licentie (+)
-about-license-text = Mike Weaver — alle rechten voorbehouden. Dit is propriëtaire software.
+about-license-text = Mike Weaver — Alle rechten voorbehouden. Dit is propriëtaire software.
 about-license-spdx = SPDX: { $spdx }
 about-section-credits = Met dank aan (+)
 about-credits-inspired = Geïnspireerd door Everything van voidtools.
 about-credits-voidtools = voidtools.com
 about-credits-repo = Projectrepository
 
-# --- Menubalk (PRD §8.28) — elk label + submenu + hover-hint in statusbalk ---
+# --- Menu bar (PRD §8.28) — every label + submenu + status-bar hover hint ---
 
-# Bestand-menu.
+# File menu.
 menu-file-hint = Bevat opdrachten om met Sourcerer te werken.
 menu-file-new-window = Nieuw zoekvenster
 menu-file-open-list = Bestandslijst openen…
@@ -560,7 +561,7 @@ menu-file-export-results = Resultaten exporteren…
 menu-file-export-bundle = Indexbundel exporteren…
 menu-file-exit = Afsluiten
 
-# Bewerken-menu.
+# Edit menu.
 menu-edit-hint = Bevat opdrachten om zoekresultaten te bewerken.
 menu-edit-cut = Knippen
 menu-edit-copy = Kopiëren
@@ -573,11 +574,11 @@ menu-edit-advanced = Geavanceerd
 menu-edit-copy-full-name = Volledige naam kopiëren
 menu-edit-copy-path = Pad kopiëren
 menu-edit-copy-filename = Bestandsnaam kopiëren
-menu-edit-copy-as-json = Als JSON kopiëren
+menu-edit-copy-as-json = Kopiëren als JSON
 menu-edit-copy-with-metadata = Kopiëren met metadata
-menu-edit-copy-as-bundle-ref = Kopiëren als Sourcerer-bundelverwijzing
+menu-edit-copy-as-bundle-ref = Kopiëren als Sourcerer Bundle-verwijzing
 
-# Beeld-menu.
+# View menu.
 menu-view-hint = Bevat opdrachten om de weergave aan te passen.
 menu-view-filters = Filters
 menu-view-preview = Voorbeeld
@@ -591,7 +592,7 @@ menu-view-window-size-hint = Bevat opdrachten om de grootte van het venster aan 
 menu-view-window-small = Klein
 menu-view-window-medium = Middel
 menu-view-window-large = Groot
-menu-view-window-auto = Automatisch passen
+menu-view-window-auto = Automatisch aanpassen
 menu-view-zoom = Zoomen
 menu-view-zoom-hint = Bevat opdrachten om de letter- en pictogramgrootte aan te passen.
 menu-view-zoom-in = Inzoomen
@@ -607,8 +608,8 @@ menu-view-sort-type = Type
 menu-view-sort-modified = Wijzigingsdatum
 menu-view-sort-created = Aanmaakdatum
 menu-view-sort-accessed = Toegangsdatum
-menu-view-sort-attributes = Attributen
-menu-view-sort-recently-changed = Recent gewijzigd op
+menu-view-sort-attributes = Kenmerken
+menu-view-sort-recently-changed = Datum recent gewijzigd
 menu-view-sort-run-count = Aantal uitvoeringen
 menu-view-sort-run-date = Datum uitgevoerd
 menu-view-sort-file-list-filename = Bestandsnaam van bestandslijst
@@ -620,63 +621,63 @@ menu-view-sort-desc = Aflopend
 menu-view-go-to = Ga naar
 menu-view-refresh = Vernieuwen
 menu-view-theme = Thema
-menu-view-theme-hint = Schakel tussen systeem-, lichte of donkere thema's.
+menu-view-theme-hint = Wisselen tussen systeem-, lichte of donkere thema's.
 menu-view-lenses = Lenzen
-menu-view-lenses-hint = Schakel de zichtbaarheid van elke lens in de resultaatlijst.
-menu-view-on-top = Bovenop
+menu-view-lenses-hint = Zichtbaarheid van elke lens in de resultaatlijst in-/uitschakelen.
+menu-view-on-top = Op voorgrond
 menu-view-on-top-hint = Bevat opdrachten om dit venster boven andere vensters te houden.
 menu-view-on-top-never = Nooit
 menu-view-on-top-always = Altijd
-menu-view-on-top-while-searching = Tijdens het zoeken
+menu-view-on-top-while-searching = Tijdens zoeken
 
-# Zoeken-menu.
-menu-search-hint = Bevat schakelaars voor zoeken.
+# Search menu.
+menu-search-hint = Bevat zoekschakelaars.
 menu-search-match-case = Hoofdlettergevoelig
 menu-search-match-whole-word = Heel woord zoeken
 menu-search-match-path = Pad doorzoeken
-menu-search-match-diacritics = Diakritische tekens meetellen
-menu-search-enable-regex = Regex inschakelen
+menu-search-match-diacritics = Diakritische tekens meenemen
+menu-search-enable-regex = Reguliere expressie inschakelen
 menu-search-advanced = Geavanceerd zoeken…
 menu-search-add-to-filters = Aan filters toevoegen…
-menu-search-organize-filters = Filters beheren…
+menu-search-organize-filters = Filters ordenen…
 menu-search-filter-everything = Everything
 menu-search-filter-archive = Gecomprimeerd (archief)
 menu-search-filter-folder = Map
 menu-search-filter-custom = Aangepast filter…
 
-# Bladwijzers-menu.
+# Bookmarks menu.
 menu-bookmarks-hint = Bevat opdrachten om met bladwijzers te werken.
 menu-bookmarks-add = Aan bladwijzers toevoegen
-menu-bookmarks-organize = Bladwijzers beheren…
+menu-bookmarks-organize = Bladwijzers ordenen…
 
-# Extra-menu.
-menu-tools-hint = Bevat opdrachten voor extra hulpmiddelen.
-menu-tools-connect = Verbinding maken met FTP-server…
+# Tools menu.
+menu-tools-hint = Bevat opdrachten voor extra functies.
+menu-tools-connect = Verbinden met FTP-server…
 menu-tools-disconnect = Verbinding met FTP-server verbreken
-menu-tools-file-list-editor = Bestandslijst-editor…
+menu-tools-file-list-editor = Editor voor bestandslijsten…
 menu-tools-index-maintenance = Indexonderhoud
 menu-tools-index-maintenance-hint = Hulpmiddelen voor indexonderhoud.
 menu-tools-verify-index = Index verifiëren…
-menu-tools-compact-index = Index compacteren…
-menu-tools-rebuild-index = Index geforceerd herbouwen…
-menu-tools-custom-extractor = Beheer van aangepaste extractors…
-menu-tools-custom-extractor-hint = Beheer Wasm-sandboxed aangepaste extractors.
+menu-tools-compact-index = Index comprimeren…
+menu-tools-rebuild-index = Opnieuw opbouwen van index forceren…
+menu-tools-custom-extractor = Beheer aangepaste extractors…
+menu-tools-custom-extractor-hint = Wasm-sandboxed aangepaste extractors beheren.
 menu-tools-options = Opties…
 
-# Help-menu.
-menu-help-hint = Bevat hulpopdrachten.
-menu-help-help = Sourcerer-help
+# Help menu.
+menu-help-hint = Bevat helpopdrachten.
+menu-help-help = Sourcerer Help
 menu-help-search-syntax = Zoeksyntaxis
-menu-help-regex-syntax = Regex-syntaxis
-menu-help-audio-ref = Referentie voor audiomodificatoren
-menu-help-similarity-ref = Referentie voor gelijkenismodificatoren
+menu-help-regex-syntax = Syntaxis reguliere expressies
+menu-help-audio-ref = Naslagwerk audiomodifiers
+menu-help-similarity-ref = Naslagwerk gelijkenismodifiers
 menu-help-cli-options = Opdrachtregelopties
 menu-help-website = Sourcerer-website
 menu-help-check-updates = Controleren op updates…
-menu-help-sponsor = Sponsoren / doneren
+menu-help-sponsor = Sponsoren/doneren
 menu-help-about = Over Sourcerer…
 
-# Resultaatkolomkoppen (korte vormen gebruikt in de tabelkoprij).
+# Result column headers (short forms used in the table header row).
 column-name = Naam
 column-path = Pad
 column-size = Grootte
@@ -686,18 +687,18 @@ column-ext = Ext
 column-sort-by = Sorteren op { $name }
 column-resize = Kolom { $name } vergroten/verkleinen
 
-# Sectie-subtitelbalken die in meerdere instellingenpanelen worden gebruikt.
+# Section subtitle bars used inside multiple settings panels.
 section-behavior = Gedrag
 section-rendering = Weergave
 section-status-bar = Statusbalk
-section-display-format = Weergaveformaat
+section-display-format = Weergavenotatie
 section-loading-priority = Laadprioriteit
 section-compatibility = Compatibiliteit
 section-storage = Opslag
 section-index-fields = Indexvelden
 section-maintenance = Onderhoud
 section-logging = Logboekregistratie
-section-tools = Hulpmiddelen
+section-tools = Extra
 section-privacy = Privacy
 section-auto-update = Automatisch bijwerken (+)
 section-bind = Binden
@@ -709,15 +710,15 @@ section-loudness = Luidheid
 section-tuning = Afstemming (+)
 section-minhash-lsh = MinHash + LSH-parameters (+)
 section-top-level = Hoofdniveau
-section-file-globs = Bestandspatronen
+section-file-globs = Bestandsglobs
 section-file-list-settings = Instellingen voor geselecteerde bestandslijst
-section-editor-format = Editor + Formaat (E + +)
-section-api-server = API-server (E adapted)
+section-editor-format = Editor + formaat (E + +)
+section-api-server = API-server (E aangepast)
 section-sourcerer-extras = Sourcerer-extra's (+)
 section-sourcerer-additions = Sourcerer-toevoegingen (+)
 section-sourcerer-extensions = Sourcerer-uitbreidingen (+)
 
-# Algemene optielabels gebruikt in verschillende dropdowns.
+# Common option labels used across several Dropdowns.
 opt-use-last-value = Laatste waarde gebruiken
 opt-use-last-value-default = Laatste waarde gebruiken (standaard)
 opt-low = Laag
@@ -725,29 +726,32 @@ opt-normal-default = Normaal (standaard)
 opt-high = Hoog
 opt-disabled = Uitgeschakeld
 opt-off = Uit
-opt-on-battery = Op accustroom
+opt-on-battery = Bij accugebruik
 opt-always = Altijd
-opt-clamp-default = Vastzetten (standaard)
+opt-clamp-default = Begrenzen (standaard)
 opt-wrap = Omslaan
 opt-none = Geen
-opt-strict-refuse = Strikt (zoekopdrachten weigeren bij corruptie)
+opt-strict-refuse = Strikt (zoekopdrachten weigeren bij beschadiging)
 opt-lenient-warn = Soepel (waarschuwen maar zoeken)
-opt-system-default = Systeemstandaard
-opt-drag-select = Slepen-selecteren
+opt-system-default = Standaard besturingssysteem
+opt-drag-select = Slepen om te selecteren
 opt-auto-binary = Automatisch (binair)
 opt-auto-decimal = Automatisch (decimaal)
 
-# Eenheidssuffixen weergegeven naast getalinvoervelden.
+# Unit suffixes shown next to number inputs.
 unit-days = dagen
+unit-b = B
 unit-kb = KB
 unit-mb = MB
+unit-gb = GB
+unit-tb = TB
 
-# Aanvullende labels voor dropdownopties (extractormodus / sortering / weergave / index / paneel / volgorde / LUFS / piek / logniveau / updatekanaal).
-opt-eager = Gretig
+# Additional dropdown option labels (extractor mode / sort / view / index / pane / precedence / LUFS / peak / log level / update channel).
+opt-eager = Direct
 opt-lazy-default = Lui (standaard)
 opt-on = Aan
 opt-on-default = Aan (standaard)
-opt-all = Alle
+opt-all = Alles
 opt-weekly = Wekelijks
 opt-monthly = Maandelijks
 opt-name-asc = Naam oplopend
@@ -762,7 +766,7 @@ opt-details = Details
 opt-thumbnails = Miniaturen
 opt-local-db-default = Lokale database (standaard)
 opt-file-list = Bestandslijst
-opt-https-endpoint = HTTPS API-eindpunt
+opt-https-endpoint = HTTPS-API-eindpunt
 opt-right-default = Rechts (standaard)
 opt-bottom = Onder
 opt-or-and-default = OR > AND (standaard)
@@ -771,17 +775,12 @@ opt-ebu-r128-default = EBU R128 (standaard)
 opt-atsc-a85 = ATSC A/85
 opt-spotify = Spotify (-14)
 opt-apple-music = Apple Music (-16)
-opt-broadcast-film = Uitzendfilm (-23)
-opt-true-peak = Echte piek (4× oversampling, standaard)
-opt-sample-peak = Samplepiek
+opt-broadcast-film = Broadcast film (-23)
+opt-true-peak = True peak (4× oversampling, standaard)
+opt-sample-peak = Sample peak
 opt-auto-per-doc = Automatisch (per document)
-opt-log-error = Fout
-opt-log-warn = Waarschuwing
+opt-log-error = Error
+opt-log-warn = Warn
 opt-log-info-default = Info (standaard)
-opt-log-debug = Foutopsporing
-opt-log-trace = Tracering
-
-# unit-b / unit-gb / unit-tb (size units; conventional Latin acronyms — kept as-is, polish per-locale as needed).
-unit-b = B
-unit-gb = GB
-unit-tb = TB
+opt-log-debug = Debug
+opt-log-trace = Trace

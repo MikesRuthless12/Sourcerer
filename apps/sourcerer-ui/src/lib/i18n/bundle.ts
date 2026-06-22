@@ -55,28 +55,29 @@ export function loadedLocales(): readonly string[] {
 
 // Single source of truth for the 18 ship-locales (PRD §8.26). English is
 // pinned first; the remaining 17 sit below in alphabetical order by their
-// native-name spelling. Each label is the language's own self-name so a
-// user can pick their language even when the UI is currently in a script
-// they cannot read — see LocalePanel and FirstRunWizard.
+// English language name — a fixed order that does not change with the active
+// locale. Each label is the language's own native self-name so a user can pick
+// their language even when the UI is in a script they cannot read — see
+// LocalePanel and FirstRunWizard.
 export const LOCALES = [
-  { value: "en", label: "English (en)" },
-  { value: "id", label: "Bahasa Indonesia (id)" },
-  { value: "de", label: "Deutsch (de)" },
-  { value: "es", label: "Español (es)" },
-  { value: "fr", label: "Français (fr)" },
-  { value: "it", label: "Italiano (it)" },
-  { value: "nl", label: "Nederlands (nl)" },
-  { value: "pl", label: "Polski (pl)" },
-  { value: "pt-BR", label: "Português (pt-BR)" },
-  { value: "tr", label: "Türkçe (tr)" },
-  { value: "vi", label: "Tiếng Việt (vi)" },
-  { value: "ru", label: "Русский (ru)" },
-  { value: "uk", label: "Українська (uk)" },
-  { value: "ar", label: "العربية (ar) — RTL" },
-  { value: "hi", label: "हिन्दी (hi)" },
-  { value: "ja", label: "日本語 (ja)" },
-  { value: "ko", label: "한국어 (ko)" },
-  { value: "zh-CN", label: "简体中文 (zh-CN)" }
+  { value: "en", label: "English" },
+  { value: "ar", label: "العربية" },
+  { value: "zh-CN", label: "简体中文" },
+  { value: "nl", label: "Nederlands" },
+  { value: "fr", label: "Français" },
+  { value: "de", label: "Deutsch" },
+  { value: "hi", label: "हिन्दी" },
+  { value: "id", label: "Bahasa Indonesia" },
+  { value: "it", label: "Italiano" },
+  { value: "ja", label: "日本語" },
+  { value: "ko", label: "한국어" },
+  { value: "pl", label: "Polski" },
+  { value: "pt-BR", label: "Português (Brasil)" },
+  { value: "ru", label: "Русский" },
+  { value: "es", label: "Español" },
+  { value: "tr", label: "Türkçe" },
+  { value: "uk", label: "Українська" },
+  { value: "vi", label: "Tiếng Việt" }
 ] as const;
 
 export type Locale = (typeof LOCALES)[number]["value"];
