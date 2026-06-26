@@ -79,7 +79,7 @@ fn tauri_conf_has_identifier_and_window() {
     assert!(conf.contains("\"width\": 1100"));
     assert!(conf.contains("\"height\": 720"));
     assert!(conf.contains("\"theme\": \"Dark\""));
-    assert!(conf.contains("\"version\": \"0.19.84\""));
+    assert!(conf.contains(&format!("\"version\": \"{}\"", env!("CARGO_PKG_VERSION"))));
 }
 
 #[test]
