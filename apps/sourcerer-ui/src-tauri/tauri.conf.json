@@ -29,8 +29,20 @@
       "csp": "default-src 'self' ipc: http://ipc.localhost; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: ipc: http://ipc.localhost; font-src 'self' data:; connect-src 'self' ipc: http://ipc.localhost"
     }
   },
+  "plugins": {
+    "updater": {
+      "endpoints": [
+        "https://github.com/MikesRuthless12/Sourcerer/releases/latest/download/latest.json"
+      ],
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDlGMjkxQzkzNkNGQTI4QjcKUldTM0tQcHNreHdwbjY1REg4SzFrelUzVldLVVo0K0FvVjRlVXZFQ1pabXZKSlp1bk84R0xHYlQK",
+      "windows": {
+        "installMode": "passive"
+      }
+    }
+  },
   "bundle": {
     "active": true,
+    "createUpdaterArtifacts": true,
     "category": "Productivity",
     "shortDescription": "One search. Every source. Every OS.",
     "longDescription": "Sourcerer is a cross-platform realtime filesystem search engine — filename, content, audio, and similarity lenses on one journal-fed index.",

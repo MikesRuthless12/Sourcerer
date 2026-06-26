@@ -102,6 +102,12 @@ pub fn run() {
         .plugin(tauri_plugin_os::init())
         .setup(|app| {
             let handle = app.handle();
+            // Free signed auto-updater (ed25519/minisign). Desktop-only —
+            // the updater plugin has no mobile target, so guard the
+            // registration. Endpoints + pubkey live in tauri.conf.json;
+            // CI signs the artifacts via TAURI_SIGNING_PRIVATE_KEY.
+            #[cfg(desktop)]
+            handle.plugin(tauri_plugin_updater::Builder::new().build())?;
             // Boot the daemon + RPC client on a background thread so the
             // Tauri setup hook returns immediately and the window can
             // appear right away. Blocking the setup hook on a 10-15s
