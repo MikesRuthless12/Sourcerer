@@ -35,7 +35,8 @@ csv = "1"
 serde_yaml_ng = "0.10"
 
 # PDF — pure-Rust (pdf-rs ecosystem), MIT
-pdf-extract = "0.10"
+# 0.12 pulls lopdf >=0.42 (clears RUSTSEC-2026-0187 stack-overflow DoS).
+pdf-extract = "0.12"
 
 # Code extractor — tree-sitter + per-language grammars.
 # Runtime — pinned to 0.25 because several grammars in this set (notably
