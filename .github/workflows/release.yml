@@ -27,6 +27,12 @@ jobs:
     name: release (${{ matrix.label }})
     strategy:
       fail-fast: false
+      # One leg at a time: tauri-action has each leg read-merge-write the shared
+      # latest.json, so parallel legs race on that upload ("ReleaseAsset
+      # already_exists") and one platform gets dropped from the manifest.
+      # Serializing the legs serializes the latest.json update. Releases are
+      # infrequent, so the extra wall-clock is worth a complete manifest.
+      max-parallel: 1
       matrix:
         # Native build per OS/arch — Win (MSI+NSIS), macOS arm64 + Intel,
         # Linux (deb/rpm/AppImage). The macOS Intel build cross-compiles on the
