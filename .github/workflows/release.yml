@@ -44,11 +44,19 @@ jobs:
 
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
-        with:
-          # The macOS Intel leg cross-compiles, so it needs the
-          # x86_64-apple-darwin target std; every other leg builds for its host
-          # (empty target = no-op).
-          targets: ${{ matrix.rust-target }}
+
+      - name: Add cross-compile target to the pinned toolchain (macOS Intel)
+        if: matrix.rust-target != ''
+        # The build obeys rust-toolchain.toml (channel 1.94.0), NOT the `stable`
+        # toolchain dtolnay installs — so adding the target to `stable` leaves
+        # the build with "target x86_64-apple-darwin is not installed". Read the
+        # pinned channel from the toml (sed works on macOS/BSD) and install THAT
+        # toolchain with the cross target.
+        run: |
+          channel=$(sed -n 's/^channel *= *"\(.*\)"/\1/p' rust-toolchain.toml)
+          echo "pinned channel: $channel ; adding target ${{ matrix.rust-target }}"
+          rustup toolchain install "$channel" --target ${{ matrix.rust-target }} --no-self-update
+          rustup target list --toolchain "$channel" --installed | grep "${{ matrix.rust-target }}"
 
       - name: Cache cargo
         uses: Swatinem/rust-cache@v2
