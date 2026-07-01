@@ -8,11 +8,11 @@
 
 use std::sync::Arc;
 
-use serde_json::json;
 use freally_rpc::{
     Client, ClientHandle, Notification, NotificationSink, RpcError, Server, ServerConfig, Service,
     SocketPath,
 };
+use serde_json::json;
 
 /// Minimal Service that echoes its params back as a result + emits one
 /// notification per call so the streaming path is exercised.
@@ -129,9 +129,7 @@ async fn rejects_unknown_method() {
 
     // Server task (single connection).
     let server_task =
-        tokio::spawn(
-            async move { freally_rpc::server::handle_connection_for_tests(a, svc).await },
-        );
+        tokio::spawn(async move { freally_rpc::server::handle_connection_for_tests(a, svc).await });
     let client = ClientHandle::from_stream(b);
     // EchoService accepts any method, so this test exists to assert
     // *something* responds. We invoke a real "echo.foo" call and then

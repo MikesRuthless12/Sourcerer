@@ -33,8 +33,8 @@ pub mod store;
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
-use parking_lot::Mutex;
 use freally_journal::JournalEvent;
+use parking_lot::Mutex;
 use tantivy::{
     Term,
     collector::TopDocs,

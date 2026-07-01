@@ -11,8 +11,8 @@
 use std::path::{Component, Path, PathBuf};
 use std::time::{Duration, Instant};
 
-use futures::StreamExt;
 use freally_journal_win::{JournalEvent, open_with_cursor_root};
+use futures::StreamExt;
 
 fn drive_root_for(p: &Path) -> PathBuf {
     let mut comps = p.components();

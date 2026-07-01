@@ -36,14 +36,14 @@ use std::pin::Pin;
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
 
-use serde::Deserialize;
-use serde_json::{Value, json};
 use freally_rpc::error::codes;
 use freally_rpc::{
     CustomExtractorEntry, ExcludeRules, ExtractorInfo, IndexPhase, IndexState, LensId, LensTimings,
     NotificationSink, QueryBatch, QueryDone, QueryRunHandle, RpcError, SandboxView, Service,
     VolumeInfo, VolumeStatus, VolumeUpdate, WatchedFolder,
 };
+use serde::Deserialize;
+use serde_json::{Value, json};
 use tokio::sync::Mutex;
 
 use crate::history::{HistoryUpdate, take_clear};
@@ -428,9 +428,7 @@ async fn extractors_list(svc: &IndexdService) -> Result<Value, RpcError> {
         .map(|(id, dn, fmts)| ExtractorInfo {
             id: (*id).to_string(),
             display_name: (*dn).to_string(),
-            mode: into_dto_mode(
-                snapshot.effective_mode(freally_extractors::ExtractorId::new(id)),
-            ),
+            mode: into_dto_mode(snapshot.effective_mode(freally_extractors::ExtractorId::new(id))),
             formats: fmts.iter().map(|s| s.to_string()).collect(),
         })
         .collect();

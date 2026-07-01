@@ -45,9 +45,7 @@ impl SettingsApply {
             snap.default_mode = match m {
                 freally_rpc::ExtractorMode::Eager => freally_extractors::ExtractorMode::Eager,
                 freally_rpc::ExtractorMode::Lazy => freally_extractors::ExtractorMode::Lazy,
-                freally_rpc::ExtractorMode::Disabled => {
-                    freally_extractors::ExtractorMode::Disabled
-                }
+                freally_rpc::ExtractorMode::Disabled => freally_extractors::ExtractorMode::Disabled,
             };
             pipeline.replace_settings(snap);
         }

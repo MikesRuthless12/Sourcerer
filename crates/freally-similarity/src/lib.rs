@@ -65,8 +65,8 @@ use std::collections::HashMap;
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
-use parking_lot::RwLock;
 use freally_journal::JournalEvent;
+use parking_lot::RwLock;
 use tracing::{debug, warn};
 
 pub use error::SimilarityError;

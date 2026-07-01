@@ -65,9 +65,7 @@ use crate::ffi::{
     FanotifyEventIter, FanotifyFd, InotifyEventIter, InotifyFd, ParsedInotifyEvent, device_id,
     statfs_name, walk_getdents64,
 };
-use crate::flags::{
-    self, FAN_Q_OVERFLOW, ReasonKind, FREALLY_FANOTIFY_MASK, FREALLY_INOTIFY_MASK,
-};
+use crate::flags::{self, FAN_Q_OVERFLOW, FREALLY_FANOTIFY_MASK, FREALLY_INOTIFY_MASK, ReasonKind};
 
 /// Buffer size for inotify / fanotify reads. Big enough that a busy
 /// directory rename storm fits comfortably; smaller than 1 MB so the

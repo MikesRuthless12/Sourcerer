@@ -24,9 +24,9 @@ use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
 #[cfg(windows)]
-use futures::StreamExt;
-#[cfg(windows)]
 use freally_journal_win::{JournalEvent, open_with_cursor_root};
+#[cfg(windows)]
+use futures::StreamExt;
 
 #[cfg(windows)]
 #[derive(Debug)]

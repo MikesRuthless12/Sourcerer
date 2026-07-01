@@ -22,8 +22,8 @@
 //! `tests/ui/statusbar/{parity,wiring}.rs` and run via the JS test
 //! harness (vitest + playwright).
 
-use serde_json::json;
 use freally_query::{ParseOpts, TokenKind, parse_to_report};
+use serde_json::json;
 
 #[test]
 fn parse_to_report_drives_search_bar_tokenization() {

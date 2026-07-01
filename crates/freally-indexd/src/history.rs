@@ -1,7 +1,7 @@
 //! History config + clear-all command.
 
-use serde::{Deserialize, Serialize};
 use freally_rpc::error::RpcError;
+use serde::{Deserialize, Serialize};
 
 use crate::state::{DaemonState, HistoryConfig};
 

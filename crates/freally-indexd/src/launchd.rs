@@ -228,9 +228,7 @@ mod tests {
         let path = plist_path().unwrap();
         assert_eq!(
             path,
-            PathBuf::from(
-                "/tmp/test-home/Library/LaunchAgents/io.mikeweaver.freally.indexd.plist"
-            )
+            PathBuf::from("/tmp/test-home/Library/LaunchAgents/io.mikeweaver.freally.indexd.plist")
         );
         unsafe {
             match prior {

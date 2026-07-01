@@ -29,9 +29,9 @@ use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
 #[cfg(target_os = "macos")]
-use futures::StreamExt;
-#[cfg(target_os = "macos")]
 use freally_journal_mac::{JournalEvent, open_with_cursor_root};
+#[cfg(target_os = "macos")]
+use futures::StreamExt;
 
 #[cfg(target_os = "macos")]
 #[derive(Debug)]

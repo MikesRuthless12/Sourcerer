@@ -1137,6 +1137,279 @@ dependencies = [
 ]
 
 [[package]]
+name = "freally-audio"
+version = "0.20.0"
+dependencies = [
+ "ebur128",
+ "parking_lot",
+ "serde",
+ "serde_json",
+ "symphonia",
+ "tempfile",
+ "thiserror",
+ "tracing",
+]
+
+[[package]]
+name = "freally-cli"
+version = "0.20.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "freally-query",
+ "freally-rpc",
+ "serde_json",
+ "tokio",
+ "tracing",
+ "tracing-subscriber",
+]
+
+[[package]]
+name = "freally-extractor-host"
+version = "0.20.0"
+dependencies = [
+ "anyhow",
+ "blake3",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror",
+ "toml",
+ "tracing",
+ "wasmtime",
+]
+
+[[package]]
+name = "freally-extractors"
+version = "0.20.0"
+dependencies = [
+ "blake3",
+ "calamine",
+ "csv",
+ "libc",
+ "memmap2",
+ "parking_lot",
+ "pdf-extract",
+ "quick-xml",
+ "serde",
+ "serde_json",
+ "serde_yaml_ng",
+ "sevenz-rust2",
+ "tar",
+ "tempfile",
+ "thiserror",
+ "tracing",
+ "tree-sitter",
+ "tree-sitter-bash",
+ "tree-sitter-c",
+ "tree-sitter-c-sharp",
+ "tree-sitter-clojure",
+ "tree-sitter-cpp",
+ "tree-sitter-css",
+ "tree-sitter-dart",
+ "tree-sitter-elixir",
+ "tree-sitter-elm",
+ "tree-sitter-erlang",
+ "tree-sitter-go",
+ "tree-sitter-haskell",
+ "tree-sitter-html",
+ "tree-sitter-java",
+ "tree-sitter-javascript",
+ "tree-sitter-json",
+ "tree-sitter-julia",
+ "tree-sitter-kotlin-ng",
+ "tree-sitter-lua",
+ "tree-sitter-nix",
+ "tree-sitter-ocaml",
+ "tree-sitter-php",
+ "tree-sitter-python",
+ "tree-sitter-r",
+ "tree-sitter-ruby",
+ "tree-sitter-rust",
+ "tree-sitter-scala",
+ "tree-sitter-sequel",
+ "tree-sitter-swift",
+ "tree-sitter-toml-ng",
+ "tree-sitter-typescript",
+ "tree-sitter-yaml",
+ "tree-sitter-zig",
+ "windows-sys 0.59.0",
+ "zip 5.1.1",
+ "zstd",
+]
+
+[[package]]
+name = "freally-fsbench"
+version = "0.20.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "libc",
+ "rayon",
+ "walkdir",
+]
+
+[[package]]
+name = "freally-http"
+version = "0.20.0"
+dependencies = [
+ "thiserror",
+]
+
+[[package]]
+name = "freally-i18n"
+version = "0.20.0"
+dependencies = [
+ "thiserror",
+]
+
+[[package]]
+name = "freally-index"
+version = "0.20.0"
+dependencies = [
+ "blake3",
+ "freally-journal",
+ "memmap2",
+ "parking_lot",
+ "rusqlite",
+ "serde",
+ "serde_json",
+ "tantivy",
+ "tempfile",
+ "thiserror",
+ "tracing",
+]
+
+[[package]]
+name = "freally-indexd"
+version = "0.20.0"
+dependencies = [
+ "anyhow",
+ "clap",
+ "freally-audio",
+ "freally-extractor-host",
+ "freally-extractors",
+ "freally-index",
+ "freally-journal",
+ "freally-journal-lin",
+ "freally-journal-mac",
+ "freally-journal-win",
+ "freally-query",
+ "freally-rpc",
+ "freally-similarity",
+ "futures",
+ "libc",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "tokio",
+ "toml",
+ "tracing",
+ "tracing-subscriber",
+ "walkdir",
+ "windows",
+]
+
+[[package]]
+name = "freally-journal"
+version = "0.20.0"
+dependencies = [
+ "freally-journal-lin",
+ "freally-journal-mac",
+ "freally-journal-win",
+ "serde",
+ "thiserror",
+]
+
+[[package]]
+name = "freally-journal-lin"
+version = "0.20.0"
+dependencies = [
+ "futures",
+ "libc",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror",
+ "tracing",
+]
+
+[[package]]
+name = "freally-journal-mac"
+version = "0.20.0"
+dependencies = [
+ "core-foundation",
+ "core-foundation-sys",
+ "fsevent-sys",
+ "futures",
+ "libc",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror",
+ "tracing",
+]
+
+[[package]]
+name = "freally-journal-win"
+version = "0.20.0"
+dependencies = [
+ "futures",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror",
+ "tracing",
+ "windows",
+]
+
+[[package]]
+name = "freally-query"
+version = "0.20.0"
+dependencies = [
+ "freally-audio",
+ "freally-index",
+ "freally-journal",
+ "freally-similarity",
+ "parking_lot",
+ "regex",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror",
+ "tracing",
+ "unicode-normalization",
+]
+
+[[package]]
+name = "freally-rpc"
+version = "0.20.0"
+dependencies = [
+ "anyhow",
+ "futures",
+ "libc",
+ "serde",
+ "serde_json",
+ "tempfile",
+ "thiserror",
+ "tokio",
+ "tracing",
+ "windows",
+]
+
+[[package]]
+name = "freally-similarity"
+version = "0.20.0"
+dependencies = [
+ "blake3",
+ "freally-journal",
+ "parking_lot",
+ "tempfile",
+ "thiserror",
+ "tracing",
+]
+
+[[package]]
 name = "fs4"
 version = "0.13.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2503,279 +2776,6 @@ checksum = "3a766e1110788c36f4fa1c2b71b387a7815aa65f88ce0229841826633d93723e"
 dependencies = [
  "libc",
  "windows-sys 0.61.2",
-]
-
-[[package]]
-name = "freally-audio"
-version = "0.20.0"
-dependencies = [
- "ebur128",
- "parking_lot",
- "serde",
- "serde_json",
- "symphonia",
- "tempfile",
- "thiserror",
- "tracing",
-]
-
-[[package]]
-name = "freally-cli"
-version = "0.20.0"
-dependencies = [
- "anyhow",
- "clap",
- "serde_json",
- "freally-query",
- "freally-rpc",
- "tokio",
- "tracing",
- "tracing-subscriber",
-]
-
-[[package]]
-name = "freally-extractor-host"
-version = "0.20.0"
-dependencies = [
- "anyhow",
- "blake3",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror",
- "toml",
- "tracing",
- "wasmtime",
-]
-
-[[package]]
-name = "freally-extractors"
-version = "0.20.0"
-dependencies = [
- "blake3",
- "calamine",
- "csv",
- "libc",
- "memmap2",
- "parking_lot",
- "pdf-extract",
- "quick-xml",
- "serde",
- "serde_json",
- "serde_yaml_ng",
- "sevenz-rust2",
- "tar",
- "tempfile",
- "thiserror",
- "tracing",
- "tree-sitter",
- "tree-sitter-bash",
- "tree-sitter-c",
- "tree-sitter-c-sharp",
- "tree-sitter-clojure",
- "tree-sitter-cpp",
- "tree-sitter-css",
- "tree-sitter-dart",
- "tree-sitter-elixir",
- "tree-sitter-elm",
- "tree-sitter-erlang",
- "tree-sitter-go",
- "tree-sitter-haskell",
- "tree-sitter-html",
- "tree-sitter-java",
- "tree-sitter-javascript",
- "tree-sitter-json",
- "tree-sitter-julia",
- "tree-sitter-kotlin-ng",
- "tree-sitter-lua",
- "tree-sitter-nix",
- "tree-sitter-ocaml",
- "tree-sitter-php",
- "tree-sitter-python",
- "tree-sitter-r",
- "tree-sitter-ruby",
- "tree-sitter-rust",
- "tree-sitter-scala",
- "tree-sitter-sequel",
- "tree-sitter-swift",
- "tree-sitter-toml-ng",
- "tree-sitter-typescript",
- "tree-sitter-yaml",
- "tree-sitter-zig",
- "windows-sys 0.59.0",
- "zip 5.1.1",
- "zstd",
-]
-
-[[package]]
-name = "freally-fsbench"
-version = "0.20.0"
-dependencies = [
- "anyhow",
- "clap",
- "libc",
- "rayon",
- "walkdir",
-]
-
-[[package]]
-name = "freally-http"
-version = "0.20.0"
-dependencies = [
- "thiserror",
-]
-
-[[package]]
-name = "freally-i18n"
-version = "0.20.0"
-dependencies = [
- "thiserror",
-]
-
-[[package]]
-name = "freally-index"
-version = "0.20.0"
-dependencies = [
- "blake3",
- "memmap2",
- "parking_lot",
- "rusqlite",
- "serde",
- "serde_json",
- "freally-journal",
- "tantivy",
- "tempfile",
- "thiserror",
- "tracing",
-]
-
-[[package]]
-name = "freally-indexd"
-version = "0.20.0"
-dependencies = [
- "anyhow",
- "clap",
- "futures",
- "libc",
- "serde",
- "serde_json",
- "freally-audio",
- "freally-extractor-host",
- "freally-extractors",
- "freally-index",
- "freally-journal",
- "freally-journal-lin",
- "freally-journal-mac",
- "freally-journal-win",
- "freally-query",
- "freally-rpc",
- "freally-similarity",
- "tempfile",
- "tokio",
- "toml",
- "tracing",
- "tracing-subscriber",
- "walkdir",
- "windows",
-]
-
-[[package]]
-name = "freally-journal"
-version = "0.20.0"
-dependencies = [
- "serde",
- "freally-journal-lin",
- "freally-journal-mac",
- "freally-journal-win",
- "thiserror",
-]
-
-[[package]]
-name = "freally-journal-lin"
-version = "0.20.0"
-dependencies = [
- "futures",
- "libc",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror",
- "tracing",
-]
-
-[[package]]
-name = "freally-journal-mac"
-version = "0.20.0"
-dependencies = [
- "core-foundation",
- "core-foundation-sys",
- "fsevent-sys",
- "futures",
- "libc",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror",
- "tracing",
-]
-
-[[package]]
-name = "freally-journal-win"
-version = "0.20.0"
-dependencies = [
- "futures",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror",
- "tracing",
- "windows",
-]
-
-[[package]]
-name = "freally-query"
-version = "0.20.0"
-dependencies = [
- "parking_lot",
- "regex",
- "serde",
- "serde_json",
- "freally-audio",
- "freally-index",
- "freally-journal",
- "freally-similarity",
- "tempfile",
- "thiserror",
- "tracing",
- "unicode-normalization",
-]
-
-[[package]]
-name = "freally-rpc"
-version = "0.20.0"
-dependencies = [
- "anyhow",
- "futures",
- "libc",
- "serde",
- "serde_json",
- "tempfile",
- "thiserror",
- "tokio",
- "tracing",
- "windows",
-]
-
-[[package]]
-name = "freally-similarity"
-version = "0.20.0"
-dependencies = [
- "blake3",
- "parking_lot",
- "freally-journal",
- "tempfile",
- "thiserror",
- "tracing",
 ]
 
 [[package]]
@@ -4639,13 +4639,13 @@ version = "0.20.0"
 dependencies = [
  "anyhow",
  "clap",
+ "freally-index",
+ "freally-journal",
  "icns",
  "ico",
  "resvg",
  "serde",
  "serde_json",
- "freally-index",
- "freally-journal",
  "tiny-skia",
  "usvg",
 ]

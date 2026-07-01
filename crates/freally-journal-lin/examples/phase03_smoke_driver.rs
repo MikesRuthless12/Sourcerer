@@ -29,9 +29,9 @@ use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
 #[cfg(target_os = "linux")]
-use futures::StreamExt;
-#[cfg(target_os = "linux")]
 use freally_journal_lin::{JournalEvent, open_with_cursor_root};
+#[cfg(target_os = "linux")]
+use futures::StreamExt;
 
 #[cfg(target_os = "linux")]
 #[derive(Debug)]

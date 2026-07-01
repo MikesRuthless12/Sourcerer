@@ -11,9 +11,9 @@
 
 use std::sync::Arc;
 
-use serde_json::json;
 use freally_indexd::{DaemonOptions, DaemonState, IndexdService};
 use freally_rpc::ClientHandle;
+use serde_json::json;
 
 #[tokio::test]
 async fn query_run_streams_batches_and_done() {
@@ -27,9 +27,7 @@ async fn query_run_streams_batches_and_done() {
 
     let (a, b) = tokio::io::duplex(64 * 1024);
     let _server =
-        tokio::spawn(
-            async move { freally_rpc::server::handle_connection_for_tests(a, svc).await },
-        );
+        tokio::spawn(async move { freally_rpc::server::handle_connection_for_tests(a, svc).await });
     let client = ClientHandle::from_stream(b);
     let mut notif = client.notifications();
 
@@ -71,9 +69,7 @@ async fn index_state_returns_typed_view() {
 
     let (a, b) = tokio::io::duplex(64 * 1024);
     let _s =
-        tokio::spawn(
-            async move { freally_rpc::server::handle_connection_for_tests(a, svc).await },
-        );
+        tokio::spawn(async move { freally_rpc::server::handle_connection_for_tests(a, svc).await });
     let client = ClientHandle::from_stream(b);
     let st: freally_rpc::IndexState = client
         .call("index.state", serde_json::Value::Null)
@@ -96,9 +92,7 @@ async fn extractors_list_and_set_mode_round_trip() {
 
     let (a, b) = tokio::io::duplex(64 * 1024);
     let _s =
-        tokio::spawn(
-            async move { freally_rpc::server::handle_connection_for_tests(a, svc).await },
-        );
+        tokio::spawn(async move { freally_rpc::server::handle_connection_for_tests(a, svc).await });
     let client = ClientHandle::from_stream(b);
 
     let list: Vec<freally_rpc::ExtractorInfo> = client
@@ -128,9 +122,7 @@ async fn excludes_round_trip() {
 
     let (a, b) = tokio::io::duplex(64 * 1024);
     let _s =
-        tokio::spawn(
-            async move { freally_rpc::server::handle_connection_for_tests(a, svc).await },
-        );
+        tokio::spawn(async move { freally_rpc::server::handle_connection_for_tests(a, svc).await });
     let client = ClientHandle::from_stream(b);
 
     let cur: freally_rpc::ExcludeRules = client

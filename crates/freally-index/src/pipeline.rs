@@ -23,8 +23,8 @@ use std::collections::VecDeque;
 use std::sync::Arc;
 use std::time::Duration;
 
-use parking_lot::{Condvar, Mutex};
 use freally_journal::JournalEvent;
+use parking_lot::{Condvar, Mutex};
 
 use crate::error::IndexError;
 

@@ -11,8 +11,8 @@
 use std::path::PathBuf;
 use std::time::{Duration, Instant};
 
-use futures::StreamExt;
 use freally_journal_lin::{JournalEvent, open_with_cursor_root};
+use futures::StreamExt;
 
 #[test]
 fn realtime_create_modify_rename_delete_round_trip() {

@@ -20,12 +20,12 @@
 use std::path::PathBuf;
 use std::sync::Arc;
 
-use serde::{Deserialize, Serialize};
 use freally_audio::AudioCache;
 use freally_extractor_host::Registry as CustomExtractorRegistry;
 use freally_extractors::{Pipeline, PipelineSettings, extractors as ext};
 use freally_index::Index;
 use freally_rpc::{ExcludeRules, RescanSchedule, WatchedFolder};
+use serde::{Deserialize, Serialize};
 use tokio::sync::RwLock;
 
 #[derive(Debug, Clone, Default)]
